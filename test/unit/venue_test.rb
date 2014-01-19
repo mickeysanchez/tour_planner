@@ -1,19 +1,17 @@
 # == Schema Information
 #
-# Table name: events
+# Table name: venues
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  band_id    :integer
-#  venue_id   :integer
-#  date       :datetime
 #
 
-class Event < ActiveRecord::Base
-  attr_accessible :name
-  
-  belongs_to :band
-  belongs_to :venue
+require 'test_helper'
+
+class VenueTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
