@@ -5,6 +5,9 @@ class BandsController < ApplicationController
   
   def show
     @band = Band.find(params[:id])
-    @events = @band.events.includes(:venue)
+    @events = @band.shows.includes(:venue)
+    
+    @event = Event.new
+    @event.band_id = @band.id
   end
 end

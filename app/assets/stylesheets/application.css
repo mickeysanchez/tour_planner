@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+html {
+	font-family: 'Courier New', Courier, Monospace;
+}

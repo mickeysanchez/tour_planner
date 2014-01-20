@@ -11,5 +11,10 @@
 class Band < ActiveRecord::Base
   attr_accessible :name
 
-  has_many :events, :order => "date ASC"
+  # make it easy on ourselves: call band.events or band.shows interchangeably
+  has_many :events, :order => 'date ASC'
+  has_many :shows, 
+           :class_name => 'Event', 
+           :foreign_key => :band_id, 
+           :order => 'date ASC' 
 end

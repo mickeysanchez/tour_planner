@@ -1,0 +1,19 @@
+<h5> add another show: </h5>
+
+<%= form_for [ @band, @event ] do |f| %>
+
+	<%= f.label :name, 'name:' %>
+	<%= f.text_field :name %>
+
+	<br>
+	
+	<%= f.label :venue_id, 'venue_id:' %>
+	<%= f.text_field :venue_id %>
+	
+	<br>
+	
+	<%= f.label :date, 'date:' %>
+	<%= f.date_select(:date, :order => [:month, :day, :year]) %>
+	
+	<%= f.submit 'create' %>
+<% end %>

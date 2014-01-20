@@ -12,7 +12,7 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :venue_id, :date
   
   belongs_to :band
   belongs_to :venue

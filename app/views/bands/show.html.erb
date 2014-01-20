@@ -1,3 +1,7 @@
+<h4> <%= @band.name %> </h4>
+
+<h5> shows (<%= @events.count %>): </h5>
+
 <% @events.each do |event| %>
 
 <p>
@@ -5,3 +9,5 @@
 </p>
 
 <% end %>
+
+<%= render :partial => "events/form" %>
