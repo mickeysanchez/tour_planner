@@ -1,0 +1,47 @@
+Tables/Models to Create:
+
+	1. tours
+	2. users
+	3. band_memberships - join table
+
+Things to add to existing tables: 
+
+	1. venues
+		- address
+			- street address
+			- city
+			- state
+		- contact info
+		- capacity
+	
+	2. shows
+	    - contact_name
+		- contact_phone
+		- contact_email
+		- arrival_time
+		- check_in_time
+		- doors_time
+		- set_time
+		- billing (headline, support, etc) 
+		- situation
+		- ticket_price
+		- age_limit
+		- fee
+		- estimated_fee
+		- terms
+		- hospitality_notes
+		- shower?
+		- washer_dryer?
+		- notes
+		
+Eventual features:
+
+	1. google login
+	2. automatically adds shows to google calendar
+	3. emails you show details daily (or whatever you set)
+	4. uses location data to calculate drive time to next show
+			- when to leave to arrive by arrival time or check in
+	5. calculates total income from tour
+	6. calculates total booking-agent percentage
+	7. generates printable pdf
+	
