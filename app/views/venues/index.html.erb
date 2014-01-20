@@ -1,0 +1,10 @@
+<h5> venues: </h5>
+
+<% @venues.each do |venue| %>
+	<p>
+	  id: <%= venue.id %> :: <%= venue.name %> :: 
+	  <%= link_to 'delete', venue_path(venue), :method => :delete %>
+	</p>
+<% end %>
+
+<%= render :partial => 'form'%>

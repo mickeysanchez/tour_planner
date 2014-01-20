@@ -1,0 +1,8 @@
+<h5> new band: </h5>
+
+<%= form_for @band do |f| %>
+	<%= f.label :name, 'name:' %>
+	<%= f.text_field :name %>
+
+	<%= f.submit 'create'%>
+<% end %>

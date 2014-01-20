@@ -1,9 +1,9 @@
-<h4> Shows: </h4>
+<h4> shows: </h4>
 
 <% @events.each do |event| %>
 
 <p>
-	<%= event.venue_id %> :: <% event.band_id %> :: 
+	venue_id: <%= event.venue_id %> :: band_id: <%= event.band_id %> :: 
 	<%= link_to 'delete', event_path(event), :method => :delete %>
 </p>
 

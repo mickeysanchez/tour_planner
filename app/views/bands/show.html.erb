@@ -5,9 +5,12 @@
 <% @events.each do |event| %>
 
 <p>
-	<%= event.venue.name%> :: <%= distance_of_time_in_words(Time.now, event.date) %> from now
+	<%= event.name %> :: 
+	<%= event.venue.name %> :: 
+	<%= distance_of_time_in_words(Time.now, event.date) %> from now ::
+	<%= link_to 'delete', event_path(event), :method => 'delete' %>
 </p>
 
 <% end %>
 
-<%= render :partial => "events/form" %>
+<%= render :partial => 'events/form' %>
