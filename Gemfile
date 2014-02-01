@@ -5,6 +5,8 @@ gem 'rails', '3.2.15'
 gem 'pg'
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'annotate'
   gem 'pry-rails'
 end
