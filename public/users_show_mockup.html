@@ -9,8 +9,8 @@
 	}
 	
 	main {
-		margin-left: 60px;
-		margin-right: 60px;
+		margin-left: 80px;
+		margin-right: 80px;
 		margin-bottom: 60px;
 	}
 	
@@ -19,11 +19,10 @@
 	}
 	
 	header {
-		margin-top: 0px;
+		margin-top: 20px;
 		margin-bottom: 10px;
-		border: solid 1px;
 		height: 30px;
-		background: gray;
+		text-align: center;
 	}
 	
 	#dashboard {
@@ -61,14 +60,19 @@
 		color: green;
 	}
 	
+	
 	#money {
-		width: 500px;
 		float: left;
+		margin-right: 40px;
 	}
 	
 	#details {
 		float: left;
-		width: 500px;
+		margin-right: 40px;
+	}
+	
+	#useful-info {
+		float: left;
 	}
 	
 	.date {
@@ -82,21 +86,46 @@
 		margin-bottom: 10px;
 		font-weight: bold;
 	}
+	
+	.date:hover {
+		border: solid 2px red;
+	}
+	
+	.right-buttons {
+		float: right;
+		margin-left: 30px;
+	}
+	
+	.left-buttons {
+		float: left;
+		margin-right: 30px;
+	}
+	
 	</style>
 </head>
 
 <body>
 	<header>
+		<div class="left-buttons">Signed in as: <strong>sanchez.mickey@gmail.com</strong></div>
+		
+		<strong style="color: blue">BAND: DELICATE STEVE</strong>
+		
+		<div class="right-buttons">Sign out</div>
+		<div class="right-buttons">Main Dashboard</div>
+		<div class="right-buttons">Connect</div>
 	</header>
+	
+	<hr>
 	
 	<main>
 	
-	<h1> TUESDAY 13 NOVEMBER 2012 - CHICAGO IL - BEAT KITCHEN </h1>
+	<h1> TUESDAY 13 NOVEMBER 2012 </h1>
+	<h2> BEAT KITCHEN : CHICAGO IL </h2>
 	
 	<section id="dashboard">
 		<section id="left-sidebar">
 			<section id="show-info">
-				Show 3 of 9
+				Show 3 of 9 in <strong>November Tour</strong>
 				<hr>
 				Beat Kitchen<br>
 				2100 West Belmont<br>
@@ -119,7 +148,7 @@
 			
 			</section>
 		
-			<nav id="previous-show">
+			<nav  id="previous-show">
 				<h3>
 				< < previous show
 			    </h3>
@@ -162,19 +191,38 @@
 	
 	<hr style="clear: both">
 	
-	<section id="money">
-		<h2> Finances </h2>
-		Fee: $1,000 + 85% of tickets sold after $2,271<br>
-		Term: plus $250 to Mickey Sanchez, $100 Support<br>
-		Other: 2 hotel rooms
-		<h2> Hospitality </h2>
-		Food: In house meals and drinks
-	</section>
+	<section>
+	
+		<section id="money">
+			<h2> Finances </h2>
+			Fee: $1,000 + 85% of tickets sold after $2,271<br>
+			<br>
+			Term: plus $250 to Mickey Sanchez, $100 Support<br>
+			<br>
+			Other: 2 hotel rooms
+			<h2> Hospitality </h2>
+			Food: In house meals and drinks
+		</section>
 		
 	
-	<section id="details">
-		<h2> Details </h2>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<section id="details">
+			<h2> Details </h2>
+			Billing: Headline<br>
+			Support: Mickey Sanchez<br>
+			Opener: The Earth Is A Man<br>
+			<br>
+			Shower: Yes<br>
+			Washer/Dryer: Yes<br>
+		</section>
+	
+		<section id="useful-info">
+			<h2> Useful Info </h2>
+			Drive Time From Columbus: 7 hrs 24 min<br>
+			Drive Time To St. Louis: 9 hrs 16 min<br>
+			Must Leave Columbus at: 9 AM <br>
+			Must Leave Chicago (next morning): 7:30 AM <br>
+		</section>
+	
 	</section>
 	
 	
