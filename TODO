@@ -44,4 +44,5 @@ Eventual features:
 	5. calculates total income from tour
 	6. calculates total booking-agent percentage
 	7. generates printable pdf
+	8. generates estimated gas cost for entire tour using average gas price data for states you are travelling through
 	
