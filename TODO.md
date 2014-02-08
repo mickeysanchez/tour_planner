@@ -76,22 +76,33 @@
  Rails
 
     bad ass logo
-    Basic CRUD
+    
+	Basic CRUD
 		1. User => has many Bands => has many Shows & Tours
 		2. CRUD users, bands, shows, tours, venues
-    Complex forms
+    
+	Complex forms
 		1. Event creation will also create venues
-    Authentication
+    
+	Authentication
 		1. User creation/authentication (eventually using google login)
 		
-    Bootstrap (SF only)
-    ActionMailer/Sendgrid
-    Partials, helpers
-    Routing
-    File upload (paperclip or filepicker.io)
+		* Authorization:
+			1. User gets to see private details about show, while others who visit the
+			   show page just get public info.
+    
+	ActionMailer/Sendgrid
+		1. Users get sent daily emails during their tour giving them the days details. 
+    
+	Partials, helpers
+    
+	Routing
+    
+	File upload (paperclip or filepicker.io)
+		1. attach private files to events - like show posters, contracts, etc.
+	
     Pagination
-    Consuming 3rd Party APIs
-    Omniauth
+
     delayed_job
 
 JavaScript/Backbone
@@ -99,7 +110,8 @@ JavaScript/Backbone
     jQuery
         jQuery UI: draggable/sortable
 		1. DRAGGABLE
-			* 
+			* drag shows from one tour to the other
+			
     AJAX
     Backbone
     Building your own API for consumption by Backbone.
@@ -108,7 +120,7 @@ JavaScript/Backbone
 
 		
 		
-###Eventual features:
+###Eventual extra features:
 
 	1. google login
 	2. automatically adds shows to google calendar
