@@ -71,6 +71,43 @@
 		- washer_dryer?
 		- notes
 		
+###Core features/technologies
+
+ Rails
+
+    bad ass logo
+    Basic CRUD
+		1. User => has many Bands => has many Shows & Tours
+		2. CRUD users, bands, shows, tours, venues
+    Complex forms
+		1. Event creation will also create venues
+    Authentication
+		1. User creation/authentication (eventually using google login)
+		
+    Bootstrap (SF only)
+    ActionMailer/Sendgrid
+    Partials, helpers
+    Routing
+    File upload (paperclip or filepicker.io)
+    Pagination
+    Consuming 3rd Party APIs
+    Omniauth
+    delayed_job
+
+JavaScript/Backbone
+
+    jQuery
+        jQuery UI: draggable/sortable
+		1. DRAGGABLE
+			* 
+    AJAX
+    Backbone
+    Building your own API for consumption by Backbone.
+
+
+
+		
+		
 ###Eventual features:
 
 	1. google login
