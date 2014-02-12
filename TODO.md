@@ -94,16 +94,9 @@
 	ActionMailer/Sendgrid
 		1. Users get sent daily emails during their tour giving them the days details. 
     
-	Partials, helpers
-    
-	Routing
-    
 	File upload (paperclip or filepicker.io)
 		1. attach private files to events - like show posters, contracts, etc.
 	
-    Pagination
-
-    delayed_job
 
 JavaScript/Backbone
 
@@ -112,13 +105,8 @@ JavaScript/Backbone
 		1. DRAGGABLE
 			* drag shows from one tour to the other
 			
-    AJAX
     Backbone
-    Building your own API for consumption by Backbone.
-
-
-
-		
+		- single page app		
 		
 ###Eventual extra features:
 
