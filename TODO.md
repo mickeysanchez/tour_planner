@@ -1,6 +1,6 @@
 # Schema
 
-** not yet added **
+**bold** = **not yet added**
 
 0. **users**
 | email | token | role 
