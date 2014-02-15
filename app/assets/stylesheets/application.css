@@ -12,6 +12,91 @@
  *= require_tree .
  */
 
-html {
-	font-family: 'Courier New', Courier, Monospace;
+/* RESET */
+
+html, body, form, h1, div, label, a, input[type="submit"] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
+
+a:link {color: orange; text-decoration: none;}
+a:visited {color: orange;}
+a:hover { color: black; text-decoration : underline;}
+a:active{color: black; text-decoration : none; } 
+
+
+/* GENERAL STYLIN */
+
+html {
+	font-family: Futura;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	display: block;
+	font-weight: bold;
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }
+
+a {
+	color: orange;
+	display: inline;
+	font-weight: bold;
+}
+
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/* HEADER */
+
+header {
+	border-bottom: 1px solid black;
+}
+
+header nav {
+	border: 1px solid black;
+	border-top: 0;
+	border-bottom: 0;
+	width: 930px;
+	padding: 5px;
+	margin: auto;
+}
+
+#logout {
+	float: right;
+}
+
+#container {
+	border: 1px solid black;
+	border-top: 0;
+	width: 900px;
+	padding: 20px;
+	margin: auto;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    display:block;
+    margin: 10px;
+	border-radius: 5px;
+	border: 1px solid black;
+	padding: 10px;
+	font-size: 14px;
+}
+
+input[type="submit"] {
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 2px;
+    cursor: pointer;
+}
+

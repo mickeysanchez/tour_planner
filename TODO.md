@@ -5,7 +5,7 @@
 0. users
 | email | token | password_digest
 
-  0. **band_members**  << join table
+  0. band_members  << join table
   | user_id | band_id | role
 
 0. bands

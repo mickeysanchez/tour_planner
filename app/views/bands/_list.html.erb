@@ -1,0 +1,15 @@
+<% unless current_user.bands.empty? %>
+
+	<h2>Your Bands:</h2>
+
+	<ul>
+	<% current_user.bands.each do |band| %>
+		  <li> 
+		    Band Name: <%= link_to band.name, band_url(band) %>
+			Role: <%=  %>
+			<%= button_to 'Delete Band', band_url(band), method: :delete %>
+	<% end %>
+	</ul>
+	
+	<hr>
+<% end %>

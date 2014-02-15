@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string(255)      not null
+#  password_digest :string(255)      not null
+#  token           :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ActiveRecord::Base
   attr_accessible :email, :password
   attr_reader :password
@@ -8,6 +20,12 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   
   before_validation :ensure_session_token
+  
+  has_many :band_memberships,
+    class_name: 'BandMembership',
+    foreign_key: :member_id
+  
+  has_many :bands, through: :band_memberships, source: :band
   
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

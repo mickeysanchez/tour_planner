@@ -1,8 +1,19 @@
-<h5> new band: </h5>
+<h2>Create New Band</h2>
 
-<%= form_for @band do |f| %>
-	<%= f.label :name, 'name:' %>
-	<%= f.text_field :name %>
+<form id="band-form" action="<%= bands_url %>" method="post">
+  <input type="hidden" 
+		 name="authenticity_token" 
+		 value="<%= form_authenticity_token %>">
+		   
+  <label for="band_name">Band Name</label>
+  <input id="band_name"
+   		 name="band[name]"
+		 type="text">
 
-	<%= f.submit 'create'%>
-<% end %>
+  <label for="band_role">Your Role (optional)</label>
+  <input id="band_role"
+  		 name="band_membership[role]"
+		 type="text">
+		 
+  <input type="submit" value="Create Band">
+</form>

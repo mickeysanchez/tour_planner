@@ -1,3 +1,5 @@
+<h1>Create Account</h1>
+
 <form id="create_user" action="<%= users_url %>" method="post">
   <input type="hidden" 
 		 name="authenticity_token" 
@@ -13,5 +15,7 @@
   		 name="user[password]"
 		 type="password">
 		 
-  <input type="submit" value="Create User">
+  <input type="submit" value="Create Account">
 </form>
+
+<a href="<%= login_url %>">Log In</a>

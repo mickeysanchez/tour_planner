@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: band_memberships
 #
-#  id              :integer          not null, primary key
-#  email           :string(255)      not null
-#  password_digest :string(255)      not null
-#  token           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id         :integer          not null, primary key
+#  member_id  :integer          not null
+#  band_id    :integer          not null
+#  role       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

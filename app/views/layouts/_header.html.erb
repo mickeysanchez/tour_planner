@@ -1,5 +1,5 @@
 <header>
-	<nav>
+	<nav class="clearfix">
 		<% if signed_in? %>
 			<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
 		<% end %>
