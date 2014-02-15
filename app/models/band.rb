@@ -11,7 +11,7 @@
 class Band < ActiveRecord::Base
   attr_accessible :name
 
-  # make it easy on ourselves: call band.events or band.shows interchangeably
+  # make it easy on myself: call band.events or band.shows interchangeably
   has_many :events, :order => 'date ASC'
   has_many :shows, 
            :class_name => 'Event', 

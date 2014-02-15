@@ -2,11 +2,11 @@
 
 **bold** = **not yet added**
 
-0. **users**
-| email | token | role 
+0. users
+| email | token | password_digest
 
   0. **band_members**  << join table
-  | user_id | band_id |
+  | user_id | band_id | role
 
 0. bands
 | name | **creator_id** |
@@ -38,7 +38,6 @@
 ###Tables/Models to Create:
 
 	1. tours
-	2. users
 	3. band_memberships - join table
 
 ###Things to add to existing tables: 
