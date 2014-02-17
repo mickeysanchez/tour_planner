@@ -7,9 +7,11 @@
 <p>
 	<%= event.name %> :: 
 	<%= distance_of_time_in_words(Time.now, event.date) %> from now ::
-	<%= link_to 'delete', event_url(event), :method => 'delete' %>
+	<%= link_to 'delete', event_url(event), :method => 'delete' if current_user.is_in_band?(@band)%>
 </p>
 
 <% end %>
 
-<%= render 'events/form', band: @band %>
+<% if current_user.is_in_band?(@band) %>
+	<%= render 'events/form', band: @band %>
+<% end %>

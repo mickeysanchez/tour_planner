@@ -22,8 +22,8 @@ class Band < ActiveRecord::Base
            
   has_many :band_memberships, dependent: :destroy
   has_many :members,
-    class_name: 'User',
-    foreign_key: :member_id
+    through: :band_memberships,
+    source: :member
     
   def self.find_role(user, band)
     band.band_memberships.where("member_id = ?", user.id).first.role

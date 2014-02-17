@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  before_filter :require_signed_in!
+  
   def index
     @bands = current_user.bands
   end
@@ -13,15 +15,22 @@ class BandsController < ApplicationController
   
   def create
     @band = Band.new(params[:band])
+    
+    # current_user.bands.new(params[:band])
     # how to do this better?
+    
     if @band.save
       band_membership = BandMembership.new(params[:band_membership]);
       band_membership.member_id = current_user.id
       band_membership.band_id = @band.id
       band_membership.admin = true
-      band_membership.save
       
-      redirect_to :back
+      if band_membership.save
+        redirect_to :back
+      else
+        render json: band_membership.errors
+      end
+      
     else
       render json: @band.errors
     end

@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :require_signed_in!
+  
   def create
     @event = Event.new(params[:event])
     @event.band_id = params[:band_id]
