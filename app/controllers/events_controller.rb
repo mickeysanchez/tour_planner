@@ -7,9 +7,8 @@ class EventsController < ApplicationController
   
   def create
     # @event = Event.new(params[:event])
- #    @venue = @event.build_venue(params[:venue])
- #    fail
- 
+    # @venue = @event.build_venue(params[:venue])
+
     @venue = Venue.new(params[:venue])
     @event = @venue.events.new(params[:event])
     @event.band_id = params[:band_id]

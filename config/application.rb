@@ -61,5 +61,8 @@ module TourPlanner
     
     # get rid of i18 warning
     config.i18n.enforce_available_locales = true
+    
+    # for heroku
+    config.assets.initialize_on_precompile = false
   end
 end
