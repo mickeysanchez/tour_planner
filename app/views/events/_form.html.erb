@@ -1,19 +1,16 @@
-<h5> add another show: </h5>
+<hr>
+<h2>Add Another Show:</h2>
 
-<%= form_for [ @band, @event ] do |f| %>
+<form action="<%= band_events_url(band) %>" method="post">
+    <input type="hidden" 
+  		 name="authenticity_token" 
+  		 value="<%= form_authenticity_token %>">
 
-	<%= f.label :name, 'name:' %>
-	<%= f.text_field :name %>
-
-	<br>
+	<label for="show_name">Name(optional)</label>
+	<input id="show_name" type="text" name="event[name]" value="<%= @event.name %>">
 	
-	<%= f.label :venue_id, 'venue_id:' %>
-	<%= f.text_field :venue_id %>
-	
-	<br>
-	
-	<%= f.label :date, 'date:' %>
-	<%= f.date_select(:date, :order => [:month, :day, :year]) %>
-	
-	<%= f.submit 'create' %>
-<% end %>
+	<label for="show_date">Date</label>
+	<input id="show_date" type="date" name="event[date]" value="<%= @event.date %>">
+	 
+	<input type="submit" value="Add Show">
+</form>

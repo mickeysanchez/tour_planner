@@ -8,6 +8,7 @@
 #  role       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  admin      :boolean          default(FALSE), not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

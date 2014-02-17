@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     @event.band_id = params[:band_id]
     @event.save
     
-    redirect_to band_path(@event.band)
+    redirect_to :back
   end
   
   def index

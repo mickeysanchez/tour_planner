@@ -1,3 +1,10 @@
+#next
+1. Band - has it's own page
+	* only admin members can add/edit shows
+	* only members can see private details
+	* public and private url is the same but views are changed accordingly
+
+
 # Schema
 
 **bold** = **not yet added**
@@ -38,7 +45,6 @@
 ###Tables/Models to Create:
 
 	1. tours
-	3. band_memberships - join table
 
 ###Things to add to existing tables: 
 

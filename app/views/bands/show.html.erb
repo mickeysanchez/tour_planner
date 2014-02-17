@@ -1,16 +1,15 @@
-<h4> <%= @band.name %> </h4>
+<h1> <%= @band.name %> </h1>
 
-<h5> shows (<%= @events.count %>): </h5>
+<h2> shows (<%= @events.count %>): </h2>
 
 <% @events.each do |event| %>
 
 <p>
 	<%= event.name %> :: 
-	<%= event.venue.name %> :: 
 	<%= distance_of_time_in_words(Time.now, event.date) %> from now ::
-	<%= link_to 'delete', event_path(event), :method => 'delete' %>
+	<%= link_to 'delete', event_url(event), :method => 'delete' %>
 </p>
 
 <% end %>
 
-<%= render :partial => 'events/form' %>
+<%= render 'events/form', band: @band %>

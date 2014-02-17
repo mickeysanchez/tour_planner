@@ -73,6 +73,12 @@ header nav {
 	float: right;
 }
 
+#dashboard-link {
+	float: left;
+}
+
+/* BODY */
+
 #container {
 	border: 1px solid black;
 	border-top: 0;
@@ -83,7 +89,8 @@ header nav {
 
 input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+input[type="date"] {
     display:block;
     margin: 10px;
 	border-radius: 5px;
@@ -98,5 +105,9 @@ input[type="submit"] {
 	border-radius: 5px;
 	padding: 2px;
     cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background: lightyellow;
 }
 
