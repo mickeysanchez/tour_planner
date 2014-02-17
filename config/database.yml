@@ -12,7 +12,4 @@ test:
   database: tour_planner_test
   host: localhost
 
-production:
-  adapter: postgresql
-  database: tour_planner_production
 
