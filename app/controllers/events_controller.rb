@@ -6,12 +6,15 @@ class EventsController < ApplicationController
   end
   
   def create
-    @event = Event.new(params[:event])
-    @venue = @event.build_venue(params[:venue])
-
+    # @event = Event.new(params[:event])
+ #    @venue = @event.build_venue(params[:venue])
+ #    fail
+ 
+    @venue = Venue.new(params[:venue])
+    @event = @venue.events.new(params[:event])
     @event.band_id = params[:band_id]
     
-    if @event.save
+    if @venue.save
       redirect_to :back
     else
       render json: @event.errors

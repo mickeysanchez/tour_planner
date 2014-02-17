@@ -15,8 +15,7 @@ class Event < ActiveRecord::Base
   attr_accessible :name, :venue_id, :date
   
   validates :date, presence: true
-  validates :venue_id, presence: { message: "must have valid venue"}
   
   belongs_to :band
-  belongs_to :venue
+  belongs_to :venue, inverse_of: :events
 end
