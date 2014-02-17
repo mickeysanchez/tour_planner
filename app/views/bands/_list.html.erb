@@ -6,8 +6,9 @@
 	<% current_user.bands.each do |band| %>
 		  <li> 
 		    Band Name: <%= link_to band.name, band_url(band) %>
-			Role: <%=  %>
+			Role: <%= Band.find_role(current_user, band) || "unspecified" %>
 			<%= button_to 'Delete Band', band_url(band), method: :delete %>
+		  </li>
 	<% end %>
 	</ul>
 	

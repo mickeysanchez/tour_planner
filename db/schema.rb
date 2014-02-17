@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140215194231) do
+ActiveRecord::Schema.define(:version => 20140217004347) do
 
   create_table "band_memberships", :force => true do |t|
-    t.integer  "member_id",  :null => false
-    t.integer  "band_id",    :null => false
+    t.integer  "member_id",                     :null => false
+    t.integer  "band_id",                       :null => false
     t.string   "role"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "admin",      :default => false, :null => false
   end
 
   add_index "band_memberships", ["band_id", "member_id"], :name => "index_band_memberships_on_band_id_and_member_id", :unique => true

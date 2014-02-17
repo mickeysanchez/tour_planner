@@ -6,10 +6,10 @@
 | email | token | password_digest
 
   0. band_members  << join table
-  | user_id | band_id | role
+  | user_id | band_id | role | admin
 
 0. bands
-| name | **creator_id** |
+| name |
 
 0. events
 | name | band_id | venue_id | date | **creator_id** |

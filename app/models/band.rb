@@ -20,8 +20,12 @@ class Band < ActiveRecord::Base
            :foreign_key => :band_id, 
            :order => 'date ASC' 
            
-  has_many :band_memberships
+  has_many :band_memberships, dependent: :destroy
   has_many :members,
     class_name: 'User',
     foreign_key: :member_id
+    
+  def self.find_role(user, band)
+    band.band_memberships.where("member_id = ?", user.id).first.role
+  end
 end
