@@ -3,10 +3,15 @@ class EventsController < ApplicationController
   
   def create
     @event = Event.new(params[:event])
+    @venue = @event.build_venue(params[:venue])
+
     @event.band_id = params[:band_id]
-    @event.save
     
-    redirect_to :back
+    if @event.save
+      redirect_to :back
+    else
+      render json: @event.errors
+    end
   end
   
   def index

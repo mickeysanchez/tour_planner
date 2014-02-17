@@ -2,15 +2,29 @@
 
 <h2> shows (<%= @events.count %>): </h2>
 
-<% @events.each do |event| %>
+<ul id="all-shows">
+	<% @events.each do |event| %>
 
-<p>
-	<%= event.name %> :: 
-	<%= distance_of_time_in_words(Time.now, event.date) %> from now ::
-	<%= link_to 'delete', event_url(event), :method => 'delete' if current_user.is_in_band?(@band)%>
-</p>
-
-<% end %>
+	<li id="show-block">
+		Date: <%= event.date %>
+		<hr>
+		<ul id="show-list">
+			<li class="show-detail"> Show Name: <%= event.name %> </li>
+			<li class="show-detail"> Venue: <%= event.venue.name %> </li>
+			<li class="show-detail"> Address: <%= event.venue.address %> </li>
+			<li class="show-detail"> City: <%= event.venue.city %> </li>
+			<li class="show-detail"> State: <%= event.venue.state %> </li>
+			<li class="show-detail"> Zip Code: <%= event.venue.zipcode %> </li>
+			<li class="show-detail"> 
+				<%= link_to 'delete', 
+							event_url(event), 
+							:method => 'delete' if current_user.is_in_band?(@band)%> 
+			</li>
+		</ul>
+	</li>
+	
+	<% end %>
+</ul>
 
 <% if current_user.is_in_band?(@band) %>
 	<%= render 'events/form', band: @band %>

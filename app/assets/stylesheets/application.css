@@ -111,3 +111,10 @@ input[type="submit"]:hover {
 	background: lightyellow;
 }
 
+#show-block {
+	border: 1px solid black;
+	padding: 10px;
+	list-style: none;
+	margin: 10px 0px;
+}
+
