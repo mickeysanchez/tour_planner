@@ -15,6 +15,7 @@
 class Venue < ActiveRecord::Base
   attr_accessible :name, :address, :city, :state, :zipcode
   
+  validates :name, :address, :city, :state, :zipcode, presence: true
   
   has_many :events, :order => "date ASC"
 end

@@ -15,11 +15,15 @@
 			<li class="show-detail"> City: <%= event.venue.city %> </li>
 			<li class="show-detail"> State: <%= event.venue.state %> </li>
 			<li class="show-detail"> Zip Code: <%= event.venue.zipcode %> </li>
-			<li class="show-detail"> 
-				<%= link_to 'delete', 
-							event_url(event), 
-							:method => 'delete' if current_user.is_in_band?(@band)%> 
-			</li>
+			
+			<% if current_user.is_band_admin?(@band) %>
+				<li class="show-detail"> 
+					<%= link_to 'delete', 
+								event_url(event), 
+								:method => 'delete' %> 
+				</li>
+			<% end %>
+			
 		</ul>
 	</li>
 	

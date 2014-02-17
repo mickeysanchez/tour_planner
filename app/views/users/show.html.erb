@@ -1,6 +1,6 @@
-<h1>Email: <%= current_user.email %></h1>
+<h1>Email: <%= @user.email %></h1>
 <hr>
 
-<%= render 'bands/list' %>
+<%= render 'bands/list', user: @user %>
 
-<%= render 'bands/form' %>
+<%= render 'bands/form' if @user == current_user%>

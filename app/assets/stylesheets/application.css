@@ -77,6 +77,12 @@ header nav {
 	float: left;
 }
 
+#current-user {
+	float: right;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
 /* BODY */
 
 #container {
@@ -125,10 +131,27 @@ input[type="submit"]:hover {
 	margin: 10px 0px;
 }
 
-#band-details {
+#band-block {
 	border: 1px solid black;
 	padding: 10px;
 	list-style: none;
 	margin: 10px 0px;
 }
+
+#band-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+#all-shows {
+	list-style: none;
+	padding-left: 0;
+}
+
+#all-venues {
+	list-style: none;
+	padding-left: 0;
+}
+
+
 

@@ -58,5 +58,8 @@ module TourPlanner
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # get rid of i18 warning
+    config.i18n.enforce_available_locales = true
   end
 end

@@ -1,22 +1,25 @@
-<% unless current_user.bands.empty? %>
+<% unless user.bands.empty? %>
 
-	<h2>Your Bands:</h2>
+	<h2><%= user.email %>'s Bands:</h2>
 
 	<ul id="band-list">
 	
-	<% current_user.bands.each do |band| %>
+	<% user.bands.each do |band| %>
 	
-	 
-	 <li id="band-details">
-		<ul>
+	 <li id="band-block">
+		<ul class="block-header">
 		  <li> <h3> <%= link_to band.name, band_url(band) %> <h3> </li>
 		</ul>
 	 
 		<hr>
 		 
-		<ul>
-		  <li> Role: <%= Band.find_role(current_user, band) || "unspecified" %> </li>
-		  <li> <%= button_to 'Delete Band', band_url(band), method: :delete %> </li>
+		<ul class="block-details">
+		  <li class="block-detail"> Role: <%= Band.find_role(user, band) %> </li>
+		  <% unless user.is_band_admin?(band) %>
+		    <li class="block-detail"> 
+				<%= button_to 'Delete Band', band_url(band), method: :delete %> 
+			</li>
+		  <% end %>
 		</ul>
 	 </li>
 	

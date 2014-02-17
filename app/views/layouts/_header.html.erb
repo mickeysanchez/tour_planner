@@ -2,6 +2,7 @@
 	<nav class="clearfix">
 		<% if signed_in? %>
 			<%= link_to 'Manage', user_url(current_user), id: 'manage-link' %>
+			<span id="current-user"> Signed in as: <%= current_user.email %> </span>
 			<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
 		<% end %>
 	</nav>

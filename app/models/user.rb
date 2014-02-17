@@ -28,7 +28,15 @@ class User < ActiveRecord::Base
   has_many :bands, through: :band_memberships, source: :band
   
   def is_in_band?(band)
-    !!BandMembership.where("member_id = ? AND band_id = ?", self.id, band.id).first
+    !!BandMembership
+        .where("member_id = ? AND band_id = ?", self.id, band.id)
+        .first
+  end
+  
+  def is_band_admin?(band)
+    !!BandMembership
+        .where("member_id = ? AND band_id = ? AND admin = true", self.id, band.id)
+        .first
   end
   
   def self.find_by_credentials(email, password)
