@@ -25,7 +25,7 @@ class Band < ActiveRecord::Base
     through: :band_memberships,
     source: :member
     
-  def self.find_role(user, band)
-    band.band_memberships.where("member_id = ?", user.id).first.role
+  def role_of(user)
+    self.band_memberships.where("member_id = ?", user.id).first.role
   end
 end

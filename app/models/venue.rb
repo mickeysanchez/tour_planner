@@ -17,5 +17,5 @@ class Venue < ActiveRecord::Base
   
   validates :name, :address, :city, :state, :zipcode, presence: true
   
-  has_many :events, :order => "date ASC"
+  has_many :events, order: "date ASC", inverse_of: :venue
 end
