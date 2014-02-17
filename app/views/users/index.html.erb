@@ -1,0 +1,11 @@
+<h1> All Users </h1>
+
+<ul>
+	
+	<% @users.each do |user| %>
+	  <% next if current_user == user %>	
+	 
+	  <li> <%= link_to user.email, user_url(user) %> </li>
+	<% end %>
+	
+</ul>

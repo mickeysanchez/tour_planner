@@ -1,7 +1,7 @@
 <header>
 	<nav class="clearfix">
 		<% if signed_in? %>
-			<%= link_to 'Dashboard', user_url(current_user), id: 'dashboard-link' %>
+			<%= link_to 'Manage', user_url(current_user), id: 'manage-link' %>
 			<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
 		<% end %>
 	</nav>

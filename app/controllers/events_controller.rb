@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   before_filter :require_signed_in!
   
+  def index
+    @events = Event.all
+  end
+  
   def create
     @event = Event.new(params[:event])
     @venue = @event.build_venue(params[:venue])

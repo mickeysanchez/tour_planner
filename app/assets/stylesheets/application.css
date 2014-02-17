@@ -73,7 +73,7 @@ header nav {
 	float: right;
 }
 
-#dashboard-link {
+#manage-link {
 	float: left;
 }
 
@@ -112,6 +112,20 @@ input[type="submit"]:hover {
 }
 
 #show-block {
+	border: 1px solid black;
+	padding: 10px;
+	list-style: none;
+	margin: 10px 0px;
+}
+
+#venue-block {
+	border: 1px solid black;
+	padding: 10px;
+	list-style: none;
+	margin: 10px 0px;
+}
+
+#band-details {
 	border: 1px solid black;
 	padding: 10px;
 	list-style: none;

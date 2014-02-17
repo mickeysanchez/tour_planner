@@ -1,10 +1,25 @@
-<h4> shows: </h4>
+<h1> All Events </h1>
 
-<% @events.each do |event| %>
+<ul id="all-shows">
+	<% @events.each do |event| %>
 
-<p>
-	venue_id: <%= event.venue_id %> :: band_id: <%= event.band_id %> :: 
-	<%= link_to 'delete', event_path(event), :method => :delete %>
-</p>
-
-<% end %>
+	<li id="show-block">
+		<ul>
+		<li> Band: <%= event.band.name %> </li>
+		<li> Date: <%= event.date %> </li>
+	    </ul>
+		
+		<hr>
+		
+		<ul id="show-list">
+			<li class="show-detail"> Show Name: <%= event.name %> </li>
+			<li class="show-detail"> Venue: <%= event.venue.name %> </li>
+			<li class="show-detail"> Address: <%= event.venue.address %> </li>
+			<li class="show-detail"> City: <%= event.venue.city %> </li>
+			<li class="show-detail"> State: <%= event.venue.state %> </li>
+			<li class="show-detail"> Zip Code: <%= event.venue.zipcode %> </li>
+		</ul>
+	</li>
+	
+	<% end %>
+</ul>

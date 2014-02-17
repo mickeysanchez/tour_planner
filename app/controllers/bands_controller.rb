@@ -2,7 +2,7 @@ class BandsController < ApplicationController
   before_filter :require_signed_in!
   
   def index
-    @bands = current_user.bands
+    @bands = Band.all
   end
   
   def show

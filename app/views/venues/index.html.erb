@@ -1,10 +1,22 @@
-<h5> venues: </h5>
+<h1> All Venues </h1>
 
-<% @venues.each do |venue| %>
-	<p>
-	  id: <%= venue.id %> :: <%= venue.name %> :: 
-	  <%= link_to 'delete', venue_path(venue), :method => :delete %>
-	</p>
-<% end %>
+<ul id="all-venues">
+	<% @venues.each do |venue| %>
 
-<%= render :partial => 'form'%>
+	<li id="venue-block">
+		<ul>
+		  <li> <h3> <%= venue.name %> </h3> </li>
+	    </ul>
+		
+		<hr>
+		
+		<ul id="venue-list">
+			<li class="venue-detail"> Address: <%= venue.address %> </li>
+			<li class="venue-detail"> City: <%= venue.city %> </li>
+			<li class="venue-detail"> State: <%= venue.state %> </li>
+			<li class="venue-detail"> Zip Code: <%= venue.zipcode %> </li>
+		</ul>
+	</li>
+	
+	<% end %>
+</ul>

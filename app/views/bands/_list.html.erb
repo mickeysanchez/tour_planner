@@ -2,14 +2,26 @@
 
 	<h2>Your Bands:</h2>
 
-	<ul>
+	<ul id="band-list">
+	
 	<% current_user.bands.each do |band| %>
-		  <li> 
-		    Band Name: <%= link_to band.name, band_url(band) %>
-			Role: <%= Band.find_role(current_user, band) || "unspecified" %>
-			<%= button_to 'Delete Band', band_url(band), method: :delete %>
-		  </li>
+	
+	 
+	 <li id="band-details">
+		<ul>
+		  <li> <h3> <%= link_to band.name, band_url(band) %> <h3> </li>
+		</ul>
+	 
+		<hr>
+		 
+		<ul>
+		  <li> Role: <%= Band.find_role(current_user, band) || "unspecified" %> </li>
+		  <li> <%= button_to 'Delete Band', band_url(band), method: :delete %> </li>
+		</ul>
+	 </li>
+	
 	<% end %>
+	
 	</ul>
 	
 	<hr>
