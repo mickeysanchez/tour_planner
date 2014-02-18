@@ -1,5 +1,7 @@
 <h2>Create New Band</h2>
 
+<%= render "layouts/errors"%>
+
 <form id="band-form" action="<%= bands_url %>" method="post">
   <input type="hidden" 
 		 name="authenticity_token" 

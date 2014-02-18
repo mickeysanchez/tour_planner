@@ -16,21 +16,23 @@ class BandsController < ApplicationController
   
   def create
     @band = Band.new(params[:band])
-
-    if @band.save
-      band_membership = BandMembership.new(params[:band_membership]);
-      band_membership.member_id = current_user.id
-      band_membership.band_id = @band.id
-      band_membership.admin = true
-      
-      if band_membership.save
+    
+    Band.transaction do
+      begin 
+        @band.save!
+        
+        band_membership = BandMembership.new(params[:band_membership]);
+        band_membership.member = current_user
+        band_membership.band = @band
+        band_membership.admin = true
+        band_membership.save!
+        
+        flash[:success] = ["Your band has been let loose on the world!"]
         redirect_to :back
-      else
-        render json: band_membership.errors
+      rescue
+        flash[:errors] = @band.errors.full_messages
+        redirect_to :back
       end
-      
-    else
-      render json: @band.errors
     end
   end 
   
