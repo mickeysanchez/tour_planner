@@ -1,4 +1,17 @@
 <h1> <%= @band.name %> </h1>
+<% if current_user.is_band_admin?(@band) %>
+	<%= link_to 'Edit Band', edit_band_url(@band)%> |
+	<%= link_to 'Delete Band', band_url(@band), method: :delete %> 
+<% end %>
+
+<h3> Members </h3>
+<ul id="members-list">
+<% @band.band_memberships.each do |membership| %>
+  <li class="member-list-item">
+	  <%= membership.member.email %> - <%= membership.role %>
+  </li>
+<% end %>
+</ul>
 
 <% if @tours.count > 0 %>
 	<%= render 'tours/list', tours: @tours %>
@@ -6,6 +19,6 @@
 
 <%= render 'events/list', events: @events, hide_band_name: true %>
 
-<% if current_user.is_in_band?(@band) %>
+<% if current_user.is_band_admin?(@band) %>
 	<%= render 'events/form', band: @band %>
 <% end %>

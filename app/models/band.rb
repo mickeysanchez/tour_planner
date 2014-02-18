@@ -32,4 +32,11 @@ class Band < ActiveRecord::Base
       .where("member_id = ?", user.id)
       .try(:first).try(:role)
   end
+  
+  def find_membership(user) 
+    BandMembership
+            .where("member_id = ? AND band_id = ?", user.id, self.id)
+            .first
+  end
+  
 end

@@ -40,9 +40,25 @@ class BandsController < ApplicationController
     @band = Band.find(params[:id])
   end
   
+  def update
+    @band = Band.find(params[:id])
+    
+    if @band.update_attributes(params[:band])
+      membership = @band.find_membership(current_user)
+      membership.update_attributes(params[:band_membership])
+      
+      flash[:success] = ["Band deets updated!"]
+      redirect_to band_url(@band)
+    else
+      flash.now[:errors] = @band.errors.full_messages
+      render :edit
+    end
+  end
+  
   def destroy
     band = Band.find(params[:id])
     band.destroy
-    redirect_to :back
+    flash[:success] = ["Band was destroyed"]
+    redirect_to current_user
   end
 end

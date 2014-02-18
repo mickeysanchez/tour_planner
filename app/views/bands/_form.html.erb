@@ -1,8 +1,16 @@
-<h2>Create New Band</h2>
+<% heading = (@band.persisted?) ? "Edit #{@band.name}" : "Create New Band" %>
+<% submit = (@band.persisted?) ? "Update Band" : "Create Band" %>
+<% action = (@band.persisted?) ? band_url(@band) : bands_url %>
+
+<h2> <%= heading %> </h2>
 
 <%= render "layouts/errors"%>
 
-<form id="band-form" action="<%= bands_url %>" method="post">
+<form id="band-form" action="<%= action %>" method="post">
+  <% if @band.persisted? %>
+    <input type="hidden" name="_method" value="put">
+  <% end %>
+	
   <input type="hidden" 
 		 name="authenticity_token" 
 		 value="<%= form_authenticity_token %>">
@@ -19,5 +27,5 @@
 		 type="text"
 		 value="<%= @band.role_of(current_user) %>">
 		 
-  <input type="submit" value="Create Band">
+  <input type="submit" value="<%= submit %>">
 </form>

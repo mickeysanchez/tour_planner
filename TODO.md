@@ -1,6 +1,9 @@
 #next
 !separate password controller for pW actions
 
+!create: band.find_membership(user)
+         user.find_membership(band) <<< TEST THESE? >>>
+
 ERRORS/SUCCESS FLASHES ON:
 
 NEW
