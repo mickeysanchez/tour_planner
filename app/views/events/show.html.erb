@@ -1,0 +1,23 @@
+<h1> 
+	<%= l @event.date, format: "%d %B %Y"  %> 
+	<% unless @event.name.empty? %>
+	  - <%= @event.name %>
+	<% end %>
+	
+	<h2> Band: <%= @event.band.name %></h2>
+	
+	<ul id="block-details">
+		<li class="block-detail"> Venue: <%= @event.venue.name %> </li>
+		<li class="block-detail"> Address: <%= @event.venue.address %> </li>
+		<li class="block-detail"> City: <%= @event.venue.city %> </li>
+		<li class="block-detail"> State: <%= @event.venue.state %> </li>
+		<li class="block-detail"> Zip Code: <%= @event.venue.zipcode %> </li>
+		
+		<% if current_user.is_band_admin?(@event.band) %>
+			<li class="block-detail"> 
+				<%= button_to 'delete', event_url(@event), method: :delete %>
+			</li>
+		<% end %>
+		
+	</ul>
+</h1>

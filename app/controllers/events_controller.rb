@@ -5,6 +5,10 @@ class EventsController < ApplicationController
     @events = Event.order('date ASC').includes(:band, :venue)
   end
   
+  def show
+    @event = Event.includes(:band, :venue).find(params[:id])
+  end
+  
   def create
     if params[:venue][:id].empty?   
       @venue = Venue.new(params[:venue])
@@ -41,6 +45,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     
-    redirect_to :back
+    redirect_to @event.band
   end
 end

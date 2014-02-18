@@ -1,0 +1,8 @@
+<h1> <%= @venue.name %> </h1>
+
+<li class="block-detail"> Address: <%= @venue.address %> </li>
+<li class="block-detail"> City: <%= @venue.city %> </li>
+<li class="block-detail"> State: <%= @venue.state %> </li>
+<li class="block-detail"> Zip Code: <%= @venue.zipcode %> </li>
+
+<%= render 'events/list', events: @venue.events, hide_band_name: false %>

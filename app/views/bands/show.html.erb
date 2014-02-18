@@ -4,7 +4,7 @@
 	<%= render 'tours/list', tours: @tours %>
 <% end %>
 
-<%= render 'events/list', events: @events %>
+<%= render 'events/list', events: @events, hide_band_name: true %>
 
 <% if current_user.is_in_band?(@band) %>
 	<%= render 'events/form', band: @band %>

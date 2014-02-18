@@ -3,6 +3,10 @@ class VenuesController < ApplicationController
     @venues = Venue.all
   end
   
+  def show
+    @venue = Venue.find(params[:id])
+  end
+  
   def destroy
     @venue = Venue.find(params[:id])
     @venue.destroy

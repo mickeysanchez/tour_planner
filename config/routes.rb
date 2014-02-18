@@ -11,9 +11,9 @@ TourPlanner::Application.routes.draw do
     resources :events, only: [:create, :destroy, :show]
   end
   
-  resources :events, only: [:destroy, :index]
+  resources :events, only: [:destroy, :index, :show]
   
-  resources :venues, only: [:index]
+  resources :venues, only: [:index, :show]
   
   resources :tours, only: [:show, :destroy]
 end

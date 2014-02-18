@@ -1,10 +1,6 @@
 #next
-1. create tours
-	* add tour-id to events table/forms
-	
-2. event show page
+
 3. venue show page
-4. tour show page
 
 5. EDIT (user, event, venue, tour) FORMS
 
@@ -29,7 +25,7 @@
 | name |
 
 0. venues
-| name | **address** | **phone_number** | **email** |
+| name | address | city | state | zipcode | **phone_number** | **email** |
 
 
 * SOCIAL STUFF - join tables
