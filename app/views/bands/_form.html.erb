@@ -10,12 +10,14 @@
   <label for="band_name">Band Name</label>
   <input id="band_name"
    		 name="band[name]"
-		 type="text">
+		 type="text"
+		 value="<%= @band.name %>">
 
   <label for="band_role">Your Role (optional)</label>
   <input id="band_role"
   		 name="band_membership[role]"
-		 type="text">
+		 type="text"
+		 value="<%= @band.role_of(current_user) %>">
 		 
   <input type="submit" value="Create Band">
 </form>

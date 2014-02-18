@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end
   
   def show
+    @band = Band.new
     if params[:id]
       @user = User.find(params[:id])
     else

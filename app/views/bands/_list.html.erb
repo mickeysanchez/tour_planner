@@ -18,7 +18,10 @@
 		    <li class="block-detail"> Role: <%= band.role_of(user) %> </li>
 		  <% end %>
 		  
-		  <% unless user.is_band_admin?(band) %>
+		  <% if user.is_band_admin?(band) %>
+		    <li class="block-detail"> 
+				<%= link_to 'Edit Band', edit_band_url(band)%> 
+			</li>
 		    <li class="block-detail"> 
 				<%= button_to 'Delete Band', band_url(band), method: :delete %> 
 			</li>

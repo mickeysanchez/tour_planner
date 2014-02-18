@@ -1,12 +1,9 @@
 #next
-!instance method on user to change password
 !separate password controller for pW actions
 
 ERRORS/SUCCESS FLASHES ON:
 
 NEW
-user
-band
 event
 venue
 tour
@@ -16,6 +13,8 @@ band
 event 
 venue 
 tour
+
+!before filters so others can't get to band/event/venue/tour edit pages
 
 
 # Schema
