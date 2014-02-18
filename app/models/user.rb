@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   
   has_many :bands, through: :band_memberships, source: :band
   
+  
   def is_in_band?(band)
     !!BandMembership
         .where("member_id = ? AND band_id = ?", self.id, band.id)

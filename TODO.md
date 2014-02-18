@@ -6,7 +6,7 @@
 3. venue show page
 4. tour show page
 
-5. start on social stuffs
+5. EDIT (user, event, venue, tour) FORMS
 
 
 # Schema
@@ -23,7 +23,7 @@
 | name |
 
 0. events
-| name | band_id | venue_id | date | **tour_id**
+| name | band_id | venue_id | date | tour_id
    
 0. tour
 | name |

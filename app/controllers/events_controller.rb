@@ -11,13 +11,29 @@ class EventsController < ApplicationController
     else
       @venue = Venue.find(params[:venue][:id])
     end
+    
     @event = @venue.events.new(params[:event])
     @event.band_id = params[:band_id]
     
-    if @venue.save
-      redirect_to :back
+    if params[:tour][:id].empty? && !params[:tour][:name].empty?
+      @tour = Tour.new(params[:tour])
+    elsif !params[:tour][:id].empty?
+      @tour = Tour.find(params[:tour][:id])
     else
-      render json: @event.errors
+      @tour = nil
+    end
+    
+    Event.transaction do
+      begin 
+        if @tour 
+          @event.tour = @tour
+          @tour.save!
+        end
+        @venue.save!
+        redirect_to :back
+      rescue
+        render json: @event.errors
+      end
     end
   end
   

@@ -15,6 +15,7 @@ describe Band do
   it { should have_many(:shows) }
   it { should have_many(:events) }
   it { should have_many(:members) }
+  it { should have_many(:tours) }
   
   
   it "should find a user's role" do

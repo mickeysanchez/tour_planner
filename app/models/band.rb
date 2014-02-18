@@ -20,6 +20,8 @@ class Band < ActiveRecord::Base
            :foreign_key => :band_id, 
            :order => 'date ASC' 
            
+  has_many :tours, through: :events, source: :tour, uniq: true
+           
   has_many :band_memberships, dependent: :destroy
   has_many :members,
     through: :band_memberships,

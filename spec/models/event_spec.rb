@@ -18,4 +18,5 @@ describe Event do
   it { should validate_presence_of(:date) }
   it { should belong_to(:venue) }
   it { should belong_to(:band) }
+  it { should belong_to(:tour) }
 end

@@ -1,0 +1,21 @@
+<h2> Tours (<%= tours.count %>) </h2>
+
+<ul id="all-tours">
+	<% tours.each do |tour| %>
+
+	<li id="tour-block">
+		<ul class="block-header">
+			<li class="block-header-item"> 
+				<%= tour.name %>
+			</li>
+	    </ul>
+		
+		<hr>
+		
+		<ul id="block-details">
+			<li class="block-detail"> <%= pluralize(tour.events.count, 'show') %> </li>
+		</ul>
+	</li>
+	
+	<% end %>
+</ul>

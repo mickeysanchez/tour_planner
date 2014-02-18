@@ -133,6 +133,13 @@ input[type="submit"]:hover {
 	margin: 10px 0px;
 }
 
+#tour-block {
+	border: 1px solid black;
+	padding: 10px;
+	list-style: none;
+	margin: 10px 0px;
+}
+
 #venue-block {
 	border: 1px solid black;
 	padding: 10px;
@@ -164,6 +171,11 @@ input[type="submit"]:hover {
 }
 
 #all-venues {
+	list-style: none;
+	padding-left: 0;
+}
+
+#all-tours {
 	list-style: none;
 	padding-left: 0;
 }

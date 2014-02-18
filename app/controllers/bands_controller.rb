@@ -6,8 +6,9 @@ class BandsController < ApplicationController
   end
   
   def show
-    @band = Band.find(params[:id])
-    @events = @band.shows.includes(:venue)
+    @band = Band.includes(:tours, events: [:venue]).find(params[:id])
+    @events = @band.events
+    @tours = @band.tours
     
     @event = Event.new
     @event.band_id = @band.id
@@ -15,10 +16,7 @@ class BandsController < ApplicationController
   
   def create
     @band = Band.new(params[:band])
-    
-    # current_user.bands.new(params[:band])
-    # how to do this better?
-    
+
     if @band.save
       band_membership = BandMembership.new(params[:band_membership]);
       band_membership.member_id = current_user.id

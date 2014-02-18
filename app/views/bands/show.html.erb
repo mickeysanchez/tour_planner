@@ -1,5 +1,9 @@
 <h1> <%= @band.name %> </h1>
 
+<% if @tours.count > 0 %>
+	<%= render 'tours/list', tours: @tours %>
+<% end %>
+
 <%= render 'events/list', events: @events %>
 
 <% if current_user.is_in_band?(@band) %>

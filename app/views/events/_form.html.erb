@@ -38,6 +38,24 @@
 	
 	<label for="venue_zipcode">Zip Code</label>
 	<input id="venue_zipcode" type="text" name="venue[zipcode]" value="">
+	
+	<hr>
+	<h2> Add your show to a tour (optional) </h2>
+	
+	<h2> Choose an existing tour </h2>
+	<label for="tour_picker">Tour</label>
+	<select id="tour_picker" name="tour[id]">
+		<option value=""></option>
+		<% band.tours.each do |tour| %>
+		<option value="<%= tour.id %>"> 
+			<%= tour.name %>
+		</option>
+		<% end %>
+	</select>
+	
+	<h2> Or create a new tour </h2>
+	<label for="tour_name">Tour Name</label>
+	<input id="tour_name" type="text" name="tour[name]" value="">
 	 
 	<input type="submit" value="Add Show">
 </form>

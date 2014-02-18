@@ -19,4 +19,5 @@ class Event < ActiveRecord::Base
   
   belongs_to :band
   belongs_to :venue, inverse_of: :events
+  belongs_to :tour, inverse_of: :events
 end
