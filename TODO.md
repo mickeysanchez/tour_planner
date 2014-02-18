@@ -1,8 +1,11 @@
 #next
 
-3. venue show page
-
-5. EDIT (user, event, venue, tour) FORMS
+5. EDIT (
+user,
+band, 
+event, 
+venue, 
+tour) FORMS
 
 
 # Schema

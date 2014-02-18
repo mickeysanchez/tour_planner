@@ -180,5 +180,18 @@ input[type="submit"]:hover {
 	padding-left: 0;
 }
 
+#errors {
+	margin: 10px;
+	border: 1px solid red;
+}
 
+#edit-user-email,
+#edit-user-password {
+	float: left;
+}
+
+#edit-user-password {
+	padding-left: 10px;
+	border-left: 1px solid black;
+}
 

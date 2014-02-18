@@ -1,0 +1,11 @@
+
+<% if flash[:errors] && !flash[:errors].empty? %>
+<section id="errors">
+	<h3 id="error-header"> Oops! Looks like something went wrong: </h3>
+	<ul id="error-list">
+		<% flash[:errors].each do |error| %>
+		  <li class="error-list_item"> <%= error %> </li>
+		<% end %>
+	</ul>
+</section>
+<% end %>

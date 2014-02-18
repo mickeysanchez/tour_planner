@@ -5,14 +5,22 @@
 			
 		<ul id="left-nav">
 			<li class="nav-list-item"> 
-				<%= link_to 'Manage', user_url(current_user), id: 'manage-link' %>
+				<%= link_to 'Manage', user_url(current_user), id: 'manage-link' %> | 
+			</li>
+			
+			<li class="nav-list-item"> 
+				<%= link_to 'Fan Portal', "#", id: 'fan-portal-link' %>
 			</li>
 		</ul>
 		
 		
 		<ul id="right-nav">	
 			<li class="nav-list-item"> 
-				Signed in as: <%= current_user.email %> 
+				Signed in as: <%= current_user.email %> |
+			</li>
+			
+			<li class="nav-list-item"> 
+				<%= link_to "Settings", edit_user_url(current_user) %> 
 			</li>
 			
 			<li class="nav-list-item"> 
