@@ -1,6 +1,7 @@
+<% if signed_in? %>
+
 <header>
 	<nav class="clearfix">
-		<% if signed_in? %>
 			
 		<ul id="left-nav">
 			<li class="nav-list-item"> 
@@ -19,6 +20,8 @@
 			</li>
 		</ul>
 		
-		<% end %>
+		
 	</nav>
 </header>
+
+<% end %>
