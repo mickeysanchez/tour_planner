@@ -32,6 +32,8 @@ a:active{color: black; text-decoration : none; }
 
 html {
 	font-family: Futura;
+    background: #fff5de;
+    color: #46434d;
 }
 
 h1,h2,h3,h4,h5,h6 {

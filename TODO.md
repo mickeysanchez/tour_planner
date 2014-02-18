@@ -1,8 +1,12 @@
 #next
-1. Band - has it's own page
-	* only admin members can add/edit shows
-	* only members can see private details
-	* public and private url is the same but views are changed accordingly
+1. create tours
+	* add tour-id to events table/forms
+	
+2. event show page
+3. venue show page
+4. tour show page
+
+5. start on social stuffs
 
 
 # Schema
@@ -12,14 +16,17 @@
 0. users
 | email | token | password_digest
 
-  0. band_members  << join table
+  0. band_members
   | user_id | band_id | role | admin
 
 0. bands
 | name |
 
 0. events
-| name | band_id | venue_id | date | **creator_id** |
+| name | band_id | venue_id | date | **tour_id**
+   
+0. tour
+| name |
 
 0. venues
 | name | **address** | **phone_number** | **email** |
@@ -39,7 +46,7 @@
 0. **event_follows**
 | follower_id | event_id |
 
-0. **attendances**
+0. **event_attendances**
 | event_id | attendee_id |
 
 ###Tables/Models to Create:
@@ -49,10 +56,6 @@
 ###Things to add to existing tables: 
 
 	1. venues
-		- address
-			- street address
-			- city
-			- state
 		- contact info
 		- capacity
 	
