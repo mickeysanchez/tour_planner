@@ -1,0 +1,10 @@
+<% if flash[:success] && !flash[:success].empty? %>
+<section id="successes">
+	<h3 id="flash-header"> Success! </h3>
+	<ul id="flash-list">
+		<% flash[:success].each do |message| %>
+		  <li class="flash-list_item"> <%= message %> </li>
+		<% end %>
+	</ul>
+</section>
+<% end %>

@@ -15,9 +15,11 @@ class UsersController < ApplicationController
     
     if @user.save
       sign_in(@user)
+      flash[:success] = ["Welcome to tour_planner!"]
       redirect_to user_url(@user)
     else
-      render json: @user.errors
+      flash.now[:errors] = @user.errors.full_messages
+      render :new
     end
   end
   
@@ -38,16 +40,25 @@ class UsersController < ApplicationController
     
     if params[:pw]
       if @user.is_password?(params[:pw][:old_password])
-        @user.password = params[:pw][:new_password]
-        if !@user.save
-          flash[:errors] = @user.errors.full_messages
+        if params[:pw][:new_password].empty?
+          flash[:errors] = ["You can't make a blank password"] 
+        else
+          @user.password = params[:pw][:new_password]
+          if @user.save
+            flash[:success] = ["Password changed successfully!"]
+          else
+            flash[:errors] = @user.errors.full_messages
+          end
         end
       else
         flash[:errors] = ["You entered your current password incorrectly."]
       end
     else
-      @user.update_attributes(params[:user])
-      flash[:errors] = @user.errors.full_messages
+      if @user.update_attributes(params[:user])
+        flash[:success] = ["Email updated successfully!"]
+      else
+        flash[:errors] = @user.errors.full_messages
+      end
     end
   
     redirect_to edit_user_url(@user)

@@ -34,7 +34,7 @@
 			
 			<% if current_user.is_band_admin?(event.band) %>
 				<li class="block-detail"> 
-					<%= button_to 'delete', event_url(event), method: :delete %>
+					<%= button_to 'delete', event_url(event), method: :delete, class: "delete-button" %>
 				</li>
 			<% end %>
 			

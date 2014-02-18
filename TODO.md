@@ -1,11 +1,21 @@
 #next
+!instance method on user to change password
+!separate password controller for pW actions
 
-5. EDIT (
-user,
-band, 
-event, 
-venue, 
-tour) FORMS
+ERRORS/SUCCESS FLASHES ON:
+
+NEW
+user
+band
+event
+venue
+tour
+
+EDIT 
+band 
+event 
+venue 
+tour
 
 
 # Schema

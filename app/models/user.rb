@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password
   attr_reader :password
   
-  validates :password_digest, presence: true
+  validates :password_digest, presence: { message: "You gotta have a password!" }
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :token, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
@@ -38,6 +38,16 @@ class User < ActiveRecord::Base
     !!BandMembership
         .where("member_id = ? AND band_id = ? AND admin = true", self.id, band.id)
         .first
+  end
+  
+  def change_password!(old_pw, new_pw)
+    if self.is_password?(old_pw)
+      self.password = new_pw
+      self.save
+      true
+    else
+      false
+    end
   end
   
   def self.find_by_credentials(email, password)
