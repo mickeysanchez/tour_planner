@@ -9,6 +9,7 @@
 #  band_id    :integer
 #  venue_id   :integer
 #  date       :datetime
+#  tour_id    :integer
 #
 
 require 'test_helper'
