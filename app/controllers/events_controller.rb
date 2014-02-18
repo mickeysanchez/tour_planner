@@ -9,6 +9,11 @@ class EventsController < ApplicationController
     @event = Event.includes(:band, :venue).find(params[:id])
   end
   
+  def edit
+    @band = Band.find(params[:band_id])
+    @event = Event.find(params[:id])
+  end
+  
   def create
     if params[:venue][:id].empty?   
       @venue = Venue.new(params[:venue])
