@@ -1,6 +1,6 @@
 <% unless user.bands.empty? %>
 
-	<h2><%= user.email %>'s Bands:</h2>
+	<h2><%= current_user == user ? "Your" : user.email+"'s" %> Bands:</h2>
 
 	<ul id="all-bands">
 	
@@ -32,6 +32,4 @@
 	<% end %>
 	
 	</ul>
-	
-	<hr>
 <% end %>

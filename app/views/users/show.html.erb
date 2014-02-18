@@ -1,5 +1,12 @@
-<h1><%= @user.email %></h1>
+<h1><%= current_user == @user ? "" : @user.email %></h1>
 
 <%= render 'bands/list', user: @user %>
 
-<%= render 'bands/form' if @user == current_user%>
+<% if @user == current_user %>
+	<a href="<%= new_band_url %>">
+		<div class="add-box">
+			<h2> + </h2>
+			<h2> Add Band </h2>
+		</div>
+	</a>
+<% end %>

@@ -1,6 +1,16 @@
-<h2>Add Another Show:</h2>
+<% heading = (@event.persisted?) ? "Edit Show Details" : "Create A New Show" %>
+<% submit = (@event.persisted?) ? "Update Show" : "Create Show" %>
+<% action = (@event.persisted?) ? band_event_url(band, @event) : band_events_url(band) %>
 
-<form action="<%= band_events_url(band) %>" method="post">
+<h2><%= heading %></h2>
+
+<%= render 'layouts/errors' %>
+
+<form id="new-event-form" action="<%= action %>" method="post">
+    <% if @event.persisted? %>
+      <input type="hidden" name="_method" value="put">
+    <% end %>
+	
     <input type="hidden" 
   		 name="authenticity_token" 
   		 value="<%= form_authenticity_token %>">
@@ -9,14 +19,15 @@
 	<input id="show_name" type="text" name="event[name]" value="<%= @event.name %>">
 	
 	<label for="show_date">Date</label>
-	<input id="show_date" type="date" name="event[date]" value="<%= @event.date %>">
+	<input id="show_date" type="date" name="event[date]" value="<%= l @event.date, format: "%Y-%m-%d" if @event.date %>">
 	
 	<h2> Choose an existing venue </h2>
 	<label for="venue_picker">Venues</label>
 	<select id="venue_picker" name="venue[id]">
 		<option value=""></option>
 		<% Venue.all.each do |venue| %>
-		<option value="<%= venue.id %>"> 
+		<option value="<%= venue.id %>" 
+			<%= (@event.venue && @event.venue.id == venue.id) ? "selected" : "" %>> 
 			<%= venue.name %>
 		</option>
 		<% end %>
@@ -46,7 +57,8 @@
 	<select id="tour_picker" name="tour[id]">
 		<option value=""></option>
 		<% band.tours.each do |tour| %>
-		<option value="<%= tour.id %>"> 
+		<option value="<%= tour.id %>" 
+			<%= @event.tour && @event.tour.id == tour.id ? "selected" : "" %>> 
 			<%= tour.name %>
 		</option>
 		<% end %>
@@ -56,5 +68,5 @@
 	<label for="tour_name">Tour Name</label>
 	<input id="tour_name" type="text" name="tour[name]" value="">
 	 
-	<input type="submit" value="Add Show">
+	<input type="submit" value="<%= submit %>">
 </form>

@@ -7,12 +7,10 @@
 ERRORS/SUCCESS FLASHES ON:
 
 NEW
-event
 venue
 tour
 
 EDIT 
-event 
 venue 
 tour
 

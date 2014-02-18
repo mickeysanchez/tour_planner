@@ -23,9 +23,11 @@
 		<hr>
 		
 		<ul id="block-details">
-			<a href="<%= venue_url(event.venue) %>">
-				<li class="block-detail"> Venue: <%= event.venue.name %> </li>
-			</a>
+			<li class="block-detail"> 
+				<a href="<%= venue_url(event.venue) %>">
+				  Venue: <%= event.venue.name %> 
+				</a>
+			</li>
 			<li class="block-detail"> Address: <%= event.venue.address %> </li>
 			<li class="block-detail"> City: <%= event.venue.city %> </li>
 			<li class="block-detail"> State: <%= event.venue.state %> </li>
@@ -34,7 +36,7 @@
 			
 			<% if event.band && current_user.is_band_admin?(event.band) %>
 				<li class="block-detail"> 
-					<%= button_to 'delete', event_url(event), method: :delete, class: "delete-button" %>
+					<%= link_to 'delete', event_url(event), method: :delete, class: "delete-button" %>
 				</li>
 			<% end %>
 			

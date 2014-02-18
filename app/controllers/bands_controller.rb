@@ -14,6 +14,10 @@ class BandsController < ApplicationController
     @event.band_id = @band.id
   end
   
+  def new
+    @band = Band.new
+  end
+  
   def create
     @band = Band.new(params[:band])
     
@@ -28,7 +32,7 @@ class BandsController < ApplicationController
         band_membership.save!
         
         flash[:success] = ["Your band has been let loose on the world!"]
-        redirect_to :back
+        redirect_to band_url(@band)
       rescue
         flash[:errors] = @band.errors.full_messages
         redirect_to :back

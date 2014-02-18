@@ -17,7 +17,7 @@
 			
 			<% if current_user.is_band_admin?(tour.band.first) %>
 				<li class="block-detail"> 
-					<%= button_to 'delete', tour_url(tour), method: :delete %>
+					<%= link_to 'delete', tour_url(tour), method: :delete %>
 				</li>
 			<% end %>
 		</ul>
