@@ -14,4 +14,6 @@ class Tour < ActiveRecord::Base
   validates :name, presence: true
   
   has_many :events, inverse_of: :tour
+  
+  has_many :band, through: :events, uniq: true
 end

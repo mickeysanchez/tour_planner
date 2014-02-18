@@ -6,7 +6,7 @@
 	<li id="tour-block">
 		<ul class="block-header">
 			<li class="block-header-item"> 
-				<%= tour.name %>
+				<%= link_to tour.name, tour_url(tour) %>
 			</li>
 	    </ul>
 		
@@ -14,6 +14,12 @@
 		
 		<ul id="block-details">
 			<li class="block-detail"> <%= pluralize(tour.events.count, 'show') %> </li>
+			
+			<% if current_user.is_band_admin?(tour.band.first) %>
+				<li class="block-detail"> 
+					<%= button_to 'delete', tour_url(tour), method: :delete %>
+				</li>
+			<% end %>
 		</ul>
 	</li>
 	
