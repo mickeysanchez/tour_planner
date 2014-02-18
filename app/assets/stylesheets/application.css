@@ -96,7 +96,9 @@ header nav {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="date"] {
+input[type="date"],
+select,
+option {
     display:block;
     margin: 10px;
 	border-radius: 5px;
@@ -138,7 +140,13 @@ input[type="submit"]:hover {
 	margin: 10px 0px;
 }
 
-#band-list {
+.block-header {
+	font-weight: bold;
+	list-style: none;
+	padding-left: 0;
+}
+
+#all-bands {
 	list-style: none;
 	padding-left: 0;
 }

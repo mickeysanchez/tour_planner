@@ -1,0 +1,27 @@
+<h1> All Events </h1>
+
+<ul id="all-shows">
+	<% events.each do |event| %>
+
+	<li id="show-block">
+		<ul class="block-header">
+			<% unless params[:id] # band name doesn't appear on user page%>
+			  <li class="block-header-item"> Band: <%= event.band.name if event.band %> </li>
+			<% end %>
+			<li class="block-header-item"> <%= l event.date, format: "%d %B %Y"%> </li>
+	    </ul>
+		
+		<hr>
+		
+		<ul id="block-details">
+			<li class="block-detail"> Show Name: <%= event.name %> </li>
+			<li class="block-detail"> Venue: <%= event.venue.name %> </li>
+			<li class="block-detail"> Address: <%= event.venue.address %> </li>
+			<li class="block-detail"> City: <%= event.venue.city %> </li>
+			<li class="block-detail"> State: <%= event.venue.state %> </li>
+			<li class="block-detail"> Zip Code: <%= event.venue.zipcode %> </li>
+		</ul>
+	</li>
+	
+	<% end %>
+</ul>

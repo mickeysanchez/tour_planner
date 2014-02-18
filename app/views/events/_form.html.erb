@@ -12,6 +12,18 @@
 	<label for="show_date">Date</label>
 	<input id="show_date" type="date" name="event[date]" value="<%= @event.date %>">
 	
+	<h2> Choose an existing venue </h2>
+	<label for="venue_picker">Venues</label>
+	<select id="venue_picker" name="venue[id]">
+		<option value=""></option>
+		<% Venue.all.each do |venue| %>
+		<option value="<%= venue.id %>"> 
+			<%= venue.name %>
+		</option>
+		<% end %>
+	</select>
+	
+	<h2> Or create a new venue </h2>
 	<label for="venue_name">Venue Name</label>
 	<input id="venue_name" type="text" name="venue[name]" value="">
 	

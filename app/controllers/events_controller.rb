@@ -2,14 +2,15 @@ class EventsController < ApplicationController
   before_filter :require_signed_in!
   
   def index
-    @events = Event.all
+    @events = Event.order('date ASC').includes(:band, :venue)
   end
   
   def create
-    # @event = Event.new(params[:event])
-    # @venue = @event.build_venue(params[:venue])
-
-    @venue = Venue.new(params[:venue])
+    if params[:venue][:id].empty?   
+      @venue = Venue.new(params[:venue])
+    else
+      @venue = Venue.find(params[:venue][:id])
+    end
     @event = @venue.events.new(params[:event])
     @event.band_id = params[:band_id]
     
@@ -18,10 +19,6 @@ class EventsController < ApplicationController
     else
       render json: @event.errors
     end
-  end
-  
-  def index
-    @events = Event.all
   end
   
   def destroy
