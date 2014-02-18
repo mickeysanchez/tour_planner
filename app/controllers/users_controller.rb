@@ -39,12 +39,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if params[:pw]
+      # password change
       if @user.is_password?(params[:pw][:old_password])
         if params[:pw][:new_password].empty?
           flash[:errors] = ["You can't make a blank password"] 
         else
-          @user.password = params[:pw][:new_password]
-          if @user.save
+          if @user.change_password!(params[:pw][:old_password], params[:pw][:new_password])
             flash[:success] = ["Password changed successfully!"]
           else
             flash[:errors] = @user.errors.full_messages
@@ -54,6 +54,7 @@ class UsersController < ApplicationController
         flash[:errors] = ["You entered your current password incorrectly."]
       end
     else
+      # email update
       if @user.update_attributes(params[:user])
         flash[:success] = ["Email updated successfully!"]
       else
