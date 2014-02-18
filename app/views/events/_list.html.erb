@@ -4,13 +4,13 @@
 	<% events.each do |event| %>
 
 	<li id="show-block">
-		<a href="<%= event_url(event) %>">
 		<ul class="block-header">
 			<% unless hide_band_name # band name doesn't appear on user page%>
 			  <li class="block-header-item"> 
 				  <%= link_to event.band.name, band_url(event.band) if event.band %> 
 			  </li>
 			<% end %>
+		<a href="<%= event_url(event) %>">
 			<li class="block-header-item"> 
 				<%= l event.date, format: "%d %B %Y"%> 
 				<% unless !event.name || event.name.empty? %>
@@ -32,7 +32,7 @@
 			<li class="block-detail"> Zip Code: <%= event.venue.zipcode %> </li>
 			
 			
-			<% if current_user.is_band_admin?(event.band) %>
+			<% if event.band && current_user.is_band_admin?(event.band) %>
 				<li class="block-detail"> 
 					<%= button_to 'delete', event_url(event), method: :delete, class: "delete-button" %>
 				</li>

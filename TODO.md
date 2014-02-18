@@ -12,7 +12,6 @@ venue
 tour
 
 EDIT 
-band 
 event 
 venue 
 tour
