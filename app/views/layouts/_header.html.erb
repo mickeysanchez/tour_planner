@@ -1,9 +1,24 @@
 <header>
 	<nav class="clearfix">
 		<% if signed_in? %>
-			<%= link_to 'Manage', user_url(current_user), id: 'manage-link' %>
-			<span id="current-user"> Signed in as: <%= current_user.email %> </span>
-			<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
+			
+		<ul id="left-nav">
+			<li class="nav-list-item"> 
+				<%= link_to 'Manage', user_url(current_user), id: 'manage-link' %>
+			</li>
+		</ul>
+		
+		
+		<ul id="right-nav">	
+			<li class="nav-list-item"> 
+				Signed in as: <%= current_user.email %> 
+			</li>
+			
+			<li class="nav-list-item"> 
+				<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
+			</li>
+		</ul>
+		
 		<% end %>
 	</nav>
 </header>

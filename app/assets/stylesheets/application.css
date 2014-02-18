@@ -60,6 +60,25 @@ header {
 	border-bottom: 1px solid black;
 }
 
+.nav-list-item {
+	float: left;
+	margin: 5px;
+}
+
+#left-nav {
+	list-style: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#right-nav {
+	list-style: none;
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+
 header nav {
 	border: 1px solid black;
 	border-top: 0;
@@ -67,20 +86,6 @@ header nav {
 	width: 930px;
 	padding: 5px;
 	margin: auto;
-}
-
-#logout {
-	float: right;
-}
-
-#manage-link {
-	float: left;
-}
-
-#current-user {
-	float: right;
-	margin-right: 10px;
-	margin-left: 10px;
 }
 
 /* BODY */

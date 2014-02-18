@@ -1,7 +1,5 @@
 <h1> <%= @band.name %> </h1>
 
-<h2> shows (<%= @events.count %>): </h2>
-
 <%= render 'events/list', events: @events %>
 
 <% if current_user.is_in_band?(@band) %>

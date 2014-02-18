@@ -8,13 +8,16 @@
 	
 	 <li id="band-block">
 		<ul class="block-header">
-		  <li> <h3> <%= link_to band.name, band_url(band) %> <h3> </li>
+		  <li class="block-header-item"> <h3> <%= link_to band.name, band_url(band) %> <h3> </li>
 		</ul>
 	 
 		<hr>
 		 
 		<ul class="block-details">
-		  <li class="block-detail"> Role: <%= band.role_of(user) %> </li>
+		  <% unless band.role_of(user).empty? %>
+		    <li class="block-detail"> Role: <%= band.role_of(user) %> </li>
+		  <% end %>
+		  
 		  <% unless user.is_band_admin?(band) %>
 		    <li class="block-detail"> 
 				<%= button_to 'Delete Band', band_url(band), method: :delete %> 
