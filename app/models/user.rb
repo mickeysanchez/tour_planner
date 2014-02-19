@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     end.flatten
   end
   
+  def pending_requests
+    self.all_requests.select { |request| request.status == "pending" }
+  end
+  
   def has_requested_membership?(band)
     !!MemberRequest
       .where("requester_id = ? AND band_id = ?", self.id, band.id)

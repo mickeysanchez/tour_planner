@@ -15,6 +15,8 @@ TourPlanner::Application.routes.draw do
     resources :member_requests, only: [:create]
   end
   
+  resources :band_memberships, only: [:create]
+  
   resources :events, only: [:destroy, :index, :show]
   
   resources :venues, only: [:index, :show]

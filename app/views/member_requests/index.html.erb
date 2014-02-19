@@ -1,12 +1,12 @@
 <h1> Requests </h1>
 
-<% if current_user.all_requests.empty? %>
+<% if current_user.pending_requests.empty? %>
 	<h3> You don't have any requests right now. </h3>
 <% end %>
 
 <ul id="all-requests">
 
-<% current_user.all_requests.each do |request| %>
+<% current_user.pending_requests.each do |request| %>
 
  <li id="request-block">
 	<ul class="block-header">
@@ -19,7 +19,18 @@
 	<ul class="block-details">
 
 	    <li class="block-detail">
-			<%= button_to "accept" %> 
+			<form action="<%= band_memberships_url %>" method="post">
+				<input type="hidden" 
+				name="authenticity_token" 
+				value="<%= form_authenticity_token %>">
+				
+				<input type="hidden" name="band_membership[band_id]" 
+				value="<%= request.band_id %>">
+				<input type="hidden" name="band_membership[member_id]" 
+				value="<%= request.requester_id %>">
+				
+				<input type="submit" value="accept">
+			</form>
 		</li>
 		
 	    <li class="block-detail">
