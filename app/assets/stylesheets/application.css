@@ -104,6 +104,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="date"],
+input[type="file"],
 select,
 option {
     display:block;

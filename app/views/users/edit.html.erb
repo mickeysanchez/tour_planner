@@ -2,13 +2,15 @@
 
 <%= render 'layouts/errors' %>
 
-<form id="edit-user-email" action="<%= user_url(current_user) %>" method="post">
+<form id="edit-user-email" action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
   <input type="hidden" name="_method" value="put">
 	
   <input type="hidden" 
 		 name="authenticity_token" 
 		 value="<%= form_authenticity_token %>">
 
+  <label for="user_image">Change Your Image</label>
+  <input id="user_image" name="user[image]" type="file">
 		 
   <label for="user_email">Change Email</label>
   <input id="user_email"
