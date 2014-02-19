@@ -8,7 +8,8 @@ TourPlanner::Application.routes.draw do
   resources :users, only: [:new, :create, :destroy, :show, :index, :edit, :update]
   
   resources :bands, only: [:create, :destroy, :show, :new, :index, :edit, :update] do
-    resources :events, only: [:create, :destroy, :edit, :update]
+    resources :events, only: [:create, :destroy, :edit, :update, :new]
+    resources :tours, only: [:new, :create, :edit, :update]
   end
   
   resources :events, only: [:destroy, :index, :show]

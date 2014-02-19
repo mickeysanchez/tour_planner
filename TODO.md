@@ -1,18 +1,15 @@
 #next
 !separate password controller for pW actions
 
-ERRORS/SUCCESS FLASHES ON:
+!add images to bands, venues, tours, shows
+
+!more members in a band + notifications for bands you're in
 
 NEW
-venue
 tour
 
 EDIT 
-venue 
 tour
-
-!before filters so others can't get to band/event/venue/tour edit pages
-
 
 # Schema
 
@@ -122,6 +119,8 @@ JavaScript/Backbone
 		- single page app		
 		
 ###Eventual extra features:
+
+VENUES SHOULD BE VERIFIED
 
 	1. google login
 	2. automatically adds shows to google calendar

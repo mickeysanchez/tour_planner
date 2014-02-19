@@ -1,0 +1,30 @@
+<% heading = (@tour.persisted?) ? "Edit Tour" : "Create A Tour" %>
+<% submit = (@tour.persisted?) ? "Update Tour" : "Create Tour" %>
+<% action = (@tour.persisted?) ? band_tour_url(@tour) : band_tours_url(@band) %>
+
+<h2><%= heading %></h2>
+
+<%= render 'layouts/errors' %>
+
+<form id="new-tour-form" action="<%= action %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	
+	<label for="tour_name">Tour Name</label>
+	<input id="tour_name" type="text" name="tour[name]" value="">
+	
+	<h2> Add Shows </h2>
+	<% @band.events.each do |event| %>
+	<div class="checkbox-field">
+		<label for="<%= event.object_id %>">
+		  <%= l event.date, format: "%d %B %Y" %>
+		  <%= event.venue.name  %>
+		</label>
+		<input type="checkbox" 
+			   name="tour[event_ids][]" 
+			   id="<%= event.object_id %>" 
+			   value="<%= event.id %>">
+	</div>
+    <% end %>
+	 
+	<input type="submit" value="<%= submit %>">
+</form>

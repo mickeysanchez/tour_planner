@@ -9,6 +9,11 @@ class EventsController < ApplicationController
     @event = Event.includes(:band, :venue).find(params[:id])
   end
   
+  def new
+    @band = Band.find(params[:band_id])
+    @event = Event.new
+  end
+  
   def create
     if params[:venue][:id].empty?   
       @venue = Venue.new(params[:venue])
@@ -35,12 +40,11 @@ class EventsController < ApplicationController
         end
         @venue.save!
         flash[:success] = ["New Show Created!"]
-        redirect_to :back
+        redirect_to @event
       rescue
         flash[:errors] =  @event.errors.full_messages + @venue.errors.full_messages  
         flash[:errors] += @tour.errors.full_messages if @tour
-        env["HTTP_REFERER"] += '#errors'
-        redirect_to :back
+        redirect_to new_band_event_url(params[:band_id])
       end
     end
   end
@@ -76,7 +80,7 @@ class EventsController < ApplicationController
         end
         @venue.save!
         flash[:success] = ["Show details updated!"]
-        redirect_to :back
+        redirect_to event_url(@event)
       rescue
         flash[:errors] =  @event.errors.full_messages + @venue.errors.full_messages
         redirect_to :back

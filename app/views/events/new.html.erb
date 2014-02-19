@@ -1,0 +1,3 @@
+<% if current_user.is_band_admin?(@band) %>
+	<%= render 'events/form', band: @band %>
+<% end %>

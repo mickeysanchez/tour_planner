@@ -1,4 +1,6 @@
 class VenuesController < ApplicationController
+  before_filter :require_signed_in!
+  
   def index 
     @venues = Venue.all
   end

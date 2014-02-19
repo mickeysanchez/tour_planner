@@ -8,13 +8,34 @@
 <ul id="members-list">
 <% @band.band_memberships.each do |membership| %>
   <li class="member-list-item">
-	  <%= membership.member.email %> - <%= membership.role %>
+	  <%= image_tag membership.member.image.url(:thumb), class: "small-image" %>
+	  <%= membership.member.email %> - 
+	  <%= membership.role %>
   </li>
 <% end %>
 </ul>
 
-<% if @tours.count > 0 %>
+<% if current_user.is_band_admin?(@band) %>
+	<a href="<%= new_band_tour_url(@band) %>">
+		<div class="add-box">
+			<h2> + Create a Tour </h2>
+		</div>
+	</a>
+<% end %>
+
+<% if @band.tours.count > 0 %>
+	<h2> Tours (<%= @band.tours.count %>) </h2>
 	<%= render 'tours/list', tours: @tours %>
+<% end %>
+
+<h2> Events (<%= @band.events.count %>) </h2>
+
+<% if current_user.is_band_admin?(@band) %>
+	<a href="<%= new_band_event_url(@band) %>">
+		<div class="add-box">
+			<h2> + Add Show </h2>
+		</div>
+	</a>
 <% end %>
 
 <%= render 'events/list', events: @events, hide_band_name: true %>

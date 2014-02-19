@@ -224,3 +224,6 @@ input[type="submit"]:hover {
 	background: lightgrey;
 }
 
+.small-image {
+	height: 50px;
+}
