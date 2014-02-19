@@ -9,12 +9,12 @@ TourPlanner::Application.routes.draw do
   
   resources :bands, only: [:create, :destroy, :show, :new, :index, :edit, :update] do
     resources :events, only: [:create, :destroy, :edit, :update, :new]
-    resources :tours, only: [:new, :create, :edit, :update]
+    resources :tours, only: [:new, :create, :edit]
   end
   
   resources :events, only: [:destroy, :index, :show]
   
   resources :venues, only: [:index, :show]
   
-  resources :tours, only: [:show, :destroy]
+  resources :tours, only: [:show, :destroy, :update]
 end
