@@ -1,6 +1,6 @@
 <h1><%= current_user == @user ? "" : @user.email %></h1>
 
-<%= image_tag @user.image.url(:medium) %>
+<%= image_tag @user.image.url(:thumb) %>
 
 <%= render 'bands/list', user: @user %>
 
