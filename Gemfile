@@ -5,6 +5,9 @@ gem 'rails', '3.2.15'
 gem 'pg'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'figaro'
 
 group :development do
   gem 'better_errors'

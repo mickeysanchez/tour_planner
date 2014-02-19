@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_signed_in!, only: [:show, :edit, :update]
+  before_filter :require_signed_in!, only: [:show, :edit, :update, :index]
   before_filter :require_signed_out!, only: [:create, :new]
   
   def index
