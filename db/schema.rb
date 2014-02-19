@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219161108) do
+ActiveRecord::Schema.define(:version => 20140219162132) do
 
   create_table "band_memberships", :force => true do |t|
     t.integer  "member_id",                     :null => false
@@ -38,12 +38,16 @@ ActiveRecord::Schema.define(:version => 20140219161108) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.integer  "band_id"
     t.integer  "venue_id"
     t.datetime "date"
     t.integer  "tour_id"
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
   end
 
   add_index "events", ["band_id"], :name => "index_events_on_band_id"

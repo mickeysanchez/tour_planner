@@ -6,7 +6,7 @@
 
 <%= render 'layouts/errors' %>
 
-<form id="new-event-form" action="<%= action %>" method="post">
+<form id="new-event-form" action="<%= action %>" method="post" enctype="multipart/form-data">
     <% if @event.persisted? %>
       <input type="hidden" name="_method" value="put">
     <% end %>
@@ -15,11 +15,14 @@
   		 name="authenticity_token" 
   		 value="<%= form_authenticity_token %>">
 
-	<label for="show_name">Name(optional)</label>
-	<input id="show_name" type="text" name="event[name]" value="<%= @event.name %>">
-	
 	<label for="show_date">Date</label>
 	<input id="show_date" type="date" name="event[date]" value="<%= l @event.date, format: "%Y-%m-%d" if @event.date %>">
+		
+	<label for="show_name">Name(optional)</label>
+	<input id="show_name" type="text" name="event[name]" value="<%= @event.name %>">
+		 
+    <label for="event_poster">Show Poster</label>
+    <input id="event_poster" name="event[poster]" type="file">
 	
 	<h2> Choose an existing venue </h2>
 	<label for="venue_picker">Venues</label>

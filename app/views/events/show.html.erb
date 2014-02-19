@@ -5,6 +5,8 @@
 	<% end %>
 </h1>
 
+<%= image_tag @event.poster.url(:medium), class: "header-image" %>
+
 <% if current_user.is_band_admin?(@event.band) %>
 	<%= link_to "Edit", edit_band_event_url(@event.band, @event) %> |
 	<%= link_to'Delete', event_url(@event), method: :delete %>
