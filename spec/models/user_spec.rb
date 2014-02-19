@@ -17,6 +17,16 @@ describe User do
   it { should validate_presence_of(:password_digest).with_message("You gotta have a password!") }
   it { should have_many(:bands) }
   
+  it "should be able to find band_membership given a band" do
+    b = Band.create({name: "The Beatles"})
+    u = b.members.create({email: "Paul@cookies.com", password: "password"})
+    bm = b.band_memberships.first
+    bm.role = "guitarist"
+    bm.save
+    
+    expect(b.find_membership(u)).to eq(bm)
+  end
+  
   describe "has a change password method" do
     it "doesn't change password when you give it a wrong password" do
       u = User.create({email: "coltrane@coltrane.com", password: "password"})

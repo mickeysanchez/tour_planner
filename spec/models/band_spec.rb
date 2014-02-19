@@ -17,6 +17,15 @@ describe Band do
   it { should have_many(:members) }
   it { should have_many(:tours) }
   
+  it "should find band_membership of a user" do
+    b = Band.create({name: "The Smoochies"})
+    u = b.members.create({email: "cookie@cookies.com", password: "password"})
+    bm = b.band_memberships.first
+    bm.role = "guitarist"
+    bm.save
+    
+    expect(b.find_membership(u)).to eq(bm)
+  end 
   
   it "should find a user's role" do
     b = Band.create({name: "Cookie Collins"})
