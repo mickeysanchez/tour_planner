@@ -11,9 +11,11 @@
 <ul id="members-list">
 <% @band.band_memberships.each do |membership| %>
   <li class="member-list-item">
+	  <a href="<%= user_url(membership.member) %>">
 	  <%= image_tag membership.member.image.url(:thumb), class: "small-image" %>
 	  <%= membership.member.email %> - 
 	  <%= membership.role %>
+	  </a>
   </li>
 <% end %>
 </ul>

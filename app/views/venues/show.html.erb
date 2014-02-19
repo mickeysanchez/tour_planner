@@ -1,5 +1,7 @@
 <h1> <%= @venue.name %> </h1>
 
+<%= image_tag @venue.image.url, class: "header-image"%>
+
 <li class="block-detail"> Address: <%= @venue.address %> </li>
 <li class="block-detail"> City: <%= @venue.city %> </li>
 <li class="block-detail"> State: <%= @venue.state %> </li>

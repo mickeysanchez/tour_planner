@@ -13,9 +13,14 @@
 #
 
 class Venue < ActiveRecord::Base
-  attr_accessible :name, :address, :city, :state, :zipcode
+  attr_accessible :name, :address, :city, :state, :zipcode, :image
   
   validates :name, :address, :city, :state, :zipcode, presence: true
+  
+  has_attached_file :image, 
+  styles: { medium: "500x500#", thumb: "200x200#" }, 
+  default_url: "venue_missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   
   has_many :events, order: "date ASC", inverse_of: :venue
 end

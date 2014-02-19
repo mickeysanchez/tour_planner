@@ -1,7 +1,7 @@
 #next
 !separate password controller for pW actions
 
-!add images to bands, venues, tours, shows
+!add posters to tours, shows
 
 !more members in a band + notifications for bands you're in
 
