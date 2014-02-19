@@ -227,3 +227,8 @@ input[type="submit"]:hover {
 .small-image {
 	height: 50px;
 }
+
+.header-image {
+	height: 250px;
+	display: block;
+}

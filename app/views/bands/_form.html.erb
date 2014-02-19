@@ -6,7 +6,7 @@
 
 <%= render "layouts/errors"%>
 
-<form id="band-form" action="<%= action %>" method="post">
+<form id="band-form" action="<%= action %>" method="post" enctype="multipart/form-data">
   <% if @band.persisted? %>
     <input type="hidden" name="_method" value="put">
   <% end %>
@@ -20,6 +20,9 @@
    		 name="band[name]"
 		 type="text"
 		 value="<%= @band.name %>">
+		 
+  <label for="band_image">Band Image</label>
+  <input id="band_image" name="band[image]" type="file">
 
   <label for="band_role">Your Role (optional)</label>
   <input id="band_role"

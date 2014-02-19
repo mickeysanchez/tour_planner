@@ -5,12 +5,6 @@
 
 !more members in a band + notifications for bands you're in
 
-NEW
-tour
-
-EDIT 
-tour
-
 # Schema
 
 **bold** = **not yet added**

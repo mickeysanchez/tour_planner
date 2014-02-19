@@ -1,4 +1,7 @@
 <h1> <%= @band.name %> </h1>
+
+<%= image_tag @band.image.url(:medium), class: "header-image" %>
+
 <% if current_user.is_band_admin?(@band) %>
 	<%= link_to 'Edit Band', edit_band_url(@band)%> |
 	<%= link_to 'Delete Band', band_url(@band), method: :delete %> 

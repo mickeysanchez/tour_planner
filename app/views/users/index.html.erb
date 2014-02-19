@@ -5,7 +5,10 @@
 	<% @users.each do |user| %>
 	  <% next if current_user == user %>	
 	 
-	  <li> <%= link_to user.email, user_url(user) %> </li>
+	  <li> 
+	  	  <%= image_tag user.image.url(:thumb), class: "small-image" %>
+		  <%= link_to user.email, user_url(user) %> 
+	  </li>
 	<% end %>
 	
 </ul>

@@ -9,9 +9,14 @@
 #
 
 class Band < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :image
   
   validates :name, presence: true
+  
+  has_attached_file :image, 
+  styles: { medium: "500x500#", thumb: "200x200#" }, 
+  default_url: "user_missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   # make it easy on myself: call band.events or band.shows interchangeably
   has_many :events, :order => 'date ASC', dependent: :destroy

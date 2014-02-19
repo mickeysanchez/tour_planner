@@ -9,6 +9,9 @@
 	 <li id="band-block">
 		<ul class="block-header">
 		  <li class="block-header-item"> <h3> <%= link_to band.name, band_url(band) %> <h3> </li>
+		  <li class="block-header-item"> 
+			  <%= image_tag band.image.url(:thumb), class: "small-image" %>
+		  </li>
 		</ul>
 	 
 		<hr>
