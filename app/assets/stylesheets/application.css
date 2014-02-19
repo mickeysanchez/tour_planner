@@ -41,7 +41,10 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight: bold;
 }
 
-h1 { font-size: 24px; }
+h1 { 
+	font-size: 28px;
+	margin: 0 0 20px 0; 
+}
 h2 { font-size: 20px; }
 
 a {

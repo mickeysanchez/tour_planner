@@ -2,12 +2,16 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(255)      not null
-#  password_digest :string(255)      not null
-#  token           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                 :integer          not null, primary key
+#  email              :string(255)      not null
+#  password_digest    :string(255)      not null
+#  token              :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 class User < ActiveRecord::Base
@@ -32,22 +36,32 @@ class User < ActiveRecord::Base
   
   has_many :bands, through: :band_memberships, source: :band
   
+  has_many :requests_for_band_membership,
+    class_name: 'MemberRequest',
+    foreign_key: :requester_id
+  
+  def has_requested_membership?(band)
+    !!MemberRequest
+      .where("requester_id = ? AND band_id = ?", self.id, band.id)
+      .first
+  end
+  
   def find_membership(band) 
     BandMembership
-            .where("member_id = ? AND band_id = ?", self.id, band.id)
-            .first
+      .where("member_id = ? AND band_id = ?", self.id, band.id)
+      .first
   end
   
   def is_in_band?(band)
     !!BandMembership
-        .where("member_id = ? AND band_id = ?", self.id, band.id)
-        .first
+      .where("member_id = ? AND band_id = ?", self.id, band.id)
+      .first
   end
   
   def is_band_admin?(band)
     !!BandMembership
-        .where("member_id = ? AND band_id = ? AND admin = true", self.id, band.id)
-        .first
+      .where("member_id = ? AND band_id = ? AND admin = true", self.id, band.id)
+      .first
   end
   
   def change_password!(old_pw, new_pw)

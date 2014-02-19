@@ -2,12 +2,16 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(255)      not null
-#  password_digest :string(255)      not null
-#  token           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                 :integer          not null, primary key
+#  email              :string(255)      not null
+#  password_digest    :string(255)      not null
+#  token              :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 require 'spec_helper'
@@ -61,5 +65,16 @@ describe User do
     
     expect(u.is_band_admin?(b)).to be_true
     expect(u.is_band_admin?(b2)).to be_false
+  end
+  
+  it "can test if you have requested membership in a band" do
+    u = User.create({email: "fanboy22@aol.com", password: "password"})
+    b = u.bands.create({name: "Red Hot Chili Peppers"})
+    
+    expect(u.has_requested_membership?(b)).to be_false
+    
+    mem_request = MemberRequest.create({ requester_id: u.id, band_id: b.id })
+    
+    expect(u.has_requested_membership?(b)).to be_true
   end
 end

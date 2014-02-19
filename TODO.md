@@ -1,9 +1,9 @@
 #next
 !separate password controller for pW actions
 
-!add posters to tours, shows
+!more members in a band + notifications for requests
 
-!more members in a band + notifications for bands you're in
+!stage_name to users
 
 # Schema
 
@@ -12,7 +12,7 @@
 0. users
 | email | token | password_digest
 
-  0. band_members
+  0. band_memberships
   | user_id | band_id | role | admin
 
 0. bands
@@ -27,20 +27,40 @@
 0. venues
 | name | address | city | state | zipcode | **phone_number** | **email** |
 
+###
 
+0. member_requests
+| requester_id | band_id |  
+
+###
+
+0. notifications
+| message | notifiable_id | notifiable_type
+a.k.a
+| message | follow_id | Follow
+| message | member_request_id | member_request 
+
+these are triggered by other events
+aka
+when someone clicks the follow button on you:
+message = "User.name is now following you."
+^^ how do I get their id
+
+| The Kluggs just made new show | follow_id | follow
+
+###
 * SOCIAL STUFF - join tables
 
+0. follows << polymorphic >>
+| follower_id | followable_id | followable_type
+aka
+| mickey's id | 3 | user
+| 3 | 8 | band
 0. **user_follows** 
-| follower_id | followed_id |
-
 0. **band_follows**
-| follower_id | followed_id |
-
 0. **venue_follows**
-| follower_id | venue_id |
-
 0. **event_follows**
-| follower_id | event_id |
+
 
 0. **event_attendances**
 | event_id | attendee_id |

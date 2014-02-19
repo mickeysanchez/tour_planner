@@ -18,10 +18,19 @@
 		 
 		<ul class="block-details">
 		  <% unless band.role_of(user).empty? %>
-		    <li class="block-detail"> Role: <%= band.role_of(user) %> </li>
+		    <li class="block-detail"> 
+				<% if current_user == user %>
+				  Your Role: <%= band.role_of(user) %> 
+			    <% else%>
+					<a href="<%= user_url(user) %>">
+						<%= user.email %>
+					</a>
+						<%= band.role_of(user) %>
+			    <% end %>
+			</li>
 		  <% end %>
 		  
-		  <% if user.is_band_admin?(band) %>
+		  <% if current_user.is_band_admin?(band) %>
 		    <li class="block-detail"> 
 				<%= link_to 'Edit Band', edit_band_url(band)%> 
 			</li>

@@ -10,6 +10,7 @@ TourPlanner::Application.routes.draw do
   resources :bands, only: [:create, :destroy, :show, :new, :index, :edit, :update] do
     resources :events, only: [:create, :destroy, :edit, :update, :new]
     resources :tours, only: [:new, :create, :edit]
+    resources :member_requests, only: [:create]
   end
   
   resources :events, only: [:destroy, :index, :show]
