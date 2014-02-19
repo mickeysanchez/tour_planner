@@ -34,7 +34,15 @@
 		</li>
 		
 	    <li class="block-detail">
-			<%= button_to "deny" %> 
+			<form action="<%= deny_request_url(request) %>" method="post">
+				<input type="hidden" 
+				name="authenticity_token" 
+				value="<%= form_authenticity_token %>">
+				
+				<input type="hidden" name="_method" value="put">
+				
+				<input type="submit" value="deny">
+			</form>
 		</li>
 	  
 	</ul>

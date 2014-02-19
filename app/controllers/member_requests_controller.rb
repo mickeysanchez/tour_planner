@@ -10,4 +10,12 @@ class MemberRequestsController < ApplicationController
     flash[:success] = ["Member Request Sent!"]
     redirect_to @band
   end
+  
+  def deny
+    mr = MemberRequest.find(params[:id])
+    mr.status = "denied"
+    mr.save
+    flash[:success] = ["Member request denied"]
+    redirect_to user_member_requests_url(current_user)
+  end
 end

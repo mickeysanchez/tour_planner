@@ -14,10 +14,10 @@
 		  </li>
 		</ul>
 	 
-		<hr>
+		
 		 
 		<ul class="block-details">
-		  <% unless band.role_of(user).empty? %>
+		  <% unless band.role_of(user).nil? || band.role_of(user).empty? %>
 		    <li class="block-detail"> 
 				<% if current_user == user %>
 				  Your Role: <%= band.role_of(user) %> 

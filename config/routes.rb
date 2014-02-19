@@ -15,6 +15,8 @@ TourPlanner::Application.routes.draw do
     resources :member_requests, only: [:create]
   end
   
+  put "member_requests/:id/deny_request", to: 'member_requests#deny', as: "deny_request"
+  
   resources :band_memberships, only: [:create]
   
   resources :events, only: [:destroy, :index, :show]

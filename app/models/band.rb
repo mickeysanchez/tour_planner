@@ -43,7 +43,7 @@ class Band < ActiveRecord::Base
   def role_of(user)
     self.band_memberships
       .where("member_id = ?", user.id)
-      .try(:first).try(:role) || []
+      .try(:first).try(:role)
   end
   
   def find_membership(user) 
