@@ -2,6 +2,7 @@
 !separate password controller for pW actions
 
 !more members in a band + notifications for requests
+!test user#all_requests
 
 !stage_name to users
 

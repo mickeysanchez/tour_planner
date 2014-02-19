@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
   
   private
   
+  def authorized_user!
+    unless current_user == User.find(params[:user_id])
+      redirect_to current_user
+    end
+  end
+  
   def current_user
     return nil unless session[:token]
     @current_user ||= User.find_by_token(session[:token])

@@ -1,0 +1,34 @@
+<h1> Requests </h1>
+
+<% if current_user.all_requests.empty? %>
+	<h3> You don't have any requests right now. </h3>
+<% end %>
+
+<ul id="all-requests">
+
+<% current_user.all_requests.each do |request| %>
+
+ <li id="request-block">
+	<ul class="block-header">
+	  <li class="block-header-item">
+		  <%= request.requester.email %> has requested to join your band: 
+		  <%= request.band.name %>
+	  </li>
+	</ul>
+	 
+	<ul class="block-details">
+
+	    <li class="block-detail">
+			<%= button_to "accept" %> 
+		</li>
+		
+	    <li class="block-detail">
+			<%= button_to "deny" %> 
+		</li>
+	  
+	</ul>
+ </li>
+
+<% end %>
+
+</ul>

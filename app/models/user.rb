@@ -36,9 +36,16 @@ class User < ActiveRecord::Base
   
   has_many :bands, through: :band_memberships, source: :band
   
-  has_many :requests_for_band_membership,
+  has_many :requests_made_for_band_membership,
     class_name: 'MemberRequest',
     foreign_key: :requester_id
+    
+  def all_requests
+    bands = self.bands.where("admin = true")
+    bands.map do |band|
+      band.member_requests
+    end.flatten
+  end
   
   def has_requested_membership?(band)
     !!MemberRequest

@@ -48,8 +48,8 @@ class Band < ActiveRecord::Base
   
   def find_membership(user) 
     BandMembership
-            .where("member_id = ? AND band_id = ?", user.id, self.id)
-            .first
+      .where("member_id = ? AND band_id = ?", user.id, self.id)
+      .first
   end
   
 end

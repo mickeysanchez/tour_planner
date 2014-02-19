@@ -5,7 +5,9 @@ TourPlanner::Application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :users, only: [:new, :create, :destroy, :show, :index, :edit, :update]
+  resources :users, only: [:new, :create, :destroy, :show, :index, :edit, :update] do
+    resources :member_requests, only: [:index]
+  end
   
   resources :bands, only: [:create, :destroy, :show, :new, :index, :edit, :update] do
     resources :events, only: [:create, :destroy, :edit, :update, :new]
