@@ -35,11 +35,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if current_user == @user && @user.update_attributes(params[:user])
-      flash[:success] = ["Email changed successfully!"]
+      flash[:success] = ["Updates Successful!"]
     else
       flash[:errors] = @user.errors.full_messages
     end
     
-    redirect_to edit_user_url(@user)
+    redirect_to user_url(@user)
   end
 end

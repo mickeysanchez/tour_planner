@@ -22,12 +22,12 @@ html, body, form, h1, div, label, a, input[type="submit"] {
   vertical-align: baseline;
 }
 
-a:link {color: orange; text-decoration: none;}
-a:visited {color: orange;}
+a:link {color: #6b2607; text-decoration: none;}
+a:visited {color: #6b2607;}
 a:hover { color: black; text-decoration : none;}
 a:active{color: black; text-decoration : none; } 
 a {
-	color: orange;
+	color: #6b2607;
 	display: inline;
 	font-weight: bold;
 }
@@ -36,7 +36,7 @@ a {
 
 html {
 	font-family: Futura;
-    background: #fff5de;
+    background: white;
     color: #46434d;
 }
 
@@ -67,7 +67,6 @@ select,
 option {
     display:block;
 	margin: 20px 0;
-	border-radius: 5px;
 	border: 1px solid black;
 	padding: 10px;
 	font-size: 14px;
@@ -76,7 +75,6 @@ option {
 input[type="submit"] {
 	display: inline-block;
 	border: 1px solid black;
-	border-radius: 5px;
 	padding: 5px;
     cursor: pointer;
 }
@@ -91,7 +89,6 @@ input[type="submit"]:hover {
 	margin-top: 100px;
 	border: 3px solid black;
 	padding: 30px;
-	border-radius: 10px;
 }
 
 
@@ -168,28 +165,28 @@ header nav {
 
 #show-block {
 	border: 1px solid black;
-	padding: 10px;
+	padding:20px;
 	list-style: none;
 	margin: 10px 0px;
 }
 
 #tour-block {
 	border: 1px solid black;
-	padding: 10px;
+	padding: 20px;
 	list-style: none;
 	margin: 10px 0px;
 }
 
 #venue-block {
 	border: 1px solid black;
-	padding: 10px;
+	padding: 20px;
 	list-style: none;
 	margin: 10px 0px;
 }
 
 #band-block {
 	border: 1px solid black;
-	padding: 10px;
+	padding: 20px;
 	list-style: none;
 	margin: 10px 0px;
 }
@@ -198,6 +195,11 @@ header nav {
 	font-weight: bold;
 	list-style: none;
 	padding-left: 0;
+}
+
+.block-header-item {
+	font-weight: bold;
+	font-size: 34px;
 }
 
 #all-bands {
@@ -223,12 +225,12 @@ header nav {
 /* ERROR AND SUCCESS PARTIALS */
 
 #errors {
-	margin: 10px;
+	margin: 10px 0;
 	border: 3px solid red;
 }
 
 #successes {
-	margin: 10px;
+	margin: 10px 0;
 	border: 3px solid lightgreen;
 }
 
@@ -240,6 +242,7 @@ header nav {
 /* LARGE BOX SHAPED LINKS */
 
 .add-box {
+	margin-top: 30px;
 	text-align: center;
 	border: 1px solid green;
 	color: green;
@@ -252,7 +255,7 @@ header nav {
 	background: lightgrey;
 }
 
-/* OTHER */
+/* EDIT USER PAGE */
 
 #edit-user-email,
 #edit-user-password {
@@ -260,7 +263,8 @@ header nav {
 }
 
 #edit-user-password {
-	padding-left: 10px;
+	padding-left: 40px;
+	margin-left: 40px;
 	border-left: 1px solid black;
 }
 
@@ -269,22 +273,46 @@ header nav {
 	height: 50px;
 }
 
-.header-image {
-	width: 250px;
-	height: 250px;
+/* USER HEADING */
+
+#edit-image > .input > label {
+	margin: 0;
+	font-size: 16px;
 }
 
-.file {
+#change-image {
+	width: 250px;
 	display: block;
-	margin: 10px;
 }
 
-#user_image {
-	width: 250px;
+#show-image {
+	height: 100%;
+	float: right;
+}
+
+#show-heading > h1 {
+	width: 600px;
 	float: left;
 }
 
-#change_image {
+.input > label {
+	display: block;
+}
+
+#show-heading {
+	padding: 20px;
+	border: 1px solid lightblue;
+}
+
+.rightform {
 	float: left;
-	width: 250px;
+}
+
+.band-list-image {
+	height: 100px;
+	float: right;
+}
+
+.member-list-item {
+	margin: 10px 0;
 }

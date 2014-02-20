@@ -6,18 +6,15 @@
 	
 	<% user.bands.each do |band| %>
 	
-	 <li id="band-block">
+	 <li id="band-block" class="clearfix">
+		<%= image_tag band.image.url(:thumb), class: "band-list-image" %>
+			
 		<ul class="block-header">
 		  <li class="block-header-item"> 
-			  <h3> <%= link_to band.name, band_url(band) %> <h3> 
-			  </li>
-		  <li class="block-header-item"> 
-			  <%= image_tag band.image.url(:thumb), class: "small-image" %>
-		  </li>
+			   <%= link_to band.name, band_url(band) %>
+		   </li>
 		</ul>
-	 
 		
-		 
 		<ul class="block-details">
 		  <% unless band.role_of(user).nil? || band.role_of(user).empty? %>
 		    <li class="block-detail"> 

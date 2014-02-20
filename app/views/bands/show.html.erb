@@ -1,42 +1,71 @@
-<h1> <%= @band.name %> </h1>
+<div id="show-heading" class="clearfix">
+	<h1> <%= @band.name %> </h1>
+	
 
-<%= image_tag @band.image.url(:medium), class: "header-image" %>
+	<div id="show-image">
+	  <%= image_tag @band.image.url(:thumb), class: "header-image" %>
+    </div>
+	
+	<% if current_user.is_band_admin?(@band)%>
+	<div id="change-image">
+		<div class="edit">
+		<% if current_user.is_band_admin?(@band) %>
+			<%= link_to 'Edit Band', edit_band_url(@band)%> |
+			<%= link_to 'Delete Band', band_url(@band), method: :delete %> 
+		<% end %>
+		</div>
+	
+		<form id="edit-image" action="<%= band_url(@band) %>" method="post"   enctype="multipart/form-data">
+		  <input type="hidden" name="_method" value="put">
+	
+		  <input type="hidden" 
+				 name="authenticity_token" 
+				 value="<%= form_authenticity_token %>">
 
-<% if current_user.is_band_admin?(@band) %>
-	<%= link_to 'Edit Band', edit_band_url(@band)%> |
-	<%= link_to 'Delete Band', band_url(@band), method: :delete %> 
-<% end %>
-
-<h3> Members </h3>
-<ul id="members-list">
-    <% if !current_user.is_in_band?(@band) && !current_user.has_requested_membership?(@band) %>
-  	  <li class="member-list-item">
-  		 <%= button_to "Request Band Membership", band_member_requests_url(@band) %> 
-  	  </li>
-    <% end %>
-<% @band.band_memberships.each do |membership| %>
-  <li class="member-list-item">
-	  <a href="<%= user_url(membership.member) %>">
-	  <%= image_tag membership.member.image.url(:thumb), class: "small-image" %>
-	  <%= membership.member.email %> 
+		  <div class="input">
+		    <label for="band_image">Change Your Image</label>
+		    <input id="band_image" name="band[image]" type="file">
+		  </div>
+  
+		  <div class="submit">
+		    <input type="submit" value="Update Image">
+		  </div>
+		</form>
+	</div>
+	<% end %>
+	
+	<h3> Members </h3>
+	<ul id="members-list">
+	    <% if !current_user.is_in_band?(@band) && !current_user.has_requested_membership?(@band) %>
+	  	  <li class="member-list-item">
+	  		 <%= button_to "Request Band Membership", band_member_requests_url(@band) %> 
+	  	  </li>
+	    <% end %>
+	<% @band.band_memberships.each do |membership| %>
+	  <li class="member-list-item">
+		  <a href="<%= user_url(membership.member) %>">
+		  <%= image_tag membership.member.image.url(:thumb), class: "small-image" %>
+		  <%= membership.member.email %> 
 	  
-	  <% if membership.role %>
-		  - <%= membership.role %>
-	  <% end %>
+		  <% if membership.role %>
+			  - <%= membership.role %>
+		  <% end %>
 	  
-	  <% if current_user.is_in_band?(@band) %>
-		  <%= membership.member.is_band_admin?(@band) ? "(Admin)" : "" %>
-	  <% end %>
-	  </a>
+		  <% if current_user.is_in_band?(@band) %>
+			  <%= membership.member.is_band_admin?(@band) ? "(Admin)" : "" %>
+		  <% end %>
+		  </a>
 	  
-	  <% if current_user.is_band_admin?(@band) && !membership.member.is_band_admin?(@band) %>
-		  <%= button_to "Make Admin", make_admin_url(membership), method: :put %>
-	  <% end %>
-  </li>
-<% end %>
-</ul>
+		  <% if current_user.is_band_admin?(@band) && !membership.member.is_band_admin?(@band) %>
+			  <%= button_to "Make Admin", make_admin_url(membership), method: :put %>
+		  <% end %>
+	  </li>
+	<% end %>
+	</ul>
 
-<% if current_user.is_band_admin?(@band) %>
+</div>
+
+<% if current_user.is_band_admin?(@band) && @band.events.count > 0 %>
 	<a href="<%= new_band_tour_url(@band) %>">
 		<div class="add-box">
 			<h2> + Create a Tour </h2>

@@ -1,27 +1,28 @@
-<h1> <%= @user.email %></h1>
-
-<div id="user-heading">
-	<div id="user-image">
-	<%= image_tag @user.image.url(:thumb), class: "header-image" %>
+<div id="show-heading" class="clearfix">
+	<h1> <%= @user.email %> </h1>
+	
+	<div id="show-image">
+	  <%= image_tag @user.image.url(:thumb), class: "header-image" %>
     </div>
 	
 	<div id="change-image">
-	<form id="edit-user-image" action="<%= user_url(current_user) %>" method="post"   enctype="multipart/form-data">
-	  <input type="hidden" name="_method" value="put">
+		<form id="edit-image" action="<%= user_url(current_user) %>" method="post"   
+			enctype="multipart/form-data">
+		  <input type="hidden" name="_method" value="put">
 	
-	  <input type="hidden" 
-			 name="authenticity_token" 
-			 value="<%= form_authenticity_token %>">
+		  <input type="hidden" 
+				 name="authenticity_token" 
+				 value="<%= form_authenticity_token %>">
 
-	  <div class="input">
-	  <label for="user_image">Change Your Image</label>
-	  <input id="user_image" name="user[image]" type="file">
-	  </div>
+		  <div class="input">
+		    <label for="user_image">Change Your Image</label>
+		    <input id="user_image" name="user[image]" type="file">
+		  </div>
   
-	  <div class="submit">
-	  <input type="submit" value="Update Image">
-	  </div>
-	</form>
+		  <div class="submit">
+		    <input type="submit" value="Update Image">
+		  </div>
+		</form>
 	</div>
 </div>
 
