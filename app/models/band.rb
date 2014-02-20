@@ -18,39 +18,36 @@ class Band < ActiveRecord::Base
   validates :name, presence: true
   
   has_attached_file :image, 
-  styles: { medium: "500x500#", thumb: "200x200#" }, 
-  default_url: "user_missing.png"
+    styles: { medium: "500x500#", thumb: "200x200#" }, 
+    default_url: "user_missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   # make it easy on myself: call band.events or band.shows interchangeably
   has_many :events, :order => 'date ASC', dependent: :destroy
   has_many :shows, 
-           :class_name => 'Event', 
-           :foreign_key => :band_id, 
-           :order => 'date ASC' 
+    :class_name => 'Event', 
+    :foreign_key => :band_id, 
+    :order => 'date ASC' 
            
   has_many :tours, through: :events, source: :tour, uniq: true
            
   has_many :band_memberships, dependent: :destroy
+  
   has_many :members,
     through: :band_memberships,
     source: :member
     
   has_many :member_requests,
-  class_name: 'MemberRequest',
-  foreign_key: :band_id,
-  dependent: :destroy 
+    class_name: 'MemberRequest',
+    foreign_key: :band_id,
+    dependent: :destroy 
   
   def make_member!(user)
-    membership = self.band_memberships.new
-    membership.member = user
-    membership.save
+    self.band_memberships.create({ member: user })
   end
   
   def make_admin!(user)
-    membership = self.find_membership(user)
-    membership.admin = true
-    membership.save
+    self.find_membership(user).toggle!(:admin)
   end 
     
   def role_of(user)

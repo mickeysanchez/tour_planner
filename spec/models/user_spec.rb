@@ -20,6 +20,7 @@ describe User do
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:password_digest).with_message("You gotta have a password!") }
   it { should have_many(:bands) }
+  it { should have_many(:requests_made_for_band_membership) }
   
   describe "requests" do
     it "should find pending requests" do
@@ -39,7 +40,10 @@ describe User do
       expect(mr.status).to eq("pending")
       expect(u.pending_requests.last).to eq(mr2)
       expect(u.pending_requests.count).to eq(2)
+      mr.status = "approved"
+      mr.save
       expect(u.all_requests.count).to eq(2)
+      expect(u.pending_requests.count).to eq(1)
     end
   end
   
