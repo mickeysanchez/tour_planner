@@ -13,10 +13,9 @@
 require 'spec_helper'
 
 describe MemberRequest do
+  it { should validate_presence_of(:band_id) }
+  it { should validate_presence_of(:requester_id) }
+  it { should ensure_inclusion_of(:status).in_array(["pending", "approved", "denied"]) }
   it { should belong_to(:requester) }
   it { should belong_to(:band) }
-  
-  it "should test these"
-  # validates :band_id, :requester_id, :status, presence: true
-  # validates :status, inclusion: { in: ["pending", "approved", "denied"] }
 end

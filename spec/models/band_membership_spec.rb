@@ -11,15 +11,10 @@
 #  admin      :boolean          default(FALSE), not null
 #
 
-class BandMembership < ActiveRecord::Base
-  attr_accessible :role
-  
-  validates :member_id, :band_id, presence: true
-  validates :admin, inclusion: { in: [true, false] }
-  
-  belongs_to :member,
-    class_name: 'User',
-    foreign_key: :member_id
-    
-  belongs_to :band
+require 'spec_helper'
+
+describe BandMembership do
+  it { should validate_presence_of(:member_id) }
+  it { should belong_to(:member) }
+  it { should belong_to(:band)}
 end
