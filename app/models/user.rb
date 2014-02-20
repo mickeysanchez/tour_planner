@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_attached_file :image, 
   styles: { medium: "500x500#", thumb: "200x200#" }, 
   default_url: "user_missing.png"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates_attachment :image, content_type: { content_type: ['image/jpeg', 'image/png'] }
   
   validates :password_digest, presence: { message: "You gotta have a password!" }
   validates :password, length: { minimum: 6, allow_nil: true }

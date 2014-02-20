@@ -66,7 +66,7 @@ input[type="file"],
 select,
 option {
     display:block;
-	margin: 10px 0;
+	margin: 20px 0;
 	border-radius: 5px;
 	border: 1px solid black;
 	padding: 10px;
@@ -164,6 +164,8 @@ header nav {
 	padding-right: 5px;
 }
 
+/* LISTS */
+
 #show-block {
 	border: 1px solid black;
 	padding: 10px;
@@ -218,6 +220,8 @@ header nav {
 	padding-left: 0;
 }
 
+/* ERROR AND SUCCESS PARTIALS */
+
 #errors {
 	margin: 10px;
 	border: 3px solid red;
@@ -232,15 +236,8 @@ header nav {
 	margin-left: 25px;
 }
 
-#edit-user-email,
-#edit-user-password {
-	float: left;
-}
 
-#edit-user-password {
-	padding-left: 10px;
-	border-left: 1px solid black;
-}
+/* LARGE BOX SHAPED LINKS */
 
 .add-box {
 	text-align: center;
@@ -255,16 +252,39 @@ header nav {
 	background: lightgrey;
 }
 
+/* OTHER */
+
+#edit-user-email,
+#edit-user-password {
+	float: left;
+}
+
+#edit-user-password {
+	padding-left: 10px;
+	border-left: 1px solid black;
+}
+
+
 .small-image {
 	height: 50px;
 }
 
 .header-image {
+	width: 250px;
 	height: 250px;
-	display: block;
 }
 
 .file {
 	display: block;
 	margin: 10px;
+}
+
+#user_image {
+	width: 250px;
+	float: left;
+}
+
+#change_image {
+	float: left;
+	width: 250px;
 }

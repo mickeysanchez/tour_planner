@@ -17,7 +17,7 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :name, :venue_id, :date, :poster
+  attr_accessible :name, :venue_id, :date, :poster, :band_id, :tour_id
   
   validates :date, presence: true
   

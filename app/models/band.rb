@@ -39,7 +39,19 @@ class Band < ActiveRecord::Base
   has_many :member_requests,
   class_name: 'MemberRequest',
   foreign_key: :band_id,
-  dependent: :destroy  
+  dependent: :destroy 
+  
+  def make_member!(user)
+    membership = self.band_memberships.new
+    membership.member = user
+    membership.save
+  end
+  
+  def make_admin!(user)
+    membership = self.find_membership(user)
+    membership.admin = true
+    membership.save
+  end 
     
   def role_of(user)
     self.band_memberships

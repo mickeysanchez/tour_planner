@@ -5,6 +5,10 @@
 
 !stage_name to users
 
+!REFACTOR
+
+!get your shows from seatgeek button
+
 # Schema
 
 **bold** = **not yet added**
@@ -30,42 +34,6 @@
 0. member_requests
 | requester_id | band_id |  
 
-###
-
-0. **notifications**
-| message | notifiable_id | notifiable_type
-a.k.a
-| message | follow_id | Follow
-| message | member_request_id | member_request 
-
-these are triggered by other events
-aka
-when someone clicks the follow button on you:
-message = "User.name is now following you."
-^^ how do I get their id
-
-| The Kluggs just made new show | follow_id | follow
-
-###
-* SOCIAL STUFF - join tables
-
-0. follows << polymorphic >>
-| follower_id | followable_id | followable_type
-aka
-| mickey's id | 3 | user
-| 3 | 8 | band
-0. **user_follows** 
-0. **band_follows**
-0. **venue_follows**
-0. **event_follows**
-
-
-0. **event_attendances**
-| event_id | attendee_id |
-
-###Tables/Models to Create:
-
-	1. tours
 
 ###Things to add to existing tables: 
 
@@ -149,4 +117,36 @@ VENUES SHOULD BE VERIFIED
 	9. Connect to Facebook band page 
 			- Automatically creates a facebook event
 		
-	
+
+### Not sure if I'll add this stuff:
+
+0. **notifications**
+| message | notifiable_id | notifiable_type
+a.k.a
+| message | follow_id | Follow
+| message | member_request_id | member_request 
+
+these are triggered by other events
+aka
+when someone clicks the follow button on you:
+message = "User.name is now following you."
+^^ how do I get their id
+
+| The Kluggs just made new show | follow_id | follow
+
+###
+* SOCIAL STUFF - join tables
+
+0. follows << polymorphic >>
+| follower_id | followable_id | followable_type
+aka
+| mickey's id | 3 | user
+| 3 | 8 | band
+0. **user_follows** 
+0. **band_follows**
+0. **venue_follows**
+0. **event_follows**
+
+
+0. **event_attendances**
+| event_id | attendee_id |

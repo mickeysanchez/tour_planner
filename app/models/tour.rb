@@ -9,7 +9,7 @@
 #
 
 class Tour < ActiveRecord::Base
-  attr_accessible :name, :event_ids
+  attr_accessible :name, :event_ids, :band_id
   
   validates :name, presence: true
   
