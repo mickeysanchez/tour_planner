@@ -1,6 +1,10 @@
 class ToursController < ApplicationController
   before_filter :require_signed_in!
   
+  def show
+    @tour = Tour.find(params[:id])
+  end
+  
   def new
     @tour = Tour.new
     @band = Band.find(params[:band_id])
@@ -36,13 +40,12 @@ class ToursController < ApplicationController
     end
   end
   
-  def show
-    @tour = Tour.find(params[:id])
-  end
-  
   def destroy 
     @tour = Tour.find(params[:id])
-    @tour.destroy
-    redirect_to @tour.band
+    
+    if @tour.admin_user?(current_user)
+      @tour.destroy
+      redirect_to @tour.band
+    end
   end
 end

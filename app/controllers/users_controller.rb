@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     
-    if @user.update_attributes(params[:user])
+    if current_user == @user && @user.update_attributes(params[:user])
       flash[:success] = ["Email changed successfully!"]
     else
       flash[:errors] = @user.errors.full_messages

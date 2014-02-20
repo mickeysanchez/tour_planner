@@ -4,18 +4,22 @@
 
 <form id="edit-user-email" action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
   <input type="hidden" name="_method" value="put">
-	
+
   <input type="hidden" 
 		 name="authenticity_token" 
 		 value="<%= form_authenticity_token %>">
 		 
-  <label for="user_email">Change Email</label>
-  <input id="user_email"
+  <div class="input">		 
+    <label for="user_email">Change Email</label>
+    <input id="user_email"
    		 name="user[email]"
 		 type="text"
 		 value="<%= @user.email %>">
-		 
-  <input type="submit" value="Change Email">
+  </div>
+
+  <div class="submit">
+    <input type="submit" value="Change Email">
+  </div>
 </form>
 
 <form id="edit-user-password" action="<%= user_change_password_url(current_user) %>" method="post">
@@ -25,15 +29,21 @@
 		 name="authenticity_token" 
 		 value="<%= form_authenticity_token %>">
 
-  <label for="confirm-password">Confirm Current Password</label>
-  <input id="confirm-password"
+  <div class="input">
+    <label for="confirm-password">Confirm Current Password</label>
+    <input id="confirm-password"
   		 name="user[old_password]"
 	     type="password">
-		 
-  <label for="new-password">New Password</label>
-  <input id="new-password"
+  </div>
+		
+  <div class="input"> 
+    <label for="new-password">New Password</label>
+    <input id="new-password"
    		 name="user[new_password]"
 		 type="password">
-		 
-  <input type="submit" value="Change Password">
+  </div>
+  
+  <div class="submit">		 
+    <input type="submit" value="Change Password">
+  </div>
 </form>

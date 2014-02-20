@@ -1,8 +1,9 @@
 class BandMembershipsController < ApplicationController
-  
   def create
     begin
       BandMembership.transaction do
+          fail unless current_user.is_band_admin?(Band.find(params[:band_membership][:band_id]))
+        
           bm = BandMembership.new(params[:band_membership])
           bm.save!
           mr = MemberRequest
@@ -22,9 +23,14 @@ class BandMembershipsController < ApplicationController
   
   def make_admin
     bm = BandMembership.find(params[:id])
-    bm.admin = true
-    bm.save
-    redirect_to band_url(bm.band)
+    
+    if current_user.is_band_admin?(bm.band)
+      bm.admin = true
+      bm.save
+      redirect_to band_url(bm.band)
+    else
+      redirect_to band_url(bm.band)
+    end
   end
   
 end

@@ -1,8 +1,4 @@
 #next
-!REFACTOR
-!polymorphic images
-!stage_name to users
-
 !get your shows from seatgeek button
 !search 
 !FB sign in
@@ -116,11 +112,6 @@ VENUES SHOULD BE VERIFIED
 	
 	9. Connect to Facebook band page 
 			- Automatically creates a facebook event
-		
-		
-/// Things that could be more secure: 
-keep people from joining bands
-keep people from making themselves admins
 
 	
 

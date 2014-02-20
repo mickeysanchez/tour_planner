@@ -21,4 +21,10 @@ class Tour < ActiveRecord::Base
         .where("tours.id = ?", self.id)
         .first
   end
+  
+  def admin_user?(user)
+    !BandMembership.where(
+    "admin = true AND member_id = ? AND band_id = ?",
+    user.id, self.band).empty?
+  end
 end

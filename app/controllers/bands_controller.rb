@@ -6,12 +6,12 @@ class BandsController < ApplicationController
   end
   
   def show
-    @band = Band.includes(:tours, events: [:venue]).find(params[:id])
+    @band = Band
+    .includes(:tours, :band_memberships, :events)
+    .find(params[:id])
+    
     @events = @band.events
     @tours = @band.tours
-    
-    @event = Event.new
-    @event.band_id = @band.id
   end
   
   def new
@@ -21,24 +21,22 @@ class BandsController < ApplicationController
   def create
     @band = Band.new(params[:band])
     
-    Band.transaction do
-      begin 
+    begin 
+      Band.transaction do
         @band.save!
         
-        band_membership = BandMembership.new(params[:band_membership]);
+        band_membership = @band.band_memberships.new(params[:band_membership]);
         band_membership.member = current_user
-        band_membership.band = @band
-        band_membership.admin = true
+        band_membership.toggle(:admin)
         band_membership.save!
         
         flash[:success] = ["Your band has been let loose on the world!"]
         redirect_to band_url(@band)
-      rescue
-        flash[:errors] = @band.errors.full_messages
-        redirect_to :back
       end
+    rescue
+      flash[:errors] = @band.errors.full_messages
+      redirect_to new_band_url
     end
-    
   end 
   
   def edit
@@ -48,7 +46,7 @@ class BandsController < ApplicationController
   def update
     @band = Band.find(params[:id])
     
-    if @band.update_attributes(params[:band])
+    if current_user.is_band_admin?(@band) && @band.update_attributes(params[:band])
       membership = @band.find_membership(current_user)
       membership.update_attributes(params[:band_membership])
       
