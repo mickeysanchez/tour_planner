@@ -41,14 +41,12 @@ class User < ActiveRecord::Base
     foreign_key: :requester_id
     
   def all_requests
-    bands = self.bands.where("admin = true")
-    bands.map do |band|
-      band.member_requests
-    end.flatten
+    MemberRequest.where("band_id IN (?)", self.bands.where("admin = true"))
   end
   
   def pending_requests
-    self.all_requests.select { |request| request.status == "pending" }
+    MemberRequest
+    .where("band_id IN (?) AND status = 'pending'", self.bands.where("admin = true"))
   end
   
   def has_requested_membership?(band)

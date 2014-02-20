@@ -21,6 +21,28 @@ describe User do
   it { should validate_presence_of(:password_digest).with_message("You gotta have a password!") }
   it { should have_many(:bands) }
   
+  describe "requests" do
+    it "should find pending requests" do
+      u = User.create({ email: "popular@tour_planner.com", password: "password" })
+      b = u.bands.create({ name: "The Populars"})
+      b2 = u.bands.create({ name: "The Super Populars"})
+      b.make_admin!(u)
+      b2.make_admin!(u)
+      # not an admin in this next band
+      b3 = u.bands.create({ name: "The Sort Of Populars"})
+      u2 = User.create({ email: "unpopular@tour_planner.com", password: "password" })
+      mr = MemberRequest.create({ band_id: b.id, requester_id: u2.id })
+      mr2 = MemberRequest.create({ band_id: b2.id, requester_id: u2.id })
+      mr3 = MemberRequest.create({ band_id: b3.id, requester_id: u2.id })
+      
+      expect(u.pending_requests.first).to eq(mr)
+      expect(mr.status).to eq("pending")
+      expect(u.pending_requests.last).to eq(mr2)
+      expect(u.pending_requests.count).to eq(2)
+      expect(u.all_requests.count).to eq(2)
+    end
+  end
+  
   it "should be able to find band_membership given a band" do
     b = Band.create({name: "The Beatles"})
     u = b.members.create({email: "Paul@cookies.com", password: "password"})

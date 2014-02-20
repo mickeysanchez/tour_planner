@@ -18,9 +18,7 @@ mickey = User.create({ email: "sanchez.mickey@gmail.com", password: "password" }
 mickey_band = mickey.bands.create({ name: "The Smoochies" })
 mickey_band.make_admin!(mickey)
 
-
 # HIGH-PROFILE USERS
-
 # PROPS TO SEAT GEEK API
 
 dir = "db/seed_users"
@@ -40,7 +38,6 @@ seed_user_files.each do |file|
     image: open(event_data.first["performers"].first["image"])    
   })
 
-  
   band = user.bands.create({
     name: event_data.first["performers"].first["name"],
     image: open(event_data.first["performers"].first["image"])  

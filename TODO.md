@@ -1,13 +1,13 @@
 #next
 !separate password controller for pW actions
 
-!test user#all_requests + user#pending_requests
-
 !stage_name to users
 
 !REFACTOR
 
 !get your shows from seatgeek button
+
+!mapz
 
 # Schema
 
