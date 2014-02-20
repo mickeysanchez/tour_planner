@@ -20,9 +20,20 @@
   <li class="member-list-item">
 	  <a href="<%= user_url(membership.member) %>">
 	  <%= image_tag membership.member.image.url(:thumb), class: "small-image" %>
-	  <%= membership.member.email %> - 
-	  <%= membership.role %>
+	  <%= membership.member.email %> 
+	  
+	  <% if membership.role %>
+		  - <%= membership.role %>
+	  <% end %>
+	  
+	  <% if current_user.is_in_band?(@band) %>
+		  <%= membership.member.is_band_admin?(@band) ? "(Admin)" : "" %>
+	  <% end %>
 	  </a>
+	  
+	  <% if current_user.is_band_admin?(@band) && !membership.member.is_band_admin?(@band) %>
+		  <%= button_to "Make Admin", make_admin_url(membership), method: :put %>
+	  <% end %>
   </li>
 <% end %>
 </ul>

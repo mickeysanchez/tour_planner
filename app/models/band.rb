@@ -38,7 +38,8 @@ class Band < ActiveRecord::Base
     
   has_many :member_requests,
   class_name: 'MemberRequest',
-  foreign_key: :band_id  
+  foreign_key: :band_id,
+  dependent: :destroy  
     
   def role_of(user)
     self.band_memberships

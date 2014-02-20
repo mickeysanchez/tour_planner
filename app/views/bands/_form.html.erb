@@ -14,21 +14,29 @@
   <input type="hidden" 
 		 name="authenticity_token" 
 		 value="<%= form_authenticity_token %>">
-		   
+	
+  <div class="input">		   
   <label for="band_name">Band Name</label>
   <input id="band_name"
    		 name="band[name]"
 		 type="text"
 		 value="<%= @band.name %>">
-		 
+  </div>
+
+  <div class="file-input">		 
   <label for="band_image">Band Image</label>
   <input id="band_image" name="band[image]" type="file">
+  </div>
 
+  <div class="input">
   <label for="band_role">Your Role (optional)</label>
   <input id="band_role"
   		 name="band_membership[role]"
 		 type="text"
 		 value="<%= @band.role_of(current_user) %>">
-		 
+  </div> 
+  
+  <div class="submit">
   <input type="submit" value="<%= submit %>">
+  </div>
 </form>

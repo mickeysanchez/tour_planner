@@ -13,12 +13,16 @@
 	  <input type="hidden" name="_method" value="put">
 	<% end %>
 	
+	<div class="input">
 	<label for="tour_name">Tour Name</label>
 	<input id="tour_name" type="text" name="tour[name]" value="<%= @tour.name %>">
+	</div>
 	
 	<h2> Add Shows </h2>
+	
+	<div class="checkboxes">
 	<% @band.events.each do |event| %>
-	<div class="checkbox-field">
+	    <div class="checkbox">
 		<label for="<%= event.object_id %>">
 		  <%= l event.date, format: "%d %B %Y" %>
 		  <%= event.venue.name  %>
@@ -28,8 +32,11 @@
 			   id="<%= event.object_id %>" 
 			   value="<%= event.id %>"
 			   <%= @tour.event_ids.include?(event.id) ? "checked" : "" %>>
-	</div>
+	   </div>
     <% end %>
+	</div>
 	 
+	<div class="submit"> 
 	<input type="submit" value="<%= submit %>">
+	</div>
 </form>

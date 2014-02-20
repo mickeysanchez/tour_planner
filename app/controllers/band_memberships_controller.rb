@@ -19,4 +19,12 @@ class BandMembershipsController < ApplicationController
     end
   end
   
+  
+  def make_admin
+    bm = BandMembership.find(params[:id])
+    bm.admin = true
+    bm.save
+    redirect_to band_url(bm.band)
+  end
+  
 end

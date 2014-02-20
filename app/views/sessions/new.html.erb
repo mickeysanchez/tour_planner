@@ -1,24 +1,32 @@
-<h1>Sign In</h1>
+<div id="login">
 
-<%= render 'layouts/errors' %>
+  <h1>Sign In</h1>
+  <%= render 'layouts/errors' %>
+  
+	<form action="<%= login_url %>" method="post">
+	  <input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
 
-<form id="login" action="<%= login_url %>" method="post">
-  <input type="hidden" 
-		 name="authenticity_token" 
-		 value="<%= form_authenticity_token %>">
-		   
-  <label for="user_email">Email</label>
-  <input id="user_email"
-   		 name="user[email]"
-		 type="text"
-		 value="<%= @user.email %>">
+	  <div class="input">
+	  <label for="user_email">Email</label>
+	  <input id="user_email"
+	   		 name="user[email]"
+			 type="text"
+			 value="<%= @user.email %>">
+	  </div>
 
-  <label for="user_password">Password</label>
-  <input id="user_password"
-  		 name="user[password]"
-		 type="password">
-		 
-  <input type="submit" value="Sign In">
-</form>
+	  <div class="input">
+	  <label for="user_password">Password</label>
+	  <input id="user_password"
+	  		 name="user[password]"
+			 type="password">
+	  </div>
+	
+	  <div class="submit">	 
+	  <input type="submit" value="Sign In">
+	  </div>
+	</form>
 
-<a href="<%= new_user_url %>">Create Account</a>
+<a href="<%= new_user_url %>">Or Create Account</a>
+</div>

@@ -1,8 +1,7 @@
 #next
 !separate password controller for pW actions
 
-!more members in a band + notifications for requests
-!test user#all_requests
+!test user#all_requests + user#pending_requests
 
 !stage_name to users
 
@@ -28,14 +27,12 @@
 0. venues
 | name | address | city | state | zipcode | **phone_number** | **email** |
 
-###
-
 0. member_requests
 | requester_id | band_id |  
 
 ###
 
-0. notifications
+0. **notifications**
 | message | notifiable_id | notifiable_type
 a.k.a
 | message | follow_id | Follow

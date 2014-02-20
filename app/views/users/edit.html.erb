@@ -8,9 +8,6 @@
   <input type="hidden" 
 		 name="authenticity_token" 
 		 value="<%= form_authenticity_token %>">
-
-  <label for="user_image">Change Your Image</label>
-  <input id="user_image" name="user[image]" type="file">
 		 
   <label for="user_email">Change Email</label>
   <input id="user_email"
@@ -18,7 +15,7 @@
 		 type="text"
 		 value="<%= @user.email %>">
 		 
-  <input type="submit" value="Change Image or Email">
+  <input type="submit" value="Change Email">
 </form>
 
 <form id="edit-user-password" action="<%= user_url(current_user) %>" method="post">

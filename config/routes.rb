@@ -16,6 +16,8 @@ TourPlanner::Application.routes.draw do
   end
   
   put "member_requests/:id/deny_request", to: 'member_requests#deny', as: "deny_request"
+  put "band_memberships/:id/make_admin", to: 'band_memberships#make_admin', as: "make_admin"
+  
   
   resources :band_memberships, only: [:create]
   
