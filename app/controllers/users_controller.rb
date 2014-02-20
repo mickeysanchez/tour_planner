@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :require_signed_in!, only: [:show, :edit, :update, :index]
+  before_filter :require_signed_in!, except: [:create, :new]
   before_filter :require_signed_out!, only: [:create, :new]
   
   def index
     @users = User.all
+  end
+  
+  def show
+    @user = User.find(params[:id])
   end
   
   def new
@@ -23,15 +27,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def show
-    @band = Band.new
-    if params[:id]
-      @user = User.find(params[:id])
-    else
-      redirect_to user_url(current_user)
-    end
-  end
-  
   def edit
     @user = current_user
   end
@@ -39,30 +34,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     
-    if params[:pw]
-      # password change
-      if @user.is_password?(params[:pw][:old_password])
-        if params[:pw][:new_password].empty?
-          flash[:errors] = ["You can't make a blank password"] 
-        else
-          if @user.change_password!(params[:pw][:old_password], params[:pw][:new_password])
-            flash[:success] = ["Password changed successfully!"]
-          else
-            flash[:errors] = @user.errors.full_messages
-          end
-        end
-      else
-        flash[:errors] = ["You entered your current password incorrectly."]
-      end
+    if @user.update_attributes(params[:user])
+      flash[:success] = ["Email changed successfully!"]
     else
-      # email update
-      if @user.update_attributes(params[:user])
-        flash[:success] = ["Email updated successfully!"]
-      else
-        flash[:errors] = @user.errors.full_messages
-      end
+      flash[:errors] = @user.errors.full_messages
     end
-  
+    
     redirect_to edit_user_url(@user)
   end
 end

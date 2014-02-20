@@ -38,6 +38,7 @@ class BandsController < ApplicationController
         redirect_to :back
       end
     end
+    
   end 
   
   def edit

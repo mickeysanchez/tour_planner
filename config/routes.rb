@@ -7,6 +7,7 @@ TourPlanner::Application.routes.draw do
   
   resources :users, only: [:new, :create, :destroy, :show, :index, :edit, :update] do
     resources :member_requests, only: [:index]
+    put 'change_password', to: 'passwords#update'
   end
   
   resources :bands, only: [:create, :destroy, :show, :new, :index, :edit, :update] do
@@ -17,7 +18,6 @@ TourPlanner::Application.routes.draw do
   
   put "member_requests/:id/deny_request", to: 'member_requests#deny', as: "deny_request"
   put "band_memberships/:id/make_admin", to: 'band_memberships#make_admin', as: "make_admin"
-  
   
   resources :band_memberships, only: [:create]
   

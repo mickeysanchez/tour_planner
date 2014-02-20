@@ -12,7 +12,7 @@
 #
 
 class BandMembership < ActiveRecord::Base
-  attr_accessible :role
+  attr_accessible :member_id, :band_id, :role
   
   validates :member_id, :band_id, presence: true
   validates :admin, inclusion: { in: [true, false] }

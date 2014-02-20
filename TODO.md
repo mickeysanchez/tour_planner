@@ -1,12 +1,11 @@
 #next
-!separate password controller for pW actions
+!REFACTOR
 !polymorphic images
-
 !stage_name to users
 
-!REFACTOR
-
 !get your shows from seatgeek button
+!search 
+!FB sign in
 
 !mapz
 

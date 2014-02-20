@@ -18,7 +18,7 @@
   <input type="submit" value="Change Email">
 </form>
 
-<form id="edit-user-password" action="<%= user_url(current_user) %>" method="post">
+<form id="edit-user-password" action="<%= user_change_password_url(current_user) %>" method="post">
   <input type="hidden" name="_method" value="put">
 	
   <input type="hidden" 
@@ -27,12 +27,12 @@
 
   <label for="confirm-password">Confirm Current Password</label>
   <input id="confirm-password"
-  		 name="pw[old_password]"
+  		 name="user[old_password]"
 	     type="password">
 		 
   <label for="new-password">New Password</label>
   <input id="new-password"
-   		 name="pw[new_password]"
+   		 name="user[new_password]"
 		 type="password">
 		 
   <input type="submit" value="Change Password">
