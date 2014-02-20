@@ -15,5 +15,10 @@ class Tour < ActiveRecord::Base
   
   has_many :events, inverse_of: :tour
   
-  has_many :band, through: :events, uniq: true
+  def band
+    Band.joins(:events)
+        .joins(:tours)
+        .where("tours.id = ?", self.id)
+        .first
+  end
 end

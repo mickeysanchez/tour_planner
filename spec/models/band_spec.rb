@@ -22,6 +22,19 @@ describe Band do
   it { should have_many(:tours) }
   it { should have_many(:member_requests) }
   
+  it "can make user member and admin" do
+    b = Band.create({name: "The Flying Buttresses"})
+    u = User.create({email: "butterman@butters.com", password: "password"})
+    b.make_member!(u)
+    
+    expect(u.bands.first).to eq(b)
+    expect(b.members.first).to eq(u)
+    expect(u.band_memberships.first.admin).to be_false
+    
+    b.make_admin!(u)
+    expect(u.band_memberships.first.admin).to be_true
+  end
+  
   it "should find band_membership of a user" do
     b = Band.create({name: "The Smoochies"})
     u = b.members.create({email: "cookie@cookies.com", password: "password"})

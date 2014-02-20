@@ -43,7 +43,9 @@ class Band < ActiveRecord::Base
     dependent: :destroy 
   
   def make_member!(user)
-    self.band_memberships.create({ member: user })
+    membership = self.band_memberships.new
+    membership.member = user
+    membership.save
   end
   
   def make_admin!(user)

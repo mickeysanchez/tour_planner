@@ -13,7 +13,7 @@
 		<ul id="block-details">
 			<li class="block-detail"> <%= pluralize(tour.events.count, 'show') %> </li>
 			
-			<% if current_user.is_band_admin?(tour.band.first) %>
+			<% if current_user.is_band_admin?(tour.band) %>
 				<li class="block-detail"> 
 					<%= link_to 'delete', tour_url(tour), method: :delete %>
 				</li>

@@ -1,5 +1,6 @@
 #next
 !separate password controller for pW actions
+!polymorphic images
 
 !stage_name to users
 
@@ -117,6 +118,12 @@ VENUES SHOULD BE VERIFIED
 	9. Connect to Facebook band page 
 			- Automatically creates a facebook event
 		
+		
+/// Things that could be more secure: 
+keep people from joining bands
+keep people from making themselves admins
+
+	
 
 ### Not sure if I'll add this stuff:
 
