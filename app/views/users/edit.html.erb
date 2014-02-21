@@ -1,7 +1,8 @@
 <h1> Settings </h1>
-
+<hr>
 <%= render 'layouts/errors' %>
 
+<div id="settings">
 <form id="edit-user-email" action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
   <input type="hidden" name="_method" value="put">
 
@@ -29,7 +30,9 @@
 		 name="authenticity_token" 
 		 value="<%= form_authenticity_token %>">
 
+ 
   <div class="input">
+    <label>Change Password</label><br>
     <label for="confirm-password">Confirm Current Password</label>
     <input id="confirm-password"
   		 name="user[old_password]"
@@ -47,3 +50,5 @@
     <input type="submit" value="Change Password">
   </div>
 </form>
+
+</div>

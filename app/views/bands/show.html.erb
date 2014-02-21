@@ -1,6 +1,5 @@
 <div id="show-heading" class="clearfix">
 	<h1> <%= @band.name %> </h1>
-	
 
 	<div id="show-image">
 	  <%= image_tag @band.image.url(:thumb), class: "header-image" %>
@@ -44,7 +43,6 @@
 	<% @band.band_memberships.each do |membership| %>
 	  <li class="member-list-item">
 		  <a href="<%= user_url(membership.member) %>">
-		  <%= image_tag membership.member.image.url(:thumb), class: "small-image" %>
 		  <%= membership.member.email %> 
 	  
 		  <% if membership.role %>
@@ -79,8 +77,10 @@
 <% end %>
 
 <h2> Events (<%= @band.events.count %>) </h2>
-
 <% if current_user.is_band_admin?(@band) %>
+	<%= render 'layouts/errors' %>
+	<%= button_to "Grab Shows From Seat Geek", band_grab_shows_url(@band) %>
+
 	<a href="<%= new_band_event_url(@band) %>">
 		<div class="add-box">
 			<h2> + Add Show </h2>

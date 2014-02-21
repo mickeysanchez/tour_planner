@@ -1,4 +1,8 @@
+require 'addressable/uri'
+
 class EventsController < ApplicationController
+  include EventsHelper
+  
   before_filter :require_signed_in!
   
   def index
@@ -94,4 +98,22 @@ class EventsController < ApplicationController
     
     redirect_to @event.band
   end
+  
+  def grab_shows
+    band = Band.find(params[:band_id])
+    
+    if grab_from_seat_geek?(band)
+      flash[:success] = ["Shows grabbed."]
+    else
+      flash[:errors] = ["No shows on Seat Geek for that band. Sorry."]
+    end
+    
+    redirect_to band
+  end
+  
+  def grab_bands_in_town_shows
+    # bands_in_town  http://api.bandsintown.com/artists/Justin%20Timberlake/events.json?api_version=2.0&app_id=YOUR_APP_ID
+  end
+  
+
 end

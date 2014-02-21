@@ -9,16 +9,18 @@
 			</li>
 			
 			<li class="nav-list-item"> 
-				<%= link_to 'Connect', bands_url, id: 'connect-link' %>
+				<form action="<%= bands_url %>" method="get">
+					<input type="hidden" 
+					name="authenticity_token" 
+					value="<%= form_authenticity_token %>">
+					
+					<input id="header-search" type="search" name="search" value="Search Bands">
+				</form>
 			</li>
 		</ul>
 		
 		
 		<ul id="right-nav">	
-			<li class="nav-list-item"> 
-				Signed in as: <%= current_user.email %> |
-			</li>
-			
 			<li class="nav-list-item"> 
 				<%= link_to "Requests", user_member_requests_url(current_user) %> 
 				(<%= current_user.pending_requests.count %>) |

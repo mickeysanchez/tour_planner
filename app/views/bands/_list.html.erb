@@ -6,7 +6,7 @@
 	
 	<% user.bands.each do |band| %>
 	
-	 <li id="band-block" class="clearfix">
+	<li id="band-block" class="clearfix">
 		<%= image_tag band.image.url(:thumb), class: "band-list-image" %>
 			
 		<ul class="block-header">
@@ -14,33 +14,12 @@
 			   <%= link_to band.name, band_url(band) %>
 		   </li>
 		</ul>
-		
-		<ul class="block-details">
-		  <% unless band.role_of(user).nil? || band.role_of(user).empty? %>
-		    <li class="block-detail"> 
-				<% if current_user == user %>
-				  Your Role: <%= band.role_of(user) %> 
-			    <% else%>
-					<a href="<%= user_url(user) %>">
-						<%= user.email %>
-					</a>
-						<%= band.role_of(user) %>
-			    <% end %>
-			</li>
-		  <% end %>
-		  
-		  <% if current_user.is_band_admin?(band) %>
-		    <li class="block-detail"> 
-				<%= link_to 'Edit Band', edit_band_url(band)%> 
-			</li>
-		    <li class="block-detail"> 
-				<%= link_to 'Delete Band', band_url(band), method: :delete %> 
-			</li>
-		  <% end %>
-		</ul>
-	 </li>
 	
-	<% end %>
-	
+	    <% if current_user.is_band_admin?(band) %>
+			<%= link_to 'Edit Band', edit_band_url(band), class: "edit-link"%>
+	    <% end %>
+		<% end %>
+    
+	</li>
 	</ul>
 <% end %>

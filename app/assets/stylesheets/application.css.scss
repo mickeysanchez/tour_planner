@@ -35,7 +35,7 @@ a {
 /* GENERAL STYLIN */
 
 html {
-	font-family: Futura;
+	font-family: 'Montserrat', sans-serif;
     background: white;
     color: #46434d;
 }
@@ -46,7 +46,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 { 
-	font-size: 34px;
+	font-size: 24px;
 	margin: 0 0 20px 0; 
 }
 
@@ -63,6 +63,7 @@ input[type="password"],
 input[type="email"],
 input[type="date"],
 input[type="file"],
+input[type="search"],
 select,
 option {
     display:block;
@@ -148,11 +149,10 @@ header nav {
 /* BODY */
 
 #container {
+	padding-top: 20px;
 	border-top: 0;
 	width: 900px;
-	padding: 20px;
 	margin: auto;
-	border-radius: 10px;
 }
 
 #logout {
@@ -185,8 +185,6 @@ header nav {
 }
 
 #band-block {
-	border: 1px solid black;
-	padding: 20px;
 	list-style: none;
 	margin: 10px 0px;
 }
@@ -225,13 +223,16 @@ header nav {
 /* ERROR AND SUCCESS PARTIALS */
 
 #errors {
-	margin: 10px 0;
-	border: 3px solid red;
+	color: #c00;
 }
 
 #successes {
-	margin: 10px 0;
-	border: 3px solid lightgreen;
+	color: #070;
+}
+
+#successes > ul {
+	padding: 0;
+	list-style: none;
 }
 
 #flash-header {
@@ -291,7 +292,7 @@ header nav {
 }
 
 #show-heading > h1 {
-	width: 600px;
+	width: 650px;
 	float: left;
 }
 
@@ -300,8 +301,7 @@ header nav {
 }
 
 #show-heading {
-	padding: 20px;
-	border: 1px solid lightblue;
+	padding: 0px;
 }
 
 .rightform {
@@ -309,10 +309,30 @@ header nav {
 }
 
 .band-list-image {
-	height: 100px;
-	float: right;
+	margin-right: 20px;
+	height: 75px;
+	float: left;
 }
 
 .member-list-item {
 	margin: 10px 0;
+}
+
+#settings {
+	margin-top: 30px;
+}
+
+#request-block > form {
+	display: inline;
+}
+
+#request-block {
+	line-height: 20px;
+	margin: 20px;
+}
+
+#header-search {
+	margin: 0;
+	padding: 2px;
+	height: 23px;
 }

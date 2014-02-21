@@ -42,10 +42,11 @@ class ToursController < ApplicationController
   
   def destroy 
     @tour = Tour.find(params[:id])
+    band = @tour.band
     
     if @tour.admin_user?(current_user)
       @tour.destroy
-      redirect_to @tour.band
+      redirect_to band
     end
   end
 end

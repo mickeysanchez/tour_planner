@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.15)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    addressable (2.3.5)
     annotate (2.6.1)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -137,6 +138,8 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -182,6 +185,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   annotate
   aws-sdk
   bcrypt-ruby
@@ -195,6 +199,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 3.2.15)
+  rest-client
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-matchers

@@ -33,14 +33,14 @@ seed_user_files.each do |file|
   user = User.create({
     email: event_data.first["performers"]
     .first["name"].split(" ")
-    .join("").downcase + "@tourplanner.com" ,
+    .join("").downcase + "@tourplanner.com",
     password: "password",
-    image: open(event_data.first["performers"].first["image"])    
+    image: open(event_data.first["performers"].first["images"]["medium"])    
   })
 
   band = user.bands.create({
     name: event_data.first["performers"].first["name"],
-    image: open(event_data.first["performers"].first["image"])  
+    image: open(event_data.first["performers"].first["images"]["medium"])  
   })
   
   band.make_admin!(user)

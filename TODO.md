@@ -1,6 +1,5 @@
 #next
 !search 
-!get your shows from seatgeek button
 !FB sign in
 
 !mapz
