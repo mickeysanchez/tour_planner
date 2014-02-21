@@ -9,6 +9,10 @@
 	<%= link_to "Edit", edit_band_event_url(@event.band, @event) %> |
 	<%= link_to'Delete', event_url(@event), method: :delete %>
 <% end %>
+
+<div id="map-container">
+	<%= render 'tours/map', geo_data: @geo_data %>
+</div>
 	
 <h2> Band: <%= link_to @event.band.name, band_url(@event.band) %></h2>
 

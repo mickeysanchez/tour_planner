@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.includes(:band, :venue).find(params[:id])
+    @geo_data = geo_data(@event)
   end
   
   def new
