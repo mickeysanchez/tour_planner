@@ -1,4 +1,6 @@
-<h1> All Events </h1>
+<% band_name = @events.first.band.name + "'s" if params[:band_id] %>
+
+<h1> All <%= band_name %> Events </h1>
 <hr>
 
 <div id="map-container">

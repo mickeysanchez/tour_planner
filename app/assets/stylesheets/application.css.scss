@@ -268,6 +268,17 @@ header nav {
 
 /* LARGE BOX SHAPED LINKS */
 
+.all-shows-box {
+	margin-top: 30px;
+	text-align: center;
+	border: 1px solid #6b2607;
+	color: #6b2607;	
+}
+
+.all-shows-box:hover {
+	background: lightgrey;
+}
+
 .add-box {
 	margin-top: 30px;
 	text-align: center;

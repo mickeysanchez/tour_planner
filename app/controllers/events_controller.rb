@@ -6,8 +6,13 @@ class EventsController < ApplicationController
   before_filter :require_signed_in!
   
   def index
-    @events = Event.order('date ASC').includes(:band, :venue)
-    @geo_data = geo_data_events(@events)
+    if params[:band_id]
+      @events = Band.find(params[:band_id]).events
+      @geo_data = geo_data_events(@events)
+    else
+      @events = Event.order('date ASC').includes(:band, :venue)
+      @geo_data = geo_data_events(@events)
+    end
   end
   
   def show
