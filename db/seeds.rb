@@ -35,12 +35,12 @@ seed_user_files.each do |file|
     .first["name"].split(" ")
     .join("").downcase + "@tourplanner.com",
     password: "password",
-    image: open(event_data.first["performers"].first["images"]["medium"])    
+    image: open(event_data.first["performers"].first["image"])    
   })
 
   band = user.bands.create({
     name: event_data.first["performers"].first["name"],
-    image: open(event_data.first["performers"].first["images"]["medium"])  
+    image: open(event_data.first["performers"].first["image"])  
   })
   
   band.make_admin!(user)
