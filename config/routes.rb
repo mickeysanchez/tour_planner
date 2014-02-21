@@ -20,6 +20,8 @@ TourPlanner::Application.routes.draw do
   put "member_requests/:id/deny_request", to: 'member_requests#deny', as: "deny_request"
   put "band_memberships/:id/make_admin", to: 'band_memberships#make_admin', as: "make_admin"
   
+  post 'search', to: 'bands#search', as: 'band_search'
+  
   resources :band_memberships, only: [:create]
   
   resources :events, only: [:destroy, :index, :show]

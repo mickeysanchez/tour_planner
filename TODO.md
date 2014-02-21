@@ -1,11 +1,9 @@
 #next
+
 !search 
 !FB sign in
 
 # Schema
-fasdf
-**bold** = **not yet added**
-
 0. users
 | email | token | password_digest
 

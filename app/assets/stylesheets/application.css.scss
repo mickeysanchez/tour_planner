@@ -77,6 +77,7 @@ option {
 	border: 1px solid black;
 	padding: 10px;
 	font-size: 14px;
+	font: inherit;
 }
 
 input[type="submit"] {
@@ -313,11 +314,11 @@ header nav {
 
 /* USER HEADING */
 
-.edit {
+#edit-image {
+	margin-top: 20px;
 }
 
 #edit-image > .input > label {
-	margin: 0;
 	font-size: 16px;
 }
 
@@ -328,15 +329,13 @@ header nav {
 
 #show-image {
 	height: 100%;
-	float: right;
+	float: left;
 }
 
 #show-heading > h1 {
-	margin-bottom: 0px;
+	display: block;
 	font-size: 30px;
 	color: black;
-	width: 650px;
-	float: left;
 }
 
 .input > label {

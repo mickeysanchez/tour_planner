@@ -63,11 +63,13 @@
 
 </div>
 
-<a href="<%= band_events_url(@band) %>">
-	<div class="all-shows-box">
-		<h2> All <%= @band.name + "'s" %> Shows </h2>
-	</div>
-</a>
+<% if @band.events.count > 0 %>
+	<a href="<%= band_events_url(@band) %>">
+		<div class="all-shows-box">
+			<h2> All <%= @band.name + "'s" %> Shows </h2>
+		</div>
+	</a>
+<% end %>
 
 
 

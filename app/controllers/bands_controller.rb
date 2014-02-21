@@ -1,6 +1,12 @@
 class BandsController < ApplicationController
   before_filter :require_signed_in!
   
+  def search 
+    @search_criteria = params[:search]
+    @bands = Band.search_by_name(@search_criteria)
+    render 'bands/search'
+  end
+  
   def index
     @bands = Band.all
   end

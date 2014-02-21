@@ -1,0 +1,7 @@
+<h1> Bands Matching: <%= @search_criteria %> </h1>
+
+<ul>
+	<% @bands.each do |band| %>	
+	  <li> <%= link_to band.name, band_url(band) %> </li>
+	<% end %>
+</ul>

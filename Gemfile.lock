@@ -103,6 +103,9 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
+    pg_search (0.5.7)
+      activerecord (>= 3)
+      activesupport (>= 3)
     polyglot (0.3.3)
     pry (0.9.12.4)
       coderay (~> 1.0)
@@ -197,6 +200,7 @@ DEPENDENCIES
   jquery-rails
   paperclip (~> 3.5.3)
   pg
+  pg_search (~> 0.5.7)
   pry-rails
   rails (= 3.2.15)
   rest-client
