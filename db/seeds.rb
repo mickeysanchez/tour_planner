@@ -53,12 +53,14 @@ seed_user_files.each do |file|
     v_data = show["venue"]
   
     venue = Venue.
-    find_or_create_by_name_and_address_and_city_and_state_and_zipcode({
+    find_or_create_by_name_and_address_and_city_and_state_and_zipcode_and_lat_and_lon({
       name: v_data["name"],
       address: v_data["address"],
       city: v_data["city"],
       state: v_data["state"],
-      zipcode: v_data["postal_code"] 
+      zipcode: v_data["postal_code"],
+      lat: v_data["location"]["lat"],
+      lon: v_data["location"]["lon"] 
     })
   
     next unless venue.valid?

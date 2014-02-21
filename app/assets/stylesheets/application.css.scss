@@ -58,6 +58,12 @@ h2 { font-size: 20px; }
 	clear: both;
 }
 
+.clearfixtop:before {
+	content: "";
+	display: block;
+	clear: both;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -82,6 +88,21 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
 	background: lightyellow;
+}
+
+select {
+    background: transparent;
+    padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	height: 40px;
+	-webkit-appearance: none;
+	border: 1px solid black;
+	width: 325px;
+    overflow: hidden;
+	background: url(new_arrow.jpg) no-repeat right;
 }
 
 /* LOGIN FORM */
@@ -292,6 +313,8 @@ header nav {
 }
 
 #show-heading > h1 {
+	font-size: 30px;
+	color: black;
 	width: 650px;
 	float: left;
 }
@@ -337,4 +360,34 @@ header nav {
 	margin: 0;
 	padding: 2px;
 	height: 23px;
+}
+
+/* MAP */
+
+#map-container {
+	width: 900px;
+}
+
+/* EVENT FORM */
+
+.left-event-form {
+	margin-top: 20px;
+ 	float: left;
+}
+
+.right-event-form {
+	margin-top: 20px;
+	margin-left: 40px;
+	padding-left: 40px;
+	border-left: 1px solid black;
+	float: left;
+}
+
+.optional-event-form {
+	display: block;
+}
+
+label[for="venue_picker"] {
+	font-size: 20px;
+	font-weight: bold;
 }

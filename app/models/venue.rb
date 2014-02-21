@@ -17,7 +17,7 @@
 #
 
 class Venue < ActiveRecord::Base
-  attr_accessible :name, :address, :city, :state, :zipcode, :image
+  attr_accessible :name, :address, :city, :state, :zipcode, :lat, :lon
   
   validates :name, :address, :city, :state, :zipcode, presence: true
   

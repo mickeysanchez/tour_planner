@@ -2,4 +2,8 @@
 <%= link_to "Edit", edit_band_tour_url(@tour.band, @tour) %> |
 <%= link_to "Delete", tour_url(@tour), method: :delete %>
 
+<div id="map-container">
+	<%= render 'tours/map', geo_data: @geo_data %>
+</div>
+
 <%= render 'events/list', events: @tour.events, hide_band_name: true %>

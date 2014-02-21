@@ -1,6 +1,8 @@
 #next
 
 !mapz
+- add lat lon to event create
+
 !search 
 !FB sign in
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219211534) do
+ActiveRecord::Schema.define(:version => 20140221141052) do
 
   create_table "band_memberships", :force => true do |t|
     t.integer  "member_id",                     :null => false
@@ -101,6 +101,11 @@ ActiveRecord::Schema.define(:version => 20140219211534) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.float    "lat"
+    t.float    "lon"
   end
+
+  add_index "venues", ["lat"], :name => "index_venues_on_lat"
+  add_index "venues", ["lon"], :name => "index_venues_on_lon"
 
 end

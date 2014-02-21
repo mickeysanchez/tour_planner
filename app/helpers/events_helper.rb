@@ -29,7 +29,9 @@ module EventsHelper
         address: v_data["address"],
         city: v_data["city"],
         state: v_data["state"],
-        zipcode: v_data["postal_code"] 
+        zipcode: v_data["postal_code"],
+        lat: v_data["location"]["lat"],
+        lon: v_data["location"]["lon"]  
       })
   
       next unless venue.valid?

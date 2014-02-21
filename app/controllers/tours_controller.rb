@@ -1,8 +1,11 @@
 class ToursController < ApplicationController
   before_filter :require_signed_in!
   
+  include ToursHelper
+  
   def show
     @tour = Tour.find(params[:id])
+    @geo_data = geo_data(@tour)
   end
   
   def new
