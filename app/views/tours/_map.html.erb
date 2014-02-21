@@ -13,7 +13,12 @@
 </style>
 
 <script>
-L.mapbox.map('map', 'examples.map-9ijuk24y')
-  .setView([37.8, -96], 4)
-  .featureLayer.setGeoJSON(<%= geo_data %>);
+var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
+    .setView([38, -102.0], 9);
+
+var featureLayer = L.mapbox.featureLayer()
+    .setGeoJSON(<%= geo_data %>)
+    .addTo(map);
+
+map.fitBounds(featureLayer.getBounds());
 </script>
