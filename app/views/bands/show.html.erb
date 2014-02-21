@@ -30,9 +30,8 @@
 		    <input type="submit" value="Update Image">
 		  </div>
 		</form>
-
-	<% end %>
 </div>
+	<% end %>
 	
 	<h3> Members </h3>
 	<ul id="members-list">
@@ -69,6 +68,8 @@
 		<h2> All <%= @band.name + "'s" %> Shows </h2>
 	</div>
 </a>
+
+
 
 <% if @band.tours.count > 0 %>
 	<h2> Tours (<%= @band.tours.count %>) </h2>
