@@ -2,7 +2,8 @@
 <% submit = (@band.persisted?) ? "Update Band" : "Create Band" %>
 <% action = (@band.persisted?) ? band_url(@band) : bands_url %>
 
-<h2> <%= heading %> </h2>
+<h1> <%= heading %> </h1>
+<hr>
 
 <%= render "layouts/errors"%>
 

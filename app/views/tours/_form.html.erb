@@ -2,7 +2,8 @@
 <% submit = (@tour.persisted?) ? "Update Tour" : "Create Tour" %>
 <% action = (@tour.persisted?) ? tour_url(@tour) : band_tours_url(@band) %>
 
-<h2><%= heading %></h2>
+<h1><%= heading %></h1>
+<hr>
 
 <%= render 'layouts/errors' %>
 
@@ -23,16 +24,17 @@
 	<div class="checkboxes">
 	<% @band.events.each do |event| %>
 	    <div class="checkbox">
-		<label for="<%= event.object_id %>">
-		  <%= l event.date, format: "%d %B %Y" %>
-		  <%= event.venue.name  %>
-		</label>
 		<input type="checkbox" 
 			   name="tour[event_ids][]" 
 			   id="<%= event.object_id %>" 
 			   value="<%= event.id %>"
 			   <%= @tour.event_ids.include?(event.id) ? "checked" : "" %>>
+	   		<label for="<%= event.object_id %>">
+	   		  <%= l event.date, format: "%d %B %Y" %> -
+	   		  <%= event.venue.name  %>
+   		</label>
 	   </div>
+	   <hr>
     <% end %>
 	</div>
 	 
