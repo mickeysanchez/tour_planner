@@ -1,7 +1,24 @@
-<h1> Bands Matching: <%= @search_criteria %> </h1>
+<h1> Bands Matching: "<%= @search_criteria %>" </h1>
+<hr>
+<ul id="all-bands">
 
-<ul>
-	<% @bands.each do |band| %>	
-	  <li> <%= link_to band.name, band_url(band) %> </li>
+<% @bands.each do |band| %>
+
+<li id="band-block" class="clearfix">
+	<a href="<%= band_url(band) %>">
+	<%= image_tag band.image.url(:thumb), class: "band-list-image" %>
+		
+	<ul class="block-header">
+	  <li class="block-header-item"> 
+		   <%= band.name %>
+	   </li>
+	</ul>
+	</a>
+
+    <% if current_user.is_band_admin?(band) %>
+		<%= link_to 'Edit Band', edit_band_url(band), class: "edit-link"%>
+    <% end %>
 	<% end %>
+
+</li>
 </ul>

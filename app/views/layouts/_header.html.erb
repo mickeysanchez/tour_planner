@@ -5,7 +5,11 @@
 			
 		<ul id="left-nav">
 			<li class="nav-list-item"> 
-				<%= link_to 'Manage', user_url(current_user), id: 'manage-link' %> | 
+				<%= link_to 'My Bands', user_url(current_user), id: 'manage-link' %> | 
+			</li>
+			
+			<li class="nav-list-item"> 
+			    <%= link_to 'All Bands', bands_url%> |
 			</li>
 			
 			<li class="nav-list-item"> 
@@ -14,9 +18,10 @@
 					name="authenticity_token" 
 					value="<%= form_authenticity_token %>">
 					
-					<input id="header-search" type="search" name="search" placeholder="Find Band">
+					<input id="header-search" type="search" name="search" placeholder="Search Bands">
 				</form>
 			</li>
+			
 		</ul>
 		
 		
