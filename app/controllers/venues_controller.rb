@@ -1,3 +1,5 @@
+include VenuesHelper
+
 class VenuesController < ApplicationController
   before_filter :require_signed_in!
   
@@ -7,6 +9,7 @@ class VenuesController < ApplicationController
   
   def show
     @venue = Venue.find(params[:id])
+    @geo_data = geo_data(@venue)
   end
   
   def destroy

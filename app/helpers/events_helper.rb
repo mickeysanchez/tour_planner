@@ -47,7 +47,6 @@ module EventsHelper
     events.empty? ? false : true
   end
   
-  
   def geo_data(event)
     shows = []
     

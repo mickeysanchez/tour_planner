@@ -1,5 +1,9 @@
 <h1> <%= @venue.name %> </h1>
 
+<div id="map-container">
+	<%= render 'tours/map', geo_data: @geo_data %>
+</div>
+
 <li class="block-detail"> Address: <%= @venue.address %> </li>
 <li class="block-detail"> City: <%= @venue.city %> </li>
 <li class="block-detail"> State: <%= @venue.state %> </li>
