@@ -7,13 +7,15 @@
 	<% user.bands.each do |band| %>
 	
 	<li id="band-block" class="clearfix">
+		<a href="<%= band_url(band) %>">
 		<%= image_tag band.image.url(:thumb), class: "band-list-image" %>
 			
 		<ul class="block-header">
 		  <li class="block-header-item"> 
-			   <%= link_to band.name, band_url(band) %>
+			   <%= band.name %>
 		   </li>
 		</ul>
+		</a>
 	
 	    <% if current_user.is_band_admin?(band) %>
 			<%= link_to 'Edit Band', edit_band_url(band), class: "edit-link"%>

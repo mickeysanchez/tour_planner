@@ -313,6 +313,9 @@ header nav {
 
 /* USER HEADING */
 
+.edit {
+}
+
 #edit-image > .input > label {
 	margin: 0;
 	font-size: 16px;
@@ -329,6 +332,7 @@ header nav {
 }
 
 #show-heading > h1 {
+	margin-bottom: 0px;
 	font-size: 30px;
 	color: black;
 	width: 650px;
@@ -350,6 +354,7 @@ header nav {
 }
 
 .band-list-image {
+	border: 1px solid black;
 	margin-right: 20px;
 	height: 75px;
 	float: left;
