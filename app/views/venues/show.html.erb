@@ -1,13 +1,15 @@
 <h1> <%= @venue.name %> </h1>
+<%= @venue.address %>
+<%= @venue.city %> 
+<%= @venue.state %> 
+<%= @venue.zipcode %>
+<hr>
 
 <div id="map-container">
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
-<li class="block-detail"> Address: <%= @venue.address %> </li>
-<li class="block-detail"> City: <%= @venue.city %> </li>
-<li class="block-detail"> State: <%= @venue.state %> </li>
-<li class="block-detail"> Zip Code: <%= @venue.zipcode %> </li>
+
 
 <h2> Upcoming Events at <%= @venue.name %>: </h2>
 <%= render 'events/list', events: @venue.events, hide_band_name: false %>

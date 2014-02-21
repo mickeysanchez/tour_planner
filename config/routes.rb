@@ -11,7 +11,7 @@ TourPlanner::Application.routes.draw do
   end
   
   resources :bands, only: [:create, :destroy, :show, :new, :index, :edit, :update] do
-    resources :events, only: [:create, :destroy, :edit, :update, :new]
+    resources :events, only: [:create, :destroy, :edit, :update, :new, :index]
     resources :tours, only: [:new, :create, :edit]
     resources :member_requests, only: [:create]
     post 'grab_shows', to: "events#grab_shows", as: "grab_shows"

@@ -1,1 +1,8 @@
+<h1> All Events </h1>
+<hr>
+
+<div id="map-container">
+	<%= render 'tours/map', geo_data: @geo_data %>
+</div>
+
 <%= render 'events/list', events: @events, hide_band_name: false %>

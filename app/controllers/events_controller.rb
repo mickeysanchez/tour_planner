@@ -7,6 +7,7 @@ class EventsController < ApplicationController
   
   def index
     @events = Event.order('date ASC').includes(:band, :venue)
+    @geo_data = geo_data_events(@events)
   end
   
   def show
