@@ -42,6 +42,8 @@ class EventsController < ApplicationController
           @event.tour = @tour
           @tour.save!
         end
+        
+        @venue.grab_coordinates
         @venue.save!
         flash[:success] = ["New Show Created!"]
         redirect_to @event
@@ -82,6 +84,8 @@ class EventsController < ApplicationController
           @event.tour = @tour
           @tour.save!
         end
+        
+        @venue.grab_coordinates
         @venue.save!
         flash[:success] = ["Show details updated!"]
         redirect_to event_url(@event)
