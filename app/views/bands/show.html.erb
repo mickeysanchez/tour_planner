@@ -1,4 +1,6 @@
 <div id="show-heading" class="clearfix">
+	<%= render 'layouts/errors' %>
+	
 	<h1> <%= @band.name %> </h1>
 
 	<div id="show-image">
@@ -22,12 +24,25 @@
 				 value="<%= form_authenticity_token %>">
 
 		  <div class="input">
-		    <label for="band_image">Change Your Image</label>
+		    <label for="band_image">Change Band Image</label>
 		    <input id="band_image" name="band[image]" type="file">
 		  </div>
   
 		  <div class="submit">
 		    <input type="submit" value="Update Image">
+		  </div>
+		</form>
+		or 
+		
+		<form id="edit-image" style="display: inline" action="<%= band_grab_image_url(@band) %>" method="post"   enctype="multipart/form-data">
+		  <input type="hidden" name="_method" value="put">
+	
+		  <input type="hidden" 
+				 name="authenticity_token" 
+				 value="<%= form_authenticity_token %>">
+
+		  <div class="submit">
+		    <input type="submit" value="Grab Image">
 		  </div>
 		</form>
 </div>
@@ -88,7 +103,6 @@
 
 <h2> Events (<%= @band.events.count %>) </h2>
 <% if current_user.is_band_admin?(@band) %>
-	<%= render 'layouts/errors' %>
 	<%= button_to "Grab Shows From Seat Geek", band_grab_shows_url(@band) %>
 
 	<a href="<%= new_band_event_url(@band) %>">

@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  include BandsHelper
+  
   before_filter :require_signed_in!
   
   def search 
@@ -69,5 +71,17 @@ class BandsController < ApplicationController
     band.destroy
     flash[:success] = ["Band was destroyed"]
     redirect_to current_user
+  end
+  
+  def grab_image
+    band = Band.find(params[:band_id])
+    
+    if grab_image_from_seat_geek?(band)
+      flash[:success] = ["Image grabbed."]
+    else
+      flash[:errors] = ["Couldn't find that image. Sorry."]
+    end
+    
+    redirect_to band
   end
 end

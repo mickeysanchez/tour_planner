@@ -16,6 +16,7 @@
 </div>
 
 <h2>	
+<%= link_to @event.venue.name, venue_url(@event.venue) %> -
 <%= @event.venue.address %> 
 <%= @event.venue.city %> 
 <%= @event.venue.state %> 

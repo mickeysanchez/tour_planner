@@ -15,6 +15,7 @@ TourPlanner::Application.routes.draw do
     resources :tours, only: [:new, :create, :edit]
     resources :member_requests, only: [:create]
     post 'grab_shows', to: "events#grab_shows", as: "grab_shows"
+    put 'grab_image', to: "bands#grab_image", as: "grab_image"
   end
   
   put "member_requests/:id/deny_request", to: 'member_requests#deny', as: "deny_request"
