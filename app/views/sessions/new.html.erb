@@ -1,21 +1,76 @@
-<div id="login">
+<style>
+#left-sign-in {
+	margin-top: 30px;
+	width: 400px;
+	border-right: 1px solid black;
+	float: left;
+}
 
-  <h1>Sign In</h1>
+#right-create-user {
+	margin-top: 30px;
+	margin-left: 80px;
+  float: left;
+}
+
+#sign-ins {
+	display: block;
+	padding-bottom: 40px;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+}
+
+</style>
+
+<div id="login" class="clearfix">
+
+  <h1>Welcome to Tour Planner!</h1> 
   <%= render 'layouts/errors' %>
   
+<div id="sign-ins" class="clearfix">
+
+<div id="left-sign-in"> 
 	<form action="<%= login_url %>" method="post">
 	  <input type="hidden" 
 			 name="authenticity_token" 
 			 value="<%= form_authenticity_token %>">
 
 	  <div class="input">
-	  <label for="user_email">Email</label>
+	   <label for="user_email">Sign In</label>
+	   <input id="user_email"
+	   		 name="user[email]"
+			 type="text"
+			 value="<%= @user.email %>"
+			 placeholder="Email">
+	  </div>
+
+	  <div class="input">
+	   <label for="user_password">Password</label>
+	   <input id="user_password"
+	  		 name="user[password]"
+			 type="password">
+	  </div>
+	
+	  <div class="submit">	 
+	   <input type="submit" value="Sign In">
+	  </div>
+	</form>
+</div>
+
+<div id="right-create-user">
+	<form id="create" action="<%= users_url %>" method="post">
+	  <input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
+	  
+	  <div class="input">   
+	  <label for="user_email">Create A New Account</label>
 	  <input id="user_email"
 	   		 name="user[email]"
 			 type="text"
-			 value="<%= @user.email %>">
-	  </div>
-
+			 value="email@example.com"
+			 placeholder="Email">
+      </div>
+	  
 	  <div class="input">
 	  <label for="user_password">Password</label>
 	  <input id="user_password"
@@ -23,10 +78,18 @@
 			 type="password">
 	  </div>
 	
-	  <div class="submit">	 
-	  <input type="submit" value="Sign In">
-	  </div>
+	  <div class="submit"> 
+	  <input type="submit" value="Create Account">
+      </div>
 	</form>
+	
+</div>
 
-<a href="<%= new_user_url %>">Or Create Account</a>
+</div>
+
+<a href="<%= %>">
+	<div class="all-shows-box">
+		<h2> Take A Guided Tour </h2>
+	</div>
+</a>
 </div>

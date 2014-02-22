@@ -1,4 +1,4 @@
-<h1> <%= link_to @tour.band.name, band_url(@tour.band) %> - <%= @tour.name %> </h1>
+<h1> <%= link_to @tour.band.name, band_url(@tour.band) %> - <%= @tour.name %> - <%= @tour.events.count %> Shows </h1>
 <%= link_to "Edit", edit_band_tour_url(@tour.band, @tour) %> |
 <%= link_to "Delete", tour_url(@tour), method: :delete %>
 

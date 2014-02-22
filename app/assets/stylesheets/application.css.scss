@@ -118,12 +118,6 @@ input[type="file"] {
 	padding: 30px;
 }
 
-
-#login > h1 {
-    font-size: 40px;
-	margin-bottom: 50px;
-}
-
 #login > form > .submit {
 	margin: 20px 0;
 }
@@ -135,6 +129,12 @@ input[type="file"] {
 
 .input > input {
 	width: 300px;
+}
+
+#left-sign-in {
+	border: 10px solid red;
+	width: 350px;
+	height: 400px;
 }
 
 
@@ -390,17 +390,19 @@ header nav {
 
 /* EVENT FORM */
 
-.left-event-form {
+.left-form {
+	width: 350px;
 	margin-top: 20px;
  	float: left;
 }
 
-.right-event-form {
+.right-form {
+	width: 350px;
 	margin-top: 20px;
 	margin-left: 40px;
 	padding-left: 40px;
 	border-left: 1px solid black;
-	float: left;
+	float: right;
 }
 
 .optional-event-form {

@@ -24,13 +24,12 @@
 		<ul id="block-details">
 			<li class="block-detail"> 
 				<a href="<%= venue_url(event.venue) %>">
-				  Venue: <%= event.venue.name %> 
+				  <%= event.venue.name %> 
 				</a>
 			</li>
-			<li class="block-detail"> Address: <%= event.venue.address %> </li>
-			<li class="block-detail"> City: <%= event.venue.city %> </li>
-			<li class="block-detail"> State: <%= event.venue.state %> </li>
-			<li class="block-detail"> Zip Code: <%= event.venue.zipcode %> </li>
+			<li class="block-detail"> <%= event.venue.address %> </li>
+			<li class="block-detail"> <%= event.venue.city %>, <%= event.venue.state %>  </li>
+			<li class="block-detail"> <%= event.venue.zipcode %> </li>
 			
 			
 			<% if event.band && current_user.is_band_admin?(event.band) %>

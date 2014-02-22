@@ -1,6 +1,7 @@
 #next
 
-!search 
+!multisearch on band name, tour name, user email, venue name, a
+
 !FB sign in
 
 # Schema

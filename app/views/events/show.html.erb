@@ -4,6 +4,7 @@
 	  - <%= @event.name %>
 	<% end %>
 </h1>
+<h1> <%= link_to @event.band.name, band_url(@event.band) %> </h1>
 
 <% if current_user.is_band_admin?(@event.band) %>
 	<%= link_to "Edit", edit_band_event_url(@event.band, @event) %> |
@@ -13,17 +14,10 @@
 <div id="map-container">
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
-	
-<h2> Band: <%= link_to @event.band.name, band_url(@event.band) %></h2>
 
-<ul id="block-details">
-	<li class="block-detail"> 
-		<a href="<%= venue_url(@event.venue) %>"> 
-			Venue: <%= @event.venue.name %> 
-		</a>
-	</li>
-	<li class="block-detail"> Address: <%= @event.venue.address %> </li>
-	<li class="block-detail"> City: <%= @event.venue.city %> </li>
-	<li class="block-detail"> State: <%= @event.venue.state %> </li>
-	<li class="block-detail"> Zip Code: <%= @event.venue.zipcode %> </li>
-</ul>
+<h2>	
+<%= @event.venue.address %> 
+<%= @event.venue.city %> 
+<%= @event.venue.state %> 
+<%= @event.venue.zipcode %> 
+</h2>

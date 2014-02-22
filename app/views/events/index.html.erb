@@ -1,6 +1,6 @@
 <% band_name = @events.first.band.name + "'s" if params[:band_id] %>
 
-<h1> All <%= band_name %> Events </h1>
+<h1> All <%= band_name %> Events (<%= @events.count %>) </h1>
 <hr>
 
 <div id="map-container">
