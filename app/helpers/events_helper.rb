@@ -8,7 +8,7 @@ module EventsHelper
       :path => "2/events",
       :query_values => {
         "type" => "concert",
-        "venue.country" => "US",
+        # "venue.country" => "US",
         "performers.slug" => band_name,
         "per_page" => 100
       }
