@@ -2,8 +2,8 @@ module ToursHelper
   def geo_data(tour)
     shows = []
     
-    i = 1
     tour.events.each do |event|
+      marker_symbol = ''
       marker_size = 'medium'
       marker_color = '#070'
       
@@ -11,11 +11,6 @@ module ToursHelper
         marker_symbol = 'polling-place'
         marker_size = 'small'
         marker_color = '#6b2607'
-      elsif i < 10
-        marker_symbol = i
-        i += 1
-      else
-        marker_symbol = ''
       end
       
       shows << { 
