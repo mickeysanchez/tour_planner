@@ -124,7 +124,6 @@ input[type="file"] {
 
 .input {
 	font-size: 20px;
-	font-weight: bold;
 }
 
 .input > input {
@@ -132,9 +131,7 @@ input[type="file"] {
 }
 
 #left-sign-in {
-	border: 10px solid red;
 	width: 350px;
-	height: 400px;
 }
 
 
@@ -277,7 +274,7 @@ header nav {
 }
 
 .all-shows-box:hover {
-	background: lightgrey;
+	background: #dff;
 }
 
 .add-box {
@@ -291,7 +288,7 @@ header nav {
 	text-align: center;
 	border: 1px solid darkblue;
 	color: darkblue;
-	background: lightgrey;
+	background: #eff;
 }
 
 /* EDIT USER PAGE */
@@ -329,23 +326,22 @@ header nav {
 
 #show-image {
 	height: 100%;
-	float: left;
-}
-
-#show-heading > h1 {
-	display: block;
-	font-size: 30px;
-	color: black;
-}
-
-.input > label {
-	display: block;
+	float: right;
 }
 
 #show-heading {
 	border-bottom: 1px solid black;
 	padding: 0px;
 	padding-bottom: 20px;
+}
+
+#show-heading > h1 {
+	font-size: 30px;
+	color: black;
+}
+
+.input > label {
+	display: block;
 }
 
 .rightform {

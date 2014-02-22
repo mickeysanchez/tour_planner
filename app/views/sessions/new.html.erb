@@ -1,4 +1,12 @@
 <style>
+html {
+    background:url(<%= asset_path 'login-bg.png' %>) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 #left-sign-in {
 	margin-top: 30px;
 	width: 400px;
@@ -17,6 +25,10 @@
 	padding-bottom: 40px;
 	border-bottom: 1px solid black;
 	border-top: 1px solid black;
+}
+
+#login {
+	background-color: #fff;
 }
 
 </style>
@@ -67,7 +79,6 @@
 	  <input id="user_email"
 	   		 name="user[email]"
 			 type="text"
-			 value="email@example.com"
 			 placeholder="Email">
       </div>
 	  

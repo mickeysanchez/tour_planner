@@ -1,4 +1,5 @@
 #next
+!custom domain does not redirect signed in user from root
 
 !multisearch on band name, tour name, user email, venue name, a
 
