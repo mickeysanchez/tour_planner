@@ -1,10 +1,6 @@
 #next
-!custom domain does not redirect signed in user from root
-
 !TOUR PAGE
-	- total miles travelled
-
-
+	- total miles travelled < optimize>
 	
 !Strengthen grab buttons
 
