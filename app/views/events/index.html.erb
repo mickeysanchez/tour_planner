@@ -35,6 +35,7 @@
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
+<% if params[:id] || params[:band_id] %>
 <div class="clearfix">
 	<h2> <a href="javascript:dropDown('#hidden')" id="get-embed"> Get Embed </a> </h2>
 	<div id="hidden">
@@ -50,6 +51,7 @@
 
 	<h2 id="distance"> Total Travel Distance: <%= @distance %> miles</h2>
 </div>
+<% end %>
 
 <% if @band %>
 	<% if current_user.is_band_admin?(@band) %>
