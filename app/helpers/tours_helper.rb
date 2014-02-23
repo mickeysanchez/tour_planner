@@ -1,5 +1,5 @@
 module ToursHelper
-  def geo_data(tour, up_to_date = true, event_links = true)
+  def geo_data(tour, up_to_date = true, event_links = true, ticket_links = false)
     shows = []
     
     tour.events.each do |event|
@@ -19,6 +19,12 @@ module ToursHelper
         event_link = l event.date, format: "%d %B %Y"
       end
       
+      if ticket_links
+        ticket_link = "" # add ticket links here
+      else
+        ticket_link = ""
+      end
+      
       shows << { 
         type: 'Feature',
         geometry: {
@@ -27,7 +33,7 @@ module ToursHelper
         },
         properties: {
           title: event_link,
-          description: (event.venue.name).html_safe,
+          description: (event.venue.name) + ticket_link.html_safe,
           'marker-size' => marker_size,
           'marker-color' => marker_color,
           'marker-symbol' => marker_symbol

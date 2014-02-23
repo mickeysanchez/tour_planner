@@ -1,4 +1,6 @@
 #next
+!ticket links in map embed
+
 !TOUR PAGE
 	- total miles travelled < optimize>
 	

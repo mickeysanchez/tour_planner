@@ -7,7 +7,8 @@ class EventsController < ApplicationController
   
   def index
     if params[:band_id]
-      @events = Band.find(params[:band_id]).events
+      @band = Band.includes(:events).find(params[:band_id])
+      @events = @band.events
       @geo_data = geo_data_events(@events)
     else
       @events = Event.order('date ASC').includes(:band, :venue)
@@ -119,7 +120,7 @@ class EventsController < ApplicationController
       flash[:errors] = ["No shows on Seat Geek for that band. Sorry."]
     end
     
-    redirect_to band
+    redirect_to band_events_url(band)
   end
   
   def grab_bands_in_town_shows

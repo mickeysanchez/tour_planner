@@ -49,7 +49,7 @@
 </div>
 	<% end %>
 	
-	<h3> Members </h3>
+	<h3 style="border-top: 1px solid black; padding-top: 10px"> Members </h3>
 	<ul id="members-list">
 	    <% if !current_user.is_in_band?(@band) && !current_user.has_requested_membership?(@band) %>
 	  	  <li class="member-list-item">
@@ -79,12 +79,24 @@
 
 </div>
 
+<% if current_user.is_band_admin?(@band) %>
+	<%= button_to "Grab Shows From Seat Geek", band_grab_shows_url(@band) %>
+<% end %>
+
 <% if @band.events.count > 0 %>
 	<a href="<%= band_events_url(@band) %>">
 		<div class="all-shows-box">
 			<h2> All <%= @band.name + "'s" %> Shows </h2>
 		</div>
 	</a>
+<% else %>
+
+
+	<a href="<%= new_band_event_url(@band) %>">
+		<div class="add-box">
+			<h2> + Add Show </h2>
+		</div>
+	</a>		
 <% end %>
 
 
@@ -101,16 +113,3 @@
 		</div>
 	</a>
 <% end %>
-
-<h2> Events (<%= @band.events.count %>) </h2>
-<% if current_user.is_band_admin?(@band) %>
-	<%= button_to "Grab Shows From Seat Geek", band_grab_shows_url(@band) %>
-
-	<a href="<%= new_band_event_url(@band) %>">
-		<div class="add-box">
-			<h2> + Add Show </h2>
-		</div>
-	</a>
-<% end %>
-
-<%= render 'events/list', events: @events, hide_band_name: true %>

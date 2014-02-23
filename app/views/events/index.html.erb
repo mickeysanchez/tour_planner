@@ -7,4 +7,17 @@
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
+<% if @band %>
+	<h2> Events (<%= @band.events.count %>) </h2>
+	<% if current_user.is_band_admin?(@band) %>
+		<%= button_to "Grab Shows From Seat Geek", band_grab_shows_url(@band) %>
+
+		<a href="<%= new_band_event_url(@band) %>">
+			<div class="add-box">
+				<h2> + Add Show </h2>
+			</div>
+		</a>
+	<% end %>
+<% end %>
+
 <%= render 'events/list', events: @events, hide_band_name: false %>
