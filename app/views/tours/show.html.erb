@@ -6,4 +6,7 @@
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
+
+<h2> Total Travel Distance: <%= @distance %> miles</h2>
+
 <%= render 'events/list', events: @tour.events, hide_band_name: true %>
