@@ -16,6 +16,8 @@ class Band < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_name, against: :name
   
+  default_scope order('name')
+  
   attr_accessible :name, :image
   
   validates :name, presence: true

@@ -1,14 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_filter :demo?
-  
   protect_from_forgery
   
   helper_method :current_user, :signed_in?
   
   private
-  
-  def demo?
-  end
   
   def authorized_user!
     unless current_user == User.find(params[:user_id])

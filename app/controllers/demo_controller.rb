@@ -10,7 +10,6 @@ class DemoController < ApplicationController
     @band = params[:choice]
     
     session[:demo] = @band
-    @user.token = "one"
     @user.id = 0
     
     @current_user = @user
@@ -39,9 +38,8 @@ class DemoController < ApplicationController
   end
   
   def new_band
-    flash[:demo_header] = "Ok!"
-    flash[:demo] = ["It's easy to create a new band.", 
-                    "(It's even easier when we fill out the form out for you.)", 
+    flash[:demo_header] = "It's easy to create a new band."
+    flash[:demo] = ["(It's even easier when we fill out the form out for you.)", 
                     "Click <strong> Create Band </strong> to move on.".html_safe]
     @band = Band.new({name: session[:demo] })
   end

@@ -1,9 +1,18 @@
 #next
 !custom domain does not redirect signed in user from root
 
-!multisearch on band name, tour name, user email, venue name, a
+!TOUR PAGE
+	- total miles travelled
 
-!FB sign in
+
+	
+!Strengthen grab buttons
+
+!add cool tour data to demo
+
+!LIL's
+	!Link to all shows page
+	!take events list off of band show page	
 
 # Schema
 0. users
