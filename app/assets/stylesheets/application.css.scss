@@ -38,6 +38,7 @@ html {
 	font-family: 'Montserrat', sans-serif;
     background: white;
     color: #46434d;
+	overflow-y: scroll;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -280,7 +281,7 @@ header nav {
 }
 
 .all-shows-box:hover {
-	background: #dff;
+	background: #e8ebf0;
 }
 
 .add-box {

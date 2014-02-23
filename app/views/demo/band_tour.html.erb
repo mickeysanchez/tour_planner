@@ -1,0 +1,29 @@
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />
+
+<div id='map'>
+</div>
+
+<style>
+	#map {
+		border: 1px solid black;
+		width: 100%;
+		height: 500px;
+	}
+</style>
+
+<script>
+var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
+    .setView([38, -102.0], 9);
+
+var featureLayer = L.mapbox.featureLayer()
+    .setGeoJSON(<%= @geo_data %>)
+	
+    .addTo(map);
+
+map.fitBounds(featureLayer.getBounds());
+
+
+var showCount = <%= JSON.parse(@geo_data).count %>
+</script>

@@ -37,5 +37,7 @@ TourPlanner::Application.routes.draw do
     get 'band_page'
     get 'band_image'
     get 'shows_grabbed'
+    get 'band_tour'
   end
+  
 end

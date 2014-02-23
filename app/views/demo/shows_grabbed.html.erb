@@ -76,7 +76,7 @@
 			<h2> All <%= @band.name + "'s" %> Shows </h2>
 		</div>
 	</a>
-<% end %>
+<% end %> 
 
 
 
@@ -86,7 +86,7 @@
 	<li id="tour-block">
 		<ul class="block-header">
 			<li class="block-header-item"> 
-				<%= link_to tour.name%>
+				<%= link_to tour.name, demo_band_tour_url %>
 			</li>
 	    </ul>
 		
@@ -104,22 +104,22 @@
 </ul>
 
 <% if true %>
-	<a href="<%= new_band_tour_url(@band) %>">
+	<a href="">
 		<div class="add-box">
 			<h2> + Create a Tour </h2>
 		</div>
 	</a>
 <% end %>
 
-<h2> Events (<%= @events.count %>) </h2>
-<% if true%>
-	<%= button_to "Grab Shows From Seat Geek", "", method: :get %>
+<div style="float: left; position: relative; right: 150px; bottom: 180px">
+	<%= image_tag "demo-arrow.png", width: "100px"%>
+</div>
 
-	<a href="<%= %>">
-		<div class="add-box">
-			<h2> + Add Show </h2>
-		</div>
-	</a>
+<p>
+<h2 style="display: block; position: relative; right: 100px"> Events (<%= @events.count %>) </h2>
+</p>
+<% if true%>
+
 <% end %>
 
 <ul id="all-shows">
@@ -167,6 +167,3 @@
 	
 	<% end %>
 </ul>
-<div style="float: left; position: relative; right: 150px; bottom: 170px">
-	<%= image_tag "demo-arrow.png", width: "100px"%>
-</div>
