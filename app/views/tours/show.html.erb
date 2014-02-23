@@ -1,3 +1,36 @@
+<style>
+	#hidden {
+		display: none;
+	}
+	
+	#get-embed {
+		padding: 5px;
+		border: 1px solid black;
+	}
+	
+	#get-embed:hover {
+		background: lightyellow;
+	}
+	
+	#distance {
+		vertical-align: text-top;
+	}
+</style>
+
+<script>
+	function dropDown(section) {
+		$(section).animate({
+			height: "toggle",
+			opacity: "toggle"
+		}, 500)
+			
+		// $('html, body').animate({
+		// 		scrollTop: $(section).offset().top
+		// 	}, 1000);
+	}
+</script>
+
+
 <h1> <%= link_to @tour.band.name, band_url(@tour.band) %> - <%= @tour.name %> - <%= @tour.events.count %> Shows </h1>
 <%= link_to "Edit", edit_band_tour_url(@tour.band, @tour) %> |
 <%= link_to "Delete", tour_url(@tour), method: :delete %>
@@ -6,7 +39,19 @@
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
+<div class="clearfix">
+	<h2> <a href="javascript:dropDown('#hidden')" id="get-embed"> Get Embed </a> </h2>
+	<div id="hidden">
+	  <p> 
+		  Paste the following code on your site wherever you want the map
+		  to show up. When you make changes to this tour on Tour Planner, 
+		  the changes will be reflected on your site:
+	  </p>
+	  <hr>
+	  <p><%= render 'tours/embed_code', tour: @tour%></p>
+	</div>
 
-<h2> Total Travel Distance: <%= @distance %> miles</h2>
+	<h2 id="distance"> Total Travel Distance: <%= @distance %> miles</h2>
+</div>
 
 <%= render 'events/list', events: @tour.events, hide_band_name: true %>

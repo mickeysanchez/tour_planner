@@ -59,6 +59,6 @@ class ToursController < ApplicationController
     headers['Access-Control-Allow-Methods'] = 'GET'
     headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
     headers['Access-Control-Max-Age'] = "1728000"
-    render json: geo_data(Tour.first)
+    render json: geo_data(Tour.find[params[:id]])
   end
 end
