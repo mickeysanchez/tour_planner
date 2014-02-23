@@ -1,9 +1,10 @@
 <div id="show-heading" class="clearfix">
-	<h1> <%= @user.email %> </h1>
-	
 	<div id="show-image">
 	  <%= image_tag @user.image.url(:thumb), class: "header-image" %>
     </div>
+	
+	
+	<h1> <%= @user.email %> </h1>
 	
 	<div id="change-image">
 		<form id="edit-image" action="<%= user_url(current_user) %>" method="post"   

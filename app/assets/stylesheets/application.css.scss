@@ -318,6 +318,10 @@ header nav {
 
 /* USER HEADING */
 
+.header-image {
+	border: 1px solid black;
+}
+
 #edit-image {
 	margin-top: 20px;
 }
@@ -453,4 +457,10 @@ input[type="checkbox"]:hover {
 
 #band-form {
 	margin-top: 20px;
+}
+
+/* BAND SHOW */
+
+#band-show-image {
+	height: 280px;
 }

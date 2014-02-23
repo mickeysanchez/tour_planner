@@ -1,11 +1,12 @@
 <div id="show-heading" class="clearfix">
 	<%= render 'layouts/errors' %>
+
+	<div id="show-image">
+	  <%= image_tag @band.image.url(:thumb), class: "header-image", id: "band-show-image" %>
+    </div>
 	
 	<h1> <%= @band.name %> </h1>
 
-	<div id="show-image">
-	  <%= image_tag @band.image.url(:thumb), class: "header-image" %>
-    </div>
 	
 	<% if current_user.is_band_admin?(@band)%>
 	<div id="change-image">

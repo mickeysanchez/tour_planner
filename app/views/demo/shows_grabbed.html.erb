@@ -1,11 +1,12 @@
 <div id="show-heading" class="clearfix">
 	<%= render 'layouts/errors' %>
+
+	<div id="show-image">
+	  <%= image_tag @image, class: "header-image", id: "band-show-image" %>
+    </div>
 	
 	<h1> <%= @band.name %> </h1>
 
-	<div id="show-image">
-	  <%= image_tag @image, class: "header-image" %>
-    </div>
 	
 	<% if true %>
 	<div id="change-image">
