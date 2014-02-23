@@ -84,4 +84,6 @@ class BandsController < ApplicationController
     
     redirect_to band
   end
+  
+
 end

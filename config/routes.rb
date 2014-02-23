@@ -29,7 +29,11 @@ TourPlanner::Application.routes.draw do
   
   resources :venues, only: [:index, :show]
   
-  resources :tours, only: [:show, :destroy, :update]
+  resources :tours, only: [:show, :destroy, :update] do
+    member do 
+      get 'map_embed_data', to: "tours#map_embed_data"
+    end
+  end
   
   namespace :demo do
     get 'one'

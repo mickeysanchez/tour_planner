@@ -1,12 +1,12 @@
 class ToursController < ApplicationController
-  before_filter :require_signed_in!
+  before_filter :require_signed_in!, except: [:map_embed_data]
   
   include ToursHelper
   
   def show
     @tour = Tour.find(params[:id])
     @geo_data = geo_data(@tour)
-    @distance = get_distance(@tour)
+    @distance = "commented out" #get_distance(@tour)
   end
   
   def new
@@ -52,5 +52,9 @@ class ToursController < ApplicationController
       @tour.destroy
       redirect_to band
     end
+  end
+  
+  def map_embed_data
+    render json: geo_data(Tour.first)
   end
 end
