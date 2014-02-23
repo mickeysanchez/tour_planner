@@ -31,7 +31,39 @@ html {
 	background-color: #fff;
 }
 
+.choose-a-band {
+	display: none;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.band-choice {
+	display: inline-block;
+	margin: 0px;
+}
+
+.band-choice > img {
+	border: 1px solid black;
+}
+
+.band-choice > img:hover {
+	border: 1px solid green;
+}
+
 </style>
+
+<script>
+	function dropDown(section) {
+		$(section).animate({
+			height: "toggle",
+			opacity: "toggle"
+		}, 500)
+			
+		$('html, body').animate({
+				scrollTop: $(section).offset().top
+			}, 1000);
+	}
+</script>
 
 <div id="login" class="clearfix">
 
@@ -98,9 +130,43 @@ html {
 
 </div>
 
-<a href="<%= %>">
+<a href="javascript:dropDown('.choose-a-band')">
 	<div class="all-shows-box">
 		<h2> Take A Guided Tour </h2>
 	</div>
 </a>
+
+<div class="choose-a-band clearfix" id="left">
+	<h1>- Choose An Artist -</h1>
+	
+	<a href="<%= demo_one_url + "?choice=Beyonce" %>"  id="beyonce">
+	<div class="band-choice">
+		<%= image_tag "beyonce.jpg" %><br>
+		Beyonce
+	</div>
+	</a>
+	
+	<a href="<%= demo_one_url + "?choice=The Rolling Stones" %>" id="rolling-stones">
+	<div class="band-choice" id="left">
+		<%= image_tag "rollingstones.jpg" %><br>
+		Rolling Stones
+	</div>
+	</a>
+	
+	<a href="<%= demo_one_url + "?choice=Dr. Dog" %>" id="dr-dog">
+	<div class="band-choice" id="right">
+		<%= image_tag "dr.dog.jpg" %><br>
+		Dr. Dog
+	</div>
+	</a>
+	
+	<a href="<%= demo_one_url + "?choice=One Direction" %>" id="">
+	<div class="band-choice" id="right">
+		<%= image_tag "onedirection.jpg" %><br>
+		One Direction
+	</div>
+	</a>
+	
 </div>
+</div>
+

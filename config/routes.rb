@@ -30,4 +30,11 @@ TourPlanner::Application.routes.draw do
   resources :venues, only: [:index, :show]
   
   resources :tours, only: [:show, :destroy, :update]
+  
+  namespace :demo do
+    get 'one'
+    get 'new_band'
+    get 'band_page'
+    get 'band_image'
+  end
 end

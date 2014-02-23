@@ -7,7 +7,7 @@ module EventsHelper
       :host => "api.seatgeek.com",
       :path => "2/events",
       :query_values => {
-        "type" => "concert",
+        # "type" => "concert",
         # "venue.country" => "US",
         "performers.slug" => band_name,
         "per_page" => 100

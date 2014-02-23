@@ -1,0 +1,111 @@
+<div id="show-heading" class="clearfix">
+	<%= render 'layouts/errors' %>
+	
+	<h1> <%= @band.name %> </h1>
+
+	<div id="show-image">
+	  <%= image_tag @image, class: "header-image" %>
+    </div>
+	
+	<% if true %>
+	<div id="change-image">
+		<div class="edit">
+		<% if false%>
+			<%= link_to 'Edit Band', edit_band_url(@band)%> |
+			<%= link_to 'Delete Band', band_url(@band), method: :delete %> 
+		<% end %>
+		</div>
+	
+		<form id="edit-image" action="" method="get"   enctype="multipart/form-data">
+		  <input type="hidden" name="_method" value="put">
+
+		  <div class="input">
+		    <label for="band_image">Change Band Image</label>
+		    <input id="band_image" name="band[image]" type="file">
+		  </div>
+  
+		  <div class="submit">
+		    <input type="submit" value="Update Image">
+		  </div>
+		</form>
+		or 
+		
+		<form id="edit-image" style="display: inline" action="<%= demo_band_image_url %>" method="get"   enctype="multipart/form-data">
+		  <input type="hidden" name="_method" value="put">
+	
+		  <input type="hidden" 
+				 name="authenticity_token" 
+				 value="<%= form_authenticity_token %>">
+
+		  <div class="submit">
+		    <input type="submit" value="Grab Image">
+		  </div>
+		</form>
+</div>
+	<% end %>
+	
+	<h3> Members </h3>
+	<ul id="members-list">
+
+	<% @band.band_memberships.each do |membership| %>
+	  <li class="member-list-item">
+		  <a href="">
+		  <%= membership.member.email %> 
+	  
+		  <% if membership.role %>
+			  - <%= membership.role %>
+		  <% end %>
+	  
+		  <% if true %>
+			  <%= membership.member.is_band_admin?(@band) ? "(Admin)" : "" %>
+		  <% end %>
+		  </a>
+	  
+		  <% if false %>
+			  <%= button_to "Make Admin", make_admin_url(membership), method: :put %>
+		  <% end %>
+	  </li>
+	<% end %>
+	</ul>
+
+</div>
+
+<% if @band.events.count > 0 %>
+	<a href="<%= band_events_url(@band) %>">
+		<div class="all-shows-box">
+			<h2> All <%= @band.name + "'s" %> Shows </h2>
+		</div>
+	</a>
+<% end %>
+
+
+
+<% if @band.tours.count > 0 %>
+	<h2> Tours (<%= @band.tours.count %>) </h2>
+	<%= render 'tours/list', tours: @tours %>
+<% end %>
+
+<% if false %>
+	<a href="<%= new_band_tour_url(@band) %>">
+		<div class="add-box">
+			<h2> + Create a Tour </h2>
+		</div>
+	</a>
+<% end %>
+
+<h2> Events (<%= @band.events.count %>) </h2>
+<% if true%>
+	<%= button_to "Grab Shows From Seat Geek", "", method: :get %>
+
+	<a href="<%= %>">
+		<div class="add-box">
+			<h2> + Add Show </h2>
+		</div>
+	</a>
+<% end %>
+
+<%= render 'events/list', events: @events, hide_band_name: true %>
+
+<div style="float: left; position: relative; right: 150px; bottom: 170px">
+	<%= image_tag "demo-arrow.png", width: "100px"%>
+</div>

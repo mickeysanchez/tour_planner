@@ -1,0 +1,28 @@
+
+
+<form id="band-form" action="<%= demo_band_page_url %>" method="get" enctype="multipart/form-data">
+	
+  <div class="input">		   
+  <label for="band_name">Band Name</label>
+  <input id="band_name"
+   		 name="band[name]"
+		 type="text"
+		 value="<%= @band.name %>">
+  </div>
+
+  <div class="input">
+  <label for="band_role">Your Role (optional)</label>
+  <input id="band_role"
+  		 name="band_memberships[role]"
+		 type="text"
+		 value="Manager">
+  </div> 
+  
+  <div class="submit">
+    <input type="submit" value="Create Band">
+  </div>
+</form>
+
+<div style="float: left; position: relative; right: 150px; bottom: 60px">
+	<%= image_tag "demo-arrow.png", width: "100px"%>
+</div>

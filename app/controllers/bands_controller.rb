@@ -1,6 +1,6 @@
 class BandsController < ApplicationController
   include BandsHelper
-  
+
   before_filter :require_signed_in!
   
   def search 

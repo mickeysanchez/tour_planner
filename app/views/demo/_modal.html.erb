@@ -1,0 +1,22 @@
+<style> 
+#demo {
+	margin-bottom: 20px;
+	border: 3px solid lightblue;
+	padding: 20px;
+	font-size: 18px;
+}
+
+strong {
+	color: #6b2607;
+}
+</style>
+
+<div id="demo">
+	<h1> <%= flash[:demo_header] %> </h1>
+	
+	<% flash[:demo].each do |demo| %>
+
+		<p><%= demo %></p>
+
+	<% end %>
+</div>

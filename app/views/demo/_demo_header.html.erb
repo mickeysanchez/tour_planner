@@ -1,0 +1,33 @@
+<header>
+	<nav class="clearfix">
+			
+		<ul id="left-nav">
+			<li class="nav-list-item"> 
+				<%= link_to 'My Bands', "#", id: 'manage-link' %> | 
+			</li>
+			
+			<li class="nav-list-item"> 
+			    <%= link_to 'All Bands', "#"%> 
+			</li>
+			
+		</ul>
+		
+		
+		<ul id="right-nav">	
+			<li class="nav-list-item"> 
+				<%= link_to "Requests", "" %> 
+				( 0 ) |
+			</li>
+			
+			<li class="nav-list-item"> 
+				<%= link_to "Settings", "" %> |
+			</li>
+			
+			<li class="nav-list-item"> 
+				<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
+			</li>
+		</ul>
+		
+		
+	</nav>
+</header>

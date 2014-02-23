@@ -1,0 +1,35 @@
+<div id="show-heading" class="clearfix">
+	<h1> <%= @user.email %> </h1>
+	
+	<div id="show-image">
+	  <%= image_tag @user.image.url(:thumb), class: "header-image" %>
+    </div>
+	
+	<div id="change-image">
+		<form id="edit-image" action="" method="get"   
+			enctype="multipart/form-data">
+		  
+		  <input type="hidden" name="choice" value="<%= @band %>">
+
+		  <div class="input">
+		    <label for="user_image">Change Your Image</label>
+		    <input id="user_image" name="user[image]" type="file">
+		  </div>
+  
+		  <div class="submit">
+		    <input type="submit" value="Update Image">
+		  </div>
+		</form>
+	</div>
+</div>
+
+<a href="<%= demo_new_band_url %>">
+	<div class="add-box">
+		<h2> + </h2>
+		<h2> Add Band </h2>
+	</div>
+</a>
+
+<div style="float: left; position: relative; right: 150px; bottom: 95px">
+	<%= image_tag "demo-arrow.png", width: "100px"%>
+</div>
