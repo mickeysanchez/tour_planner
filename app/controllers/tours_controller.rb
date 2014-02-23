@@ -57,6 +57,7 @@ class ToursController < ApplicationController
   def map_embed_data
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'GET'
+    headers['Access-Control-Request-Method'] = '*'
     headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
     headers['Access-Control-Max-Age'] = "1728000"
     render json: geo_data(Tour.find[params[:id]])
