@@ -15,11 +15,12 @@
 
 <script>
 var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
-    .setView([38, -102.0], 9);
+    	   .setView([38, -102.0], 9);
+
+map.scrollWheelZoom.disable();
 
 var featureLayer = L.mapbox.featureLayer()
     .setGeoJSON(<%= geo_data %>)
-	
     .addTo(map);
 
 map.fitBounds(featureLayer.getBounds());
