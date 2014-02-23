@@ -30,7 +30,7 @@
 		</form>
 		or 
 		
-		<form id="edit-image" style="display: inline" action="<%= demo_band_image_url %>" method="get"   enctype="multipart/form-data">
+		<form id="edit-image" style="display: inline" action="" method="get"   enctype="multipart/form-data">
 		  <input type="hidden" name="_method" value="put">
 	
 		  <input type="hidden" 
@@ -80,12 +80,30 @@
 
 
 
-<% if @band.tours.count > 0 %>
-	<h2> Tours (<%= @band.tours.count %>) </h2>
-	<%= render 'tours/list', tours: @tours %>
-<% end %>
+<ul id="all-tours">
+	<% @tours.each do |tour| %>
+	<h1> Tours </h1>
+	<li id="tour-block">
+		<ul class="block-header">
+			<li class="block-header-item"> 
+				<%= link_to tour.name%>
+			</li>
+	    </ul>
+		
+		<ul id="block-details">
 
-<% if false %>
+			<% if false%>
+				<li class="block-detail"> 
+					<%= link_to 'delete', tour_url(tour), method: :delete %>
+				</li>
+			<% end %>
+		</ul>
+	</li>
+	
+	<% end %>
+</ul>
+
+<% if true %>
 	<a href="<%= new_band_tour_url(@band) %>">
 		<div class="add-box">
 			<h2> + Create a Tour </h2>
@@ -93,9 +111,9 @@
 	</a>
 <% end %>
 
-<h2> Events (<%= @band.events.count %>) </h2>
+<h2> Events (<%= @events.count %>) </h2>
 <% if true%>
-	<%= button_to "Grab Shows From Seat Geek", demo_shows_grabbed_url, method: :get %>
+	<%= button_to "Grab Shows From Seat Geek", "", method: :get %>
 
 	<a href="<%= %>">
 		<div class="add-box">
@@ -104,8 +122,51 @@
 	</a>
 <% end %>
 
-<%= render 'events/list', events: @events, hide_band_name: true %>
+<ul id="all-shows">
+	<% @events.each do |event| %>
 
+	<li id="show-block">
+		<ul class="block-header">
+			<% unless true # band name doesn't appear on user page%>
+			  <li class="block-header-item"> 
+				  <%= link_to event.band.name, "" if event.band %> 
+			  </li>
+			<% end %>
+		<a href="">
+			<li class="block-header-item"> 
+				<%= l event.date, format: "%d %B %Y"%> 
+				<% unless !event.name || event.name.empty? %>
+					- <%= event.name %>
+				<% end %>
+			</li>
+		</a>
+	    </ul>
+	    
+		
+		<hr>
+		
+		<ul id="block-details">
+			<li class="block-detail"> 
+				<a href="">
+				  <%= event.venue.name %> 
+				</a>
+			</li>
+			<li class="block-detail"> <%= event.venue.address %> </li>
+			<li class="block-detail"> <%= event.venue.city %>, <%= event.venue.state %>  </li>
+			<li class="block-detail"> <%= event.venue.zipcode %> </li>
+			
+			
+			<% if false %>
+				<li class="block-detail"> 
+					<%= link_to 'delete', event_url(event), method: :delete, class: "delete-button" %>
+				</li>
+			<% end %>
+			
+		</ul>
+	</li>
+	
+	<% end %>
+</ul>
 <div style="float: left; position: relative; right: 150px; bottom: 170px">
 	<%= image_tag "demo-arrow.png", width: "100px"%>
 </div>

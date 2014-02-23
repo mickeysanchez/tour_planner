@@ -40,7 +40,9 @@ class DemoController < ApplicationController
   
   def new_band
     flash[:demo_header] = "Ok!"
-    flash[:demo] = ["It's easy to create a new band.", "It's even easier when we fill out the form out for you.", "Click <strong> Create Band </strong> to move on.".html_safe]
+    flash[:demo] = ["It's easy to create a new band.", 
+                    "(It's even easier when we fill out the form out for you.)", 
+                    "Click <strong> Create Band </strong> to move on.".html_safe]
     @band = Band.new({name: session[:demo] })
   end
   
@@ -84,5 +86,65 @@ class DemoController < ApplicationController
                     current #{session[:demo]} events.".html_safe]
     
     @image = session[:demo].downcase.split(" ").join("") + ".jpg"
+  end
+  
+  def shows_grabbed
+    @band = Band.new({name: session[:demo] })
+    @band.id = 1
+    @user = User.new({ email: "you@example.com "})
+    @user.id = 0
+    @current_user = @user
+    @band.members = [@user]
+    bm = BandMembership.new
+    bm.member = @user
+    @band.band_memberships = [bm]
+    
+    flash[:demo_header] = "So Easy!"
+    flash[:demo] = ["There they are."]
+    
+    @image = session[:demo].downcase.split(" ").join("") + ".jpg"
+    file = session[:demo].downcase.split(" ").join("") + ".json"
+    
+    file_json = File.read("db/demo_bands_json/" + file)
+    events = JSON.parse(file_json)["events"]
+    
+    @tour = Tour.new({
+      name: session[:demo] + " Tour (via SeatGeek)"
+    })
+    
+    
+    @events = []
+    events.each_with_index do |show, i| 
+      v_data = show["venue"]
+  
+      venue = Venue
+      .new({
+        name: v_data["name"],
+        address: v_data["address"],
+        city: v_data["city"],
+        state: v_data["state"],
+        zipcode: v_data["postal_code"],
+        lat: v_data["location"]["lat"],
+        lon: v_data["location"]["lon"]  
+      })
+      venue.id = i
+  
+      next unless venue.valid?
+  
+      event = Event.new({
+        date: show["datetime_local"],
+        band_id: @band.id,
+        venue_id: venue.id,
+        tour_id: @tour.id
+      })
+      
+      @events << event
+      
+      event.venue = venue  
+    end
+    
+    @tour = Tour.new({name: session[:demo] + " Tour"})
+    @tour.id = 0
+    @tours = [@tour]
   end
 end
