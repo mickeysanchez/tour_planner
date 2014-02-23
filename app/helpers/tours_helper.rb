@@ -20,7 +20,7 @@ module ToursHelper
       end
       
       if ticket_links
-        ticket_link = "" # add ticket links here
+        ticket_link = "" # add ticket links hereß
       else
         ticket_link = ""
       end
