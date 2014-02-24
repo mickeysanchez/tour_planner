@@ -36,7 +36,7 @@ module EventsHelper
   
       next unless venue.valid?
   
-      Event.find_or_create_by_date_and_band_id_and_venue_id({
+      Event.find_or_create_by_date_and_band_id_and_venue_id_and_ticket_url({
         date: show["datetime_local"],
         ticket_url: show["url"],
         band_id: band.id,
