@@ -66,6 +66,12 @@ module EventsHelper
     else
       ticket_link = ""
     end
+    
+    if event_links
+      event_link = "<a href='#{event_url(event)}'>" + (l event.date, format: "%d %B %Y") + "</a>".html_safe
+    else
+      event_link = l event.date, format: "%d %B %Y"
+    end
       
     { 
       type: 'Feature',
@@ -74,7 +80,7 @@ module EventsHelper
         coordinates: [event.venue.lon, event.venue.lat]
       },
       properties: {
-        title: "<a href='#{event_url(event)}'>" + (l event.date, format: "%d %B %Y") + "</a>".html_safe,
+        title: event_link,
         description: (event.venue.name).html_safe + ticket_link.html_safe,
         'marker-size' => marker_size,
         'marker-color' => marker_color,
