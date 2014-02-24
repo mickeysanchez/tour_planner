@@ -10,7 +10,6 @@
 
 !LIL's
 	!Link to all shows page
-	!take events list off of band show page	
 
 # Schema
 0. users

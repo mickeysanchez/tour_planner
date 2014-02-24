@@ -81,6 +81,8 @@
 
 <% if current_user.is_band_admin?(@band) %>
 	<%= button_to "Grab Shows From Seat Geek", band_grab_shows_url(@band) %>
+	
+
 <% end %>
 
 <% if @band.events.count > 0 %>
@@ -89,14 +91,14 @@
 			<h2> All <%= @band.name + "'s" %> Shows </h2>
 		</div>
 	</a>
-<% else %>
+<% end %>
 
-
-	<a href="<%= new_band_event_url(@band) %>">
-		<div class="add-box">
-			<h2> + Add Show </h2>
-		</div>
-	</a>		
+<% if current_user.is_band_admin?(@band) %>
+<a href="<%= new_band_event_url(@band) %>">
+	<div class="add-box">
+		<h2> + Add Show </h2>
+	</div>
+</a>	
 <% end %>
 
 

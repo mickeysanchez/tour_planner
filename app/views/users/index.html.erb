@@ -1,13 +1,26 @@
+<style> 
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+li img {
+	border: 1px solid black;
+}
+
+</style>
+
 <h1> All Users </h1>
 
 <ul>
 	
 	<% @users.each do |user| %>
 	  <% next if current_user == user %>	
-	 
 	  <li> 
+		  <a href="<%= user_url(user) %>">
 	  	  <%= image_tag user.image.url(:thumb), class: "small-image" %>
 		  <%= link_to user.email, user_url(user) %> 
+		  </a>
 	  </li>
 	<% end %>
 	
