@@ -82,6 +82,7 @@ option {
 }
 
 input[type="submit"] {
+	box-shadow: 3px 3px 3px #888888;
 	display: inline-block;
 	border: 1px solid black;
 	padding: 5px;
@@ -274,6 +275,7 @@ header nav {
 /* LARGE BOX SHAPED LINKS */
 
 .all-shows-box {
+    box-shadow: 5px 5px 5px #888888;
 	margin-top: 30px;
 	text-align: center;
 	border: 1px solid #6b2607;
@@ -285,6 +287,7 @@ header nav {
 }
 
 .add-box {
+	box-shadow: 5px 5px 5px #888888;
 	margin-top: 30px;
 	text-align: center;
 	border: 1px solid darkblue;
