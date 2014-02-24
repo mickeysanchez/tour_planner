@@ -201,12 +201,16 @@ class DemoController < ApplicationController
     
     case session[:demo]
     when "Beyonce"
+      @distance = 1297
       quote = "\"Power's not given to you. You have to take it.\""
     when "The Rolling Stones"
+      @distance =  540
       quote = "\"Lose your dreams and you will lose your mind. Ain't life unkind?\""
     when "Dr. Dog"
+      @distance = 5582
       quote = "<p>\"Do you like things the way they seem?</p> <p>Or are you looking behind the scenes?\"</p>"
     when "One Direction"
+      @distance = 10623
       quote = "<p>\"I will carry you over fire and water for your love. </p><p> And I will hold you closer, hope your heart is strong enough.\"</p>"
     end
     
@@ -223,7 +227,5 @@ class DemoController < ApplicationController
                       experience!".html_safe,
                      "Have fun on tour!".html_safe,
                      "<h1> #{quote} </h1>".html_safe]
-                     
-    @distance = get_distance(@tour)
   end
 end

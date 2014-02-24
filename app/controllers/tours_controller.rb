@@ -6,7 +6,7 @@ class ToursController < ApplicationController
   def show
     @tour = Tour.find(params[:id])
     @geo_data = geo_data_tour(@tour)
-    @distance = "commented out" #get_distance(@tour)
+    @distance = 0 #get_distance(@tour)
   end
   
   def new

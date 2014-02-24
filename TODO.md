@@ -1,10 +1,15 @@
 #next
+!public/private event status
+
 !notifications
 	- someone adds/updates/deletes an event connected to a band you're in
 	- someone updates/deletes a band you're in
 	- when someone adds/updates/deletes a tour in your band
 	
 !email settings
+
+frequency of tour emails
+
 (these also go on the tour page)
 	- distance between next two shows
 	- drive time
