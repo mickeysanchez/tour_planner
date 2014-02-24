@@ -1,5 +1,5 @@
 module ToursHelper
-  def geo_data(tour, up_to_date = true, event_links = true, ticket_links = false)
+  def geo_data(tour, up_to_date = true, event_links = true, ticket_links = true)
     shows = []
     
     tour.events.each do |event|
@@ -20,7 +20,7 @@ module ToursHelper
       end
       
       if ticket_links
-        ticket_link = "" # add ticket links hereß
+        ticket_link = "<p> <a href='#{event.ticket_url}'> Get Tickets </a> </p>"
       else
         ticket_link = ""
       end

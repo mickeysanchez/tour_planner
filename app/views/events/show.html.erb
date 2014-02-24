@@ -4,6 +4,11 @@
 	  - <%= @event.name %>
 	<% end %>
 </h1>
+
+<h1>
+	<%= link_to "Get Tickets", @event.ticket_url %> 
+</h1>
+
 <h1> <%= link_to @event.band.name, band_url(@event.band) %> </h1>
 
 <% if current_user.is_band_admin?(@event.band) %>

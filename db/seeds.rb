@@ -67,6 +67,7 @@ seed_user_files.each do |file|
   
     band.events.create({
       date: show["datetime_local"],
+      ticket_url: show["url"],
       venue_id: venue.id,
       tour_id: tour.id
     })

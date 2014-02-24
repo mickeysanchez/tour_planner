@@ -25,8 +25,13 @@
 		</div>
 		
 		<div class="input">	
-		<label for="show_name">Name(optional)</label>
+		<label for="show_name">Name (optional)</label>
 		<input id="show_name" type="text" name="event[name]" value="<%= @event.name %>">
+		</div>
+		
+		<div class="input">	
+		<label for="show_ticket_url">Ticket URL (optional)</label>
+		<input id="show_ticket_url" type="text" name="event[ticket_url]" value="<%= @event.ticket_url %>">
 		</div>
 	
 		<div class="input">	 

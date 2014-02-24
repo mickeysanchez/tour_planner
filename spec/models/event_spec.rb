@@ -14,6 +14,7 @@
 #  poster_content_type :string(255)
 #  poster_file_size    :integer
 #  poster_updated_at   :datetime
+#  ticket_url          :string(255)      default("")
 #
 
 require 'spec_helper'

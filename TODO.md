@@ -1,8 +1,16 @@
 #next
 !ticket links in map embed
+- ticket url to map
+- ticket url to demo
+
+
+!map embed to demo
+- DEMO
+- add demo user after
 
 !TOUR PAGE
 	- total miles travelled < optimize>
+	
 	
 !Strengthen grab buttons
 

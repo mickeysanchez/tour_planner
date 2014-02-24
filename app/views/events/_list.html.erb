@@ -22,6 +22,10 @@
 		<hr>
 		
 		<ul id="block-details">
+			<li class="block-header-item"> 
+				<%= link_to "Get Tickets", event.ticket_url %> 
+			</li>
+			
 			<li class="block-detail"> 
 				<a href="<%= venue_url(event.venue) %>">
 				  <%= event.venue.name %> 
@@ -30,6 +34,7 @@
 			<li class="block-detail"> <%= event.venue.address %> </li>
 			<li class="block-detail"> <%= event.venue.city %>, <%= event.venue.state %>  </li>
 			<li class="block-detail"> <%= event.venue.zipcode %> </li>
+			
 			
 			
 			<% if event.band && current_user.is_band_admin?(event.band) %>

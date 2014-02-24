@@ -14,10 +14,11 @@
 #  poster_content_type :string(255)
 #  poster_file_size    :integer
 #  poster_updated_at   :datetime
+#  ticket_url          :string(255)      default("")
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :name, :venue_id, :date, :poster, :band_id, :tour_id
+  attr_accessible :name, :venue_id, :date, :poster, :band_id, :tour_id, :ticket_url
   
   validates :date, presence: true
   
