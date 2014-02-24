@@ -202,16 +202,16 @@ class DemoController < ApplicationController
     case session[:demo]
     when "Beyonce"
       @distance = 1297
-      quote = "\"Power's not given to you. You have to take it.\""
+      quote = "\"Power's not given to you. You have to take it.\" ~ Beyonce"
     when "The Rolling Stones"
       @distance =  540
-      quote = "\"Lose your dreams and you will lose your mind. Ain't life unkind?\""
+      quote = "\"Lose your dreams and you will lose your mind. Ain't life unkind?\" ~ The Rolling Stones"
     when "Dr. Dog"
       @distance = 5582
-      quote = "<p>\"Do you like things the way they seem?</p> <p>Or are you looking behind the scenes?\"</p>"
+      quote = "<p>\"Do you like things the way they seem?</p> <p>Or are you looking behind the scenes?\" ~ Dr. Dog</p>"
     when "One Direction"
       @distance = 10623
-      quote = "<p>\"I will carry you over fire and water for your love. </p><p> And I will hold you closer, hope your heart is strong enough.\"</p>"
+      quote = "<p>\"I will carry you over fire and water for your love. </p><p> And I will hold you closer, hope your heart is strong enough.\" ~ One Direction</p>"
     end
     
     flash[:demo_header] = "Visualized!"

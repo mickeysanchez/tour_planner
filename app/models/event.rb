@@ -30,4 +30,6 @@ class Event < ActiveRecord::Base
   styles: { medium: "500x500#", thumb: "200x200#" }, 
   default_url: "venue_missing.png"
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
+  
+  has_many :notifications, as: :notifiable
 end

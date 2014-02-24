@@ -40,6 +40,18 @@ class User < ActiveRecord::Base
     class_name: 'MemberRequest',
     foreign_key: :requester_id
     
+  def notifications
+    notifications = []
+    bands = self.bands.includes(:notifications, events: [:notifications])
+    bands.each do |band|
+      notifications += band.notifications
+      band.events.each do |event|
+        notifications += event.notifications
+      end
+    end
+    notifications
+  end
+  
   def all_requests
     MemberRequest.where("band_id IN (?)", self.bands.where("admin = true"))
   end

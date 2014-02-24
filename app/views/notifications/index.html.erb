@@ -1,0 +1,77 @@
+<h1> Requests </h1>
+
+<% if current_user.pending_requests.empty? %>
+	<h3> You don't have any requests right now. </h3>
+<% end %>
+
+<ul id="all-requests">
+
+<% current_user.pending_requests.each do |request| %>
+
+ <li id="request-block">
+		  <strong><%= request.requester.email %> </strong>
+		  <br>
+		  has requested to join your band: 
+		  <br>
+		  <strong><%= request.band.name %></strong>
+		  <br>
+
+			<form action="<%= band_memberships_url %>" method="post">
+				<input type="hidden" 
+				name="authenticity_token" 
+				value="<%= form_authenticity_token %>">
+				
+				<input type="hidden" name="band_membership[band_id]" 
+				value="<%= request.band_id %>">
+				<input type="hidden" name="band_membership[member_id]" 
+				value="<%= request.requester_id %>">
+				
+				<input type="submit" value="Accept">
+			</form>
+		
+			<form action="<%= deny_request_url(request) %>" method="post">
+				<input type="hidden" 
+				name="authenticity_token" 
+				value="<%= form_authenticity_token %>">
+				
+				<input type="hidden" name="_method" value="put">
+				
+				<input type="submit" value="Deny">
+			</form>
+	  
+ </li>
+
+<% end %>
+
+</ul>
+
+<hr>
+
+<h1> Notifications </h1>
+
+<% if current_user.notifications.empty? %>
+	<h3> You don't have any notifications right now. </h3>
+<% end %>
+
+<ul id="all-requests">
+
+<% current_user.notifications.each do |notification| %>
+
+ <li id="request-block">
+		  <strong><%= notification.message.html_safe %> </strong>
+		  <br>
+		  
+		<form action="<%= notification_url(notification) %>" method="post">
+			<input type="hidden" 
+			name="authenticity_token" 
+			value="<%= form_authenticity_token %>">
+			
+			<input type="hidden" name="_method" value="delete">
+			
+			<input type="submit" value="OK">
+		</form>
+ </li>
+
+<% end %>
+
+</ul>

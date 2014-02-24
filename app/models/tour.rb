@@ -15,6 +15,8 @@ class Tour < ActiveRecord::Base
   
   has_many :events, inverse_of: :tour
   
+  has_many :notifications, as: :notifiable
+  
   def band
     Band.joins(:events)
         .joins(:tours)

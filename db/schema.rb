@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140224154937) do
+ActiveRecord::Schema.define(:version => 20140224212702) do
 
   create_table "band_memberships", :force => true do |t|
     t.integer  "member_id",                     :null => false
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(:version => 20140224154937) do
 
   add_index "member_requests", ["band_id"], :name => "index_member_requests_on_band_id"
   add_index "member_requests", ["requester_id"], :name => "index_member_requests_on_requester_id"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.text     "message"
+  end
+
+  add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"
 
   create_table "tours", :force => true do |t|
     t.string   "name",       :null => false

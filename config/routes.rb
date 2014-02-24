@@ -7,6 +7,7 @@ TourPlanner::Application.routes.draw do
   
   resources :users, only: [:new, :create, :destroy, :show, :index, :edit, :update] do
     resources :member_requests, only: [:index]
+    resources :notifications, only: [:index]
     put 'change_password', to: 'passwords#update'
   end
   
@@ -35,6 +36,8 @@ TourPlanner::Application.routes.draw do
       get 'map_embed_data', to: "tours#map_embed_data"
     end
   end
+  
+  resources :notifications, only: [:destroy]
   
   namespace :demo do
     get 'one'

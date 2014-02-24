@@ -27,8 +27,8 @@
 		
 		<ul id="right-nav">	
 			<li class="nav-list-item"> 
-				<%= link_to "Requests", user_member_requests_url(current_user) %> 
-				(<%= current_user.pending_requests.count %>) |
+				<%= link_to "Notifications", user_notifications_url(current_user) %> 
+				( <%= current_user.pending_requests.count + current_user.notifications.count %> ) |
 			</li>
 			
 			<li class="nav-list-item"> 

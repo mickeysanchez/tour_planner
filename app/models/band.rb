@@ -13,13 +13,13 @@
 #
 
 class Band < ActiveRecord::Base
+  attr_accessible :name, :image
+  
   include PgSearch
   pg_search_scope :search_by_name, against: :name
   
   default_scope order('name')
-  
-  attr_accessible :name, :image
-  
+
   validates :name, presence: true
   
   has_attached_file :image, 
@@ -46,7 +46,9 @@ class Band < ActiveRecord::Base
     class_name: 'MemberRequest',
     foreign_key: :band_id,
     dependent: :destroy 
-  
+    
+  has_many :notifications, as: :notifiable
+
   def make_member!(user)
     membership = self.band_memberships.new
     membership.member = user

@@ -2,6 +2,7 @@ class BandsController < ApplicationController
   include BandsHelper
   include EventsHelper
 
+
   before_filter :require_signed_in!, except: [:map_embed_data]
   
   def search 
@@ -54,10 +55,25 @@ class BandsController < ApplicationController
   
   def update
     @band = Band.find(params[:id])
+    @band.assign_attributes(params[:band])
     
-    if current_user.is_band_admin?(@band) && @band.update_attributes(params[:band])
+    changes = ""
+    if @band.name_changed?
+      changes << "<li> Name changed from #{@band.name_was} to 
+                 <a href='#{band_url(@band)}'> #{@band.name}. </a> </li>"  
+    elsif @band.image_file_name_changed?
+      changes << "<li> <a href='#{band_url(@band)}'> #{@band.name} image changed. </a> </li>"   
+    end
+  
+    if current_user.is_band_admin?(@band) && @band.save
       membership = @band.find_membership(current_user)
       membership.update_attributes(params[:band_membership])
+      
+      @band.notifications.create({ 
+        message: "<a href='#{user_url(current_user)}'> #{current_user.email} </a> made
+                  changes to your band:  
+                  <ul> #{changes} </ul>"
+      })
       
       flash[:success] = ["Band deets updated!"]
       redirect_to band_url(@band)
