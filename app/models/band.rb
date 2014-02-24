@@ -49,6 +49,10 @@ class Band < ActiveRecord::Base
     
   has_many :notifications, as: :notifiable
 
+  def admins
+    self.members.where("admin = true")
+  end
+
   def make_member!(user)
     membership = self.band_memberships.new
     membership.member = user

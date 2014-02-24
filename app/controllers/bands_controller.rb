@@ -69,11 +69,13 @@ class BandsController < ApplicationController
       membership = @band.find_membership(current_user)
       membership.update_attributes(params[:band_membership])
       
-      @band.notifications.create({ 
+      @band.admins.each do |admin| 
+        admin. notifications.create({ 
         message: "<a href='#{user_url(current_user)}'> #{current_user.email} </a> made
                   changes to your band:  
                   <ul> #{changes} </ul>"
-      })
+        })
+      end
       
       flash[:success] = ["Band deets updated!"]
       redirect_to band_url(@band)
@@ -85,6 +87,13 @@ class BandsController < ApplicationController
   
   def destroy
     band = Band.find(params[:id])
+    
+    band.members.each do |member|
+      member.notifications.create({
+        message: "Your band, #{band.name} was deleted"
+      })
+    end
+    
     band.destroy
     flash[:success] = ["Band was destroyed"]
     redirect_to current_user

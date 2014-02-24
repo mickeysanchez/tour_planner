@@ -53,6 +53,9 @@ class EventsController < ApplicationController
         
         @venue.grab_coordinates
         @venue.save!
+        
+        @event.save!
+        
         flash[:success] = ["New Show Created!"]
         redirect_to @event
       rescue
@@ -106,6 +109,14 @@ class EventsController < ApplicationController
   
   def destroy
     @event = Event.find(params[:id])
+    
+    @event.band.members.each do |member|
+      member.notifications.create({
+        message: "#{@event.band.name}'s event at #{@event.venue.name} on
+                  #{l @event.date, format: "%d %B %Y"} was deleted."
+      })
+    end
+    
     @event.destroy
     
     redirect_to @event.band
