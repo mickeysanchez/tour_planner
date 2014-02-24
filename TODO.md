@@ -1,9 +1,6 @@
 #next
-!ticket links in map embed
 
-- event page links out of map embed
-
-- ticket url to demo
+- ticket url to demo 
 
 
 !map embed to demo

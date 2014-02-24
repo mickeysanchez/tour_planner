@@ -195,7 +195,7 @@ class DemoController < ApplicationController
     
     @tour.events = @events
     
-    @geo_data = geo_data(@tour, false, false)
+    @geo_data = geo_data_tour(@tour, false, false, false)
     
     case session[:demo]
     when "Beyonce"
