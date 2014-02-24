@@ -128,6 +128,7 @@ class DemoController < ApplicationController
   
       event = Event.new({
         date: show["datetime_local"],
+        ticket_url: show["url"],
         band_id: @band.id,
         venue_id: venue.id,
         tour_id: @tour.id
@@ -182,6 +183,7 @@ class DemoController < ApplicationController
   
       event = Event.new({
         date: show["datetime_local"],
+        ticket_url: show["url"],
         band_id: @band.id,
         venue_id: venue.id,
         tour_id: @tour.id
@@ -195,7 +197,7 @@ class DemoController < ApplicationController
     
     @tour.events = @events
     
-    @geo_data = geo_data_tour(@tour, false, false, false)
+    @geo_data = geo_data_tour(@tour, false, false, true)
     
     case session[:demo]
     when "Beyonce"
@@ -211,8 +213,12 @@ class DemoController < ApplicationController
     flash[:demo_header] = "Visualized!"
     flash[:demo] = ["<strong> Tour Planner </strong> automatically creates a 
                      map from all the shows within a given tour.".html_safe,
+                     "The tour pages gives you useful info about the tour, and the map
+                      markers have embedded ticket links.",
                     "That's all for now. Click <a href='#{root_url}'> here </a> to sign up!
                      Have fun on tour!".html_safe,
                      "<h1> #{quote} </h1>".html_safe]
+                     
+    @distance = get_distance(@tour)
   end
 end

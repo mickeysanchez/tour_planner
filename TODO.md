@@ -1,22 +1,27 @@
 #next
-
-- ticket url to demo 
+!notifications
+	- someone adds/updates/deletes a show
+	- someone updates/deletes a band you're in
+	- when someone adds/updates/deletes a tour in your band
+	
+!email settings
+(these also go on the tour page)
+	- distance between next two shows
+	- drive time
+	- once i add arrival times: time you need to leave
 
 
 !map embed to demo
 - DEMO
+- ticket url to demo 
 - add demo user after
 
 !TOUR PAGE
 	- total miles travelled < optimize>
 	
-	
 !Strengthen grab buttons
 
 !add cool tour data to demo
-
-!LIL's
-	!Link to all shows page
 
 # Schema
 0. users
