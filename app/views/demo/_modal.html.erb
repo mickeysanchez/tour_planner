@@ -1,5 +1,6 @@
 <style> 
 #demo {
+	position: relative;
 	margin-bottom: 20px;
 	border: 3px solid lightblue;
 	padding: 20px;
@@ -11,7 +12,20 @@ strong {
 }
 </style>
 
-<div id="demo">
+<div id="demo" class="clearfix">
+	<form action="<%= login_url %>" method="post" style="position: absolute; left: 660px">
+	  <input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
+	  
+	 <input type="hidden" name="user[email]" value="demo-user@tourplanner.co">
+	 <input type="hidden" name="user[password]" value="password">
+
+      <div class="submit">	 
+ 	  	   <input type="submit" value="Sign In As Demo User">
+      </div>
+    </form>
+	
 	<h1> <%= flash[:demo_header] %> </h1>
 	
 	<% flash[:demo].each do |demo| %>
@@ -19,4 +33,6 @@ strong {
 		<p><%= demo %></p>
 
 	<% end %>
+	
+
 </div>

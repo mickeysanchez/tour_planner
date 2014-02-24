@@ -30,3 +30,50 @@ var showCount = <%= JSON.parse(@geo_data).count %>
 </script>
 
 <h1> Total Distance: <%= @distance %> miles </h1>
+
+<div class="clearfix">
+		<h2> <a href="javascript:dropDown('#hidden')" id="get-embed"> Get Embed </a> &nbsp; << Embed this map on your band's website! </h2>
+		<div id="hidden">
+		  <p> 
+			  Paste the following code on your site wherever you want the map
+			  to show up. When you make changes to this tour on Tour Planner, 
+			  the changes will be reflected on your site:
+	  </p>
+		  <p> (Props to Mapbox) </p>
+		  <hr>
+		  <p><%= render 'tours/embed_code', tour: @tour%></p>
+	</div>
+</div>
+
+<style>
+		#hidden {
+			display: none;
+	}
+		
+		#get-embed {
+			padding: 5px;
+			border: 1px solid black;
+	}
+		
+		#get-embed:hover {
+			background: lightyellow;
+	}
+		
+		#distance {
+			vertical-align: text-top;
+	}
+</style>
+<script>
+		function dropDown(section) {
+			$(section).animate({
+				height: "toggle",
+				opacity: "toggle"
+		}, 500)
+				
+			$('html, body').animate({
+					scrollTop: $(section).offset().top
+				}, 1000);
+	}
+</script>
+
+

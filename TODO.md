@@ -1,6 +1,6 @@
 #next
 !notifications
-	- someone adds/updates/deletes a show
+	- someone adds/updates/deletes an event connected to a band you're in
 	- someone updates/deletes a band you're in
 	- when someone adds/updates/deletes a tour in your band
 	
@@ -10,10 +10,7 @@
 	- drive time
 	- once i add arrival times: time you need to leave
 
-
-!map embed to demo
-- DEMO
-- ticket url to demo 
+DEMO
 - add demo user after
 
 !TOUR PAGE

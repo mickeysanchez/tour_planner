@@ -32,7 +32,7 @@ class DemoController < ApplicationController
      story,
      "You want to be on top of your game, so you signed up for <strong>Tour Planner</strong>.".html_safe,
      "<h2>Click on the <strong>'Add Band'</strong> button at the bottom of the page to continue.</h2>".html_safe,
-     "(Click <strong>Log Out</strong> at any time to quit this guided tour.)".html_safe]
+     "If you want to get the full experience, you can click the 'Sign In As Demo User' Button'. Click <strong>Log Out</strong> at any time to quit this guided tour.".html_safe]
      
     render 'demo/user_show'
   end
@@ -213,10 +213,15 @@ class DemoController < ApplicationController
     flash[:demo_header] = "Visualized!"
     flash[:demo] = ["<strong> Tour Planner </strong> automatically creates a 
                      map from all the shows within a given tour.".html_safe,
-                     "The tour pages gives you useful info about the tour, and the map
-                      markers have embedded ticket links.",
-                    "That's all for now. Click <a href='#{root_url}'> here </a> to sign up!
-                     Have fun on tour!".html_safe,
+                     "The tour page gives you useful info about the tour, and auto-generates
+                      a map that marks your stops. We also provide embeddable code
+                      so you can include this map on your band's website. If you update
+                      this tour on Tour Planner, the changes will be reflected on your
+                      embedded map!",
+                    "That's all for now. Click <a href='#{root_url}'> here </a> to sign up or
+                      click the 'Sign In As Demo User' button on the top right to get the full
+                      experience!".html_safe,
+                     "Have fun on tour!".html_safe,
                      "<h1> #{quote} </h1>".html_safe]
                      
     @distance = get_distance(@tour)

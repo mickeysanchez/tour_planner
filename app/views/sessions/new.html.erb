@@ -28,6 +28,7 @@ html {
 }
 
 #login {
+	position: relative;
 	background-color: #fff;
 }
 
@@ -66,13 +67,29 @@ html {
 </script>
 
 <div id="login" class="clearfix">
+	
+<form action="<%= login_url %>" method="post" style="position: absolute; left: 680px; top: 5px">
+  <input type="hidden" 
+		 name="authenticity_token" 
+		 value="<%= form_authenticity_token %>">
+  
+ <input type="hidden" name="user[email]" value="demo-user@tourplanner.co">
+ <input type="hidden" name="user[password]" value="password">
 
+  <div class="submit">	 
+  	   <input type="submit" value="Sign In As Demo User">
+  </div>
+</form>
+	
   <h1>Welcome to Tour Planner!</h1> 
   <%= render 'layouts/errors' %>
   
 <div id="sign-ins" class="clearfix">
+	
+
 
 <div id="left-sign-in"> 
+	
 	<form action="<%= login_url %>" method="post">
 	  <input type="hidden" 
 			 name="authenticity_token" 
@@ -94,10 +111,11 @@ html {
 			 type="password">
 	  </div>
 	
-	  <div class="submit">	 
+	  <div class="submit" style="">	 
 	   <input type="submit" value="Sign In">
 	  </div>
 	</form>
+	  
 </div>
 
 <div id="right-create-user">
@@ -125,7 +143,6 @@ html {
 	  <input type="submit" value="Create Account">
       </div>
 	</form>
-	
 </div>
 
 </div>
