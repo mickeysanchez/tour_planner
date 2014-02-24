@@ -91,6 +91,6 @@ class BandsController < ApplicationController
     headers['Access-Control-Allow-Methods'] = 'GET'
     headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
     headers['Access-Control-Max-Age'] = "1728000"
-    render json: geo_data_events(Band.find(params[:band_id]).events), status: :ok
+    render json: geo_data_events(Band.find(params[:band_id]).events, true, false, true), status: :ok
   end
 end

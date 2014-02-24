@@ -5,7 +5,7 @@ class ToursController < ApplicationController
   
   def show
     @tour = Tour.find(params[:id])
-    @geo_data = geo_data(@tour)
+    @geo_data = geo_data_tour(@tour)
     @distance = "commented out" #get_distance(@tour)
   end
   
@@ -59,6 +59,7 @@ class ToursController < ApplicationController
     headers['Access-Control-Allow-Methods'] = 'GET'
     headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
     headers['Access-Control-Max-Age'] = "1728000"
-    render json: geo_data(Tour.find(params[:id]), true, false, true), status: :ok
+                                              #up_to_date - event_links - ticket_links
+    render json: geo_data_tour(Tour.find(params[:id]), true, false, true), status: :ok
   end
 end
