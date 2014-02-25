@@ -82,6 +82,7 @@ option {
 }
 
 input[type="submit"] {
+	position: relative;
 	box-shadow: 3px 3px 3px #888888;
 	display: inline-block;
 	border: 1px solid black;
@@ -91,6 +92,11 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
 	background: lightyellow;
+}
+
+input[type="submit"]:active {
+	top: 2px;
+	left: 2px;
 }
 
 select {
@@ -287,6 +293,7 @@ header nav {
 }
 
 .add-box {
+	position: relative;
 	box-shadow: 5px 5px 5px #888888;
 	margin-top: 30px;
 	text-align: center;
@@ -300,6 +307,11 @@ header nav {
 	color: darkblue;
 	background: #e8ebf0;
 }
+
+.add-box:active {
+	top: 3px;
+	left: 2px;
+};
 
 /* EDIT USER PAGE */
 

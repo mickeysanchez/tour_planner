@@ -104,6 +104,12 @@ class BandsController < ApplicationController
     
     if grab_image_from_seat_geek?(band)
       flash[:success] = ["Image grabbed."]
+
+      band.admins.each do |admin| 
+        admin. notifications.create({ 
+          message: "<a href='#{band_url(band)}'> #{band.name} image changed. </a>"
+        })
+      end
     else
       flash[:errors] = ["Couldn't find that image. Sorry."]
     end
