@@ -1,4 +1,19 @@
+<style>
+	#message {
+		position: fixed;
+		top: -5px;
+		margin-left: 95px;
+		width: 400px;
+	}
+	
+</style>
+
+
+
 <header>
+	
+
+	
 	<nav class="clearfix">
 			
 		<ul id="left-nav">
@@ -23,9 +38,11 @@
 				<%= link_to "Settings", "" %> |
 			</li>
 			
-			<li class="nav-list-item"> 
+			<li class="nav-list-item" style="position=relative;"> 
 				<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
+				<p id="message"> << Click here to quit guided tour</p>
 			</li>
+			
 		</ul>
 		
 		

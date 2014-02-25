@@ -294,6 +294,7 @@ header nav {
 /* LARGE BOX SHAPED LINKS */
 
 .all-shows-box {
+	position: relative;
     box-shadow: 5px 5px 5px #888888;
 	margin-top: 30px;
 	text-align: center;
@@ -303,6 +304,11 @@ header nav {
 
 .all-shows-box:hover {
 	background: #e8ebf0;
+}
+
+.all-shows-box:active {
+	top: 3px;
+	left: 2px;
 }
 
 .add-box {
@@ -324,7 +330,7 @@ header nav {
 .add-box:active {
 	top: 3px;
 	left: 2px;
-};
+}
 
 /* EDIT USER PAGE */
 

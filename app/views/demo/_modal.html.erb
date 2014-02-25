@@ -1,19 +1,60 @@
-<style> 
+<style>
+#blackout {
+	position: fixed;
+	background: black;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	opacity: .65;
+}
+
+ 
 #demo {
 	position: relative;
-	margin-bottom: 20px;
+	background: white;
+	width: 900px;
+	margin: 20px auto;
+	text-align: center;
 	border: 3px solid lightblue;
-	padding: 20px;
-	font-size: 18px;
+	padding: 10px;
+	font-size: 14px;
+	z-index: 3;
 }
 
 strong {
 	color: #6b2607;
 }
+
+#previous {
+	float: left;
+}
+
+#previous > input {
+	font-weight: bold;
+	background: white;
+	border: 3px solid lightblue;
+}
+
+#next {
+	float: right;
+}
+
+#next > input {
+	border: 3px solid lightblue;
+	font-weight: bold;
+	background: white;
+}
+
+#arrow {
+	opacity: .1;
+}
+
 </style>
 
+<div id="blackout"></div>
+
 <div id="demo" class="clearfix">
-	<form action="<%= login_url %>" method="post" style="position: absolute; left: 660px">
+	<!-- <form action="<%= login_url %>" method="post" style="position: absolute; left: 660px">
 	  <input type="hidden" 
 			 name="authenticity_token" 
 			 value="<%= form_authenticity_token %>">
@@ -24,15 +65,85 @@ strong {
       <div class="submit">	 
  	  	   <input type="submit" value="Sign In As Demo User">
       </div>
-    </form>
+    </form> -->
 	
-	<h1> <%= flash[:demo_header] %> </h1>
+	<h1> <%#= flash[:demo_header] %> </h1>
 	
-	<% flash[:demo].each do |demo| %>
+	<%# flash[:demo].each do |demo| %>
 
-		<p><%= demo %></p>
+		<p><%#= demo %></p>
 
-	<% end %>
+	<%# end %>
 	
+	<h2 id="current"></h2>
 
+	<div id="previous"></div>
+	<div id="next"></div>
 </div>
+
+<script>
+
+$(document).ready(function () {
+	var steps = <%= raw flash[:demo] %>
+	
+	// steps.forEach(function(el) {
+	// 	$('#demo').append("<p>" + el + "</p>");
+	// });
+	var i = 0
+	
+	var checkButtons = function () {
+		if (i < steps.length) {
+			$('#next').html("<input type='submit' value='Next >>'></input>")
+		}
+		
+		if (i == steps.length-1 ) {
+			$('#next').html("");
+			fadeOut();
+			point();
+		}
+		 
+		if (i > 0) {
+			$('#previous').html("<input type='submit' value='<< Previous'></input>")
+		}
+		
+		if (i == 0) {
+			$('#previous').html("")
+		}
+	}
+	
+	var fadeOut = function () {
+		
+		$("#blackout").animate({
+			opacity: "toggle"
+		}, 1000)
+				
+	}
+	
+	var point = function () {
+		
+		$("#arrow").animate({
+			opacity: "toggle"
+		}, 1000)
+		
+	}
+	
+	$('#current').html(steps[i]);
+	checkButtons();
+	
+	
+	$('#next').on("click", function(event) {
+		event.preventDefault();
+		i++;
+		$('#current').html(steps[i]);
+		checkButtons();
+	})
+	
+	$('#previous').on("click", function(event) {
+		event.preventDefault();
+		i--;
+		$('#current').html(steps[i]);
+		checkButtons();
+	})
+});
+
+</script>

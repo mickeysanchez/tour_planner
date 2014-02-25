@@ -35,6 +35,8 @@ class BandsController < ApplicationController
       Band.transaction do
         @band.save!
         
+        grab_image_from_seat_geek?(@band)
+        
         band_membership = @band.band_memberships.new(params[:band_membership]);
         band_membership.member = current_user
         band_membership.toggle(:admin)

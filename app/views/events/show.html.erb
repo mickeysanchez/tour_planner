@@ -6,7 +6,7 @@
 </h1>
 
 <h1>
-	<%= link_to "Get Tickets", @event.ticket_url %> 
+	<%= link_to "Get Tickets", @event.ticket_url unless @event.ticket_url.empty? %> 
 </h1>
 
 <h1> <%= link_to @event.band.name, band_url(@event.band) %> </h1>

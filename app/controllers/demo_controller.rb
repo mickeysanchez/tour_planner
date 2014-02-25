@@ -18,21 +18,20 @@ class DemoController < ApplicationController
     
     case params[:choice]
     when "Beyonce"
-      story = "She asked you to be the tour manager for her upcoming European tour."
+      story = "She asked you to be the tour manager for her upcoming European tour!"
     when "The Rolling Stones"
-      story = "They wanted you to be the tour manager for their upcoming Australian tour."
+      story = "They wanted you to be the tour manager for their upcoming Australian tour!"
     when "Dr. Dog"
-      story = "They needed you to be the tour manager for their upcoming tour of the U.S."
+      story = "They needed you to be the tour manager for their upcoming tour of the U.S!"
     when "One Direction"
-      story = "They begged you to be the tour manager for their upcoming World Tour."
+      story = "They begged you to be the tour manager for their upcoming World Tour!"
     end
     
     flash[:demo] = 
-    ["Congratulations! You were recently contacted by <strong>#{@band}</strong>.".html_safe,
+    ["Congratulations! You were recently contacted by <strong>#{@band}</strong>!".html_safe,
      story,
      "You want to be on top of your game, so you signed up for <strong>Tour Planner</strong>.".html_safe,
-     "<h2>Click on the <strong>'Add Band'</strong> button at the bottom of the page to continue.</h2>".html_safe,
-     "If you want to get the full experience, you can click the 'Sign In As Demo User' Button'. Click <strong>Log Out</strong> at any time to quit this guided tour.".html_safe]
+     "<h2>Click on the <strong>'Add Band'</strong> button at the bottom of the page to continue.</h2>".html_safe]
      
     render 'demo/user_show'
   end
