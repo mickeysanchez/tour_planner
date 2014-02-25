@@ -1,17 +1,15 @@
 #next
 !notifications
-	- someone becomes a member of one of your bands
-	
 	- someone adds/updates/deletes an event connected to a band you're in
 	- when someone adds/updates/deletes a tour in your band
 
+!notification to demo
 !one sentence at a time tops
 !sentence by sentence - click next - step 1 of n
 !fade page back in when you have to do something
 !ok button
 
-!public/private event status
-	
+!public/private event status	
 !email settings
 
 frequency of tour emails

@@ -8,21 +8,27 @@ class BandMembershipsController < ApplicationController
           bm.save!
           
           bm.member.notifications.create({ 
-            message: "Your member request was accepted! You are now a member of 
+            message: "Member request was accepted! You are now a member of 
                       <a href='#{band_url(bm.band)}'> #{bm.band.name}! </a>" 
           })
+          
+          bm.band.members.each do |member|
+            next if member == bm.member 
+            member.notifications.create({
+              message: "#{bm.member.email} is now a member of #{bm.band.name}!"
+            })
+          end
             
           mr = MemberRequest
                 .where("requester_id =? AND band_id = ?", bm.member_id, bm.band_id)
                 .first
           mr.status = "approved"
           mr.save!
-          flash[:success] = ["#{bm.member.email} is now in #{bm.band.name}!"]
-          redirect_to user_member_requests_url(current_user)
+          redirect_to user_notifications_url(current_user)
       end
     rescue
         flash[:errors] = ["Errrror"]
-        redirect_to user_member_requests_url(current_user)
+        redirect_to user_notifications_url(current_user)
     end
   end
   

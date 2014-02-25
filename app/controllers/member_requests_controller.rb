@@ -16,6 +16,6 @@ class MemberRequestsController < ApplicationController
     mr.status = "denied"
     mr.save
     flash[:success] = ["Member request denied"]
-    redirect_to user_member_requests_url(current_user)
+    redirect_to user_notifications_url(current_user)
   end
 end
