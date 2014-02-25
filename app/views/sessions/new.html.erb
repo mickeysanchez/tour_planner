@@ -1,6 +1,12 @@
+<% if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|iPad|Android)/] %>
+  <% bg = 'login-bg-phone.jpg' %>
+<% else %>
+  <% bg = 'login-bg.jpg' %>
+<% end %>
+
 <style>
 html {
-    background:url(<%= asset_path 'login-bg.png' %>) no-repeat center center fixed; 
+    background:url(<%= asset_path bg %>) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

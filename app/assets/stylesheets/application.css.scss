@@ -81,6 +81,16 @@ option {
 	font: inherit;
 }
 
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="date"]:hover,
+input[type="file"]:hover,
+input[type="search"]:hover {
+	border: 1px solid green;
+	box-shadow: 1px 1px 1px #888888;
+}
+
 input[type="submit"] {
 	-webkit-appearance: none;
 	border-radius: 0;
@@ -150,7 +160,7 @@ input[type="file"] {
 
 header {
 	border-bottom: 1px solid black;
-    background:url('header.png') no-repeat; 
+    background:url('header.jpg') no-repeat; 
 	background-position: left-top;
     -webkit-background-size: cover;
     -moz-background-size: cover;
