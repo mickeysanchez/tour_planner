@@ -54,7 +54,14 @@ class EventsController < ApplicationController
         @venue.grab_coordinates
         @venue.save!
         
-        @event.save!
+        @event.band.members.each do |member|
+          next if member == current_user
+          member.notifications.create({
+            message: "Your band #{@event.band.name} has a new event on 
+                      <a href='#{event_url(@event)}'> 
+                      #{l @event.date, format: "%d %B %Y" }</a>."
+          })
+        end
         
         flash[:success] = ["New Show Created!"]
         redirect_to @event
@@ -78,7 +85,7 @@ class EventsController < ApplicationController
       @venue = Venue.find(params[:venue][:id])
     end
     
-    @event = @venue.events.new(params[:event])
+    @event = Event.find(params[:id])
     @event.band_id = params[:band_id]
     
     if params[:tour][:id].empty? && !params[:tour][:name].empty?
@@ -96,12 +103,41 @@ class EventsController < ApplicationController
           @tour.save!
         end
         
+        @event.assign_attributes(params[:event])
+        @event.venue = @venue
+        
+        changes = ""
+        if @event.date_changed?
+          changes << "<li> Date changed from #{l @event.date_was, format: "%d %B %Y" } to 
+                     #{l @event.date, format: "%d %B %Y" } </li>"  
+        end
+        
+        if @event.venue_id_changed?
+          changes << "<li> Venue was changed to <a href='#{venue_url(@event.venue)}'>  #{@event.venue.name} </a> </li>"   
+        end
+        
+        
+        @event.save!
+         
+        @event.band.members.each do |member|
+          next if member == current_user
+          member.notifications.create({
+            message: "Your band #{@event.band.name}'s event on 
+                      <a href='#{event_url(@event)}'> 
+                      #{l @event.date, format: "%d %B %Y" }</a>
+                      has been updated.
+                      <ul> #{changes} </ul>"
+          })
+        end
+        
+      
         @venue.grab_coordinates
         @venue.save!
+        
         flash[:success] = ["Show details updated!"]
         redirect_to event_url(@event)
       rescue
-        flash[:errors] =  @event.errors.full_messages + @venue.errors.full_messages
+        flash[:errors] = @event.errors.full_messages + @venue.errors.full_messages
         redirect_to :back
       end
     end
@@ -111,8 +147,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     
     @event.band.members.each do |member|
+      next if member == current_user
       member.notifications.create({
-        message: "#{@event.band.name}'s event at #{@event.venue.name} on
+        message: "Your band #{@event.band.name}'s event at #{@event.venue.name} on
                   #{l @event.date, format: "%d %B %Y"} was deleted."
       })
     end

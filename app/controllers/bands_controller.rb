@@ -61,7 +61,8 @@ class BandsController < ApplicationController
     if @band.name_changed?
       changes << "<li> Name changed from #{@band.name_was} to 
                  <a href='#{band_url(@band)}'> #{@band.name}. </a> </li>"  
-    elsif @band.image_file_name_changed?
+    end
+    if @band.image_file_name_changed?
       changes << "<li> <a href='#{band_url(@band)}'> #{@band.name} image changed. </a> </li>"   
     end
   
