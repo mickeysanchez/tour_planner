@@ -85,7 +85,7 @@ class DemoController < ApplicationController
     flash[:demo] = ["Bam! There it is!",
                     "The eyes of #{session[:demo]} will keep you focused.",
                     "You can enter in shows yourself, or you can use some more <br> behind the scenes magic to grab existing event data.",
-                    "Click on the <strong>Grab Shows From Seat Geek</strong> button to populate your page with all the 
+                    "Click on the <strong>Grab Shows From Seat Geek</strong> button to populate <br> your page with all the 
                     current #{session[:demo]} events.".html_safe]
     
     @image = session[:demo].downcase.split(" ").join("") + ".jpg"
@@ -151,7 +151,7 @@ class DemoController < ApplicationController
     
     
     flash[:demo_header] = "Bam! There they are!"
-    flash[:demo] = ["Using the <strong> Grab Shows </strong> button automatically creates a tour containing all the
+    flash[:demo] = ["Using the <strong> Grab Shows </strong> button automatically creates a tour <br> containing all the
                      shows that were grabbed.".html_safe,
                     "Before we look at the tour, it looks like you have a notification! What could it be?",
                     "Click on the 'Notifications' up above to take a look.".html_safe]
@@ -165,7 +165,7 @@ class DemoController < ApplicationController
     @band = session[:demo]
     
     
-    flash[:demo] = ["You received a member request. Someone wants to join <strong> #{session[:demo]} </strong>.".html_safe,
+    flash[:demo] = ["You received a member request! Someone wants to join <strong> #{session[:demo]} </strong>.".html_safe,
                     "Members of a band will receive notifications <br> when shows and tours are added, updated, or
                      deleted.".html_safe,
                     "Looks like you got a request from <strong> #{session[:demo]}'s </strong> agent.",
