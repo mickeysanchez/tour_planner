@@ -49,8 +49,8 @@ class ToursController < ApplicationController
       @tour.band.admins.each do |admin|
         next if admin == current_user
         admin.notifications.create({
-          message: "Your band <a href='#{band_url(@tour.band)}'> #{@tour.band.name}'s </a> 
-                    <a href='#{tour_url(@tour)}'> tour </a> was edited"
+          message: "Your band <a href='#{tour_url(@tour)}'> 
+                   #{@tour.band.name}'s tour </a> was edited"
         })
       end
       
@@ -67,7 +67,15 @@ class ToursController < ApplicationController
     band = @tour.band
     
     if @tour.admin_user?(current_user)
+      @tour.band.members.each do |member|
+        next if member == current_user
+        member.notifications.create({
+          message: "Your band #{@tour.band.name}'s tour: #{@tour.name}, was deleted."
+        })
+      end
+      
       @tour.destroy
+      
       redirect_to band
     end
   end
