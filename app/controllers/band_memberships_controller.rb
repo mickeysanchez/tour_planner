@@ -6,6 +6,12 @@ class BandMembershipsController < ApplicationController
         
           bm = BandMembership.new(params[:band_membership])
           bm.save!
+          
+          bm.member.notifications.create({ 
+            message: "Your member request was accepted! You are now a member of 
+                      <a href='#{band_url(bm.band)}'> #{bm.band.name}! </a>" 
+          })
+            
           mr = MemberRequest
                 .where("requester_id =? AND band_id = ?", bm.member_id, bm.band_id)
                 .first
@@ -27,6 +33,12 @@ class BandMembershipsController < ApplicationController
     if current_user.is_band_admin?(bm.band)
       bm.admin = true
       bm.save
+      
+      bm.member.notifications.create({ 
+        message: "You are now an admin for:  
+                  <a href='#{band_url(bm.band)}'> #{bm.band.name}! </a>" 
+      })
+      
       redirect_to band_url(bm.band)
     else
       redirect_to band_url(bm.band)

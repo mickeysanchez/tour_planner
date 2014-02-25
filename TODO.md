@@ -1,9 +1,10 @@
 #next
 !notifications
 	- someone becomes a member of one of your bands
-	- someone adds/updates/deletes an event connected to a band you're in
+	- someone accepts your member request
+	- someone makes you an admin
 	
-	- someone updates/deletes a band you're in
+	- someone adds/updates/deletes an event connected to a band you're in
 	- when someone adds/updates/deletes a tour in your band
 
 !one sentence at a time tops
