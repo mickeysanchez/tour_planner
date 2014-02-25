@@ -6,6 +6,13 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+<style>
+  #arrow {
+  	opacity: 0;
+  }
+</style>
+
 </head>
 
 <body>
@@ -19,4 +26,14 @@
 </div>
 
 </body>
+<script>
+	$('#container').on('click', function (event) {
+		$target = $(event.target);
+		if ( $target.is("#target") || $target.is(".target") ) {
+			
+		} else {
+			event.preventDefault();
+		}
+	})
+</script>
 </html>

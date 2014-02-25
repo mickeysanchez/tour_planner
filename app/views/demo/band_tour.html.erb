@@ -10,6 +10,7 @@
 		border: 1px solid black;
 		width: 100%;
 		height: 500px;
+		z-index: 0;
 	}
 </style>
 
@@ -32,7 +33,7 @@ var showCount = <%= JSON.parse(@geo_data).count %>
 <h1> Total Distance: <%= @distance %> miles </h1>
 
 <div class="clearfix">
-		<h2> <a href="javascript:dropDown('#hidden')" id="get-embed"> Get Embed </a> &nbsp; << Embed this map on your band's website! </h2>
+		<h2> <a href="javascript:dropDown('#hidden')" id="get-embed" class="target"> Get Embed </a> &nbsp; << Embed this map on your band's website! </h2>
 		<div id="hidden">
 		  <p> 
 			  Paste the following code on your site wherever you want the map

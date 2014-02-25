@@ -5,15 +5,12 @@
 		margin-left: 95px;
 		width: 400px;
 	}
-	
 </style>
 
 
 
 <header>
-	
-
-	
+	<div class="blackout"></div>
 	<nav class="clearfix">
 			
 		<ul id="left-nav">
@@ -39,8 +36,8 @@
 			</li>
 			
 			<li class="nav-list-item" style="position=relative;"> 
-				<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout'  %>
-				<p id="message"> << Click here to quit guided tour</p>
+				<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout', style: "z-index:10"  %>
+				<p id="message" > << Click <strong>Log Out</strong> To Quit Guided Tour</p>
 			</li>
 			
 		</ul>
@@ -48,3 +45,14 @@
 		
 	</nav>
 </header>
+
+<script>
+
+$('header').on('click', function (event) {
+	$target = $(event.target);
+	if ($target.is("a")) {
+		event.preventDefault();
+	}
+})
+
+</script>

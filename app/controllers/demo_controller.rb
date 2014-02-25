@@ -20,26 +20,29 @@ class DemoController < ApplicationController
     when "Beyonce"
       story = "She asked you to be the tour manager for her upcoming European tour!"
     when "The Rolling Stones"
-      story = "They wanted you to be the tour manager for their upcoming Australian tour!"
+      story = "They want you to be the tour manager for their upcoming Australian tour!"
     when "Dr. Dog"
-      story = "They needed you to be the tour manager for their upcoming tour of the U.S!"
+      story = "They need you to be the tour manager for their upcoming tour of the U.S!"
     when "One Direction"
       story = "They begged you to be the tour manager for their upcoming World Tour!"
     end
     
     flash[:demo] = 
-    ["Congratulations! You were recently contacted by <strong>#{@band}</strong>!".html_safe,
+    ["Congratulations! You were recently contacted by <strong>#{@band}</strong>! <br><br>
+      (you can quit this demo at any time by clicking 'Log Out') ".html_safe,
      story,
      "You want to be on top of your game, so you signed up for <strong>Tour Planner</strong>.".html_safe,
+     "The first thing you need to do is add <strong>#{@band}</strong> as one of your bands".html_safe,
      "<h2>Click on the <strong>'Add Band'</strong> button at the bottom of the page to continue.</h2>".html_safe]
      
     render 'demo/user_show'
   end
   
   def new_band
-    flash[:demo_header] = "It's easy to create a new band."
-    flash[:demo] = ["(It's even easier when we fill out the form out for you.)", 
-                    "Click <strong> Create Band </strong> to move on.".html_safe]
+    flash[:demo_header] = 
+    flash[:demo] = ["It's easy to create a new band.",
+                    "We filled out the form for you.", 
+                    "Just click <strong> Create Band </strong> to move on.".html_safe]
     @band = Band.new({name: session[:demo] })
   end
   
@@ -56,7 +59,7 @@ class DemoController < ApplicationController
     @events = []
     
     flash[:demo_header] = "Cool!"
-    flash[:demo] = ["Here's your band's page.".html_safe,
+    flash[:demo] = ["You created a band page!".html_safe,
                     "Let's spice it up a bit by adding a photo.",
                     "You can upload a photo on your own, but we make it super simple with the <strong> Grab Image </strong> button.".html_safe,
                     "If you've entered your band name correctly, it will go off into the internet and grab a photo (via Seat Geek).", "Try it out!"]
@@ -75,10 +78,9 @@ class DemoController < ApplicationController
     @events = []
     
     flash[:demo_header] = "Cool!"
-    flash[:demo] = ["Looking good.",
+    flash[:demo] = ["Bam! There it is!",
                     "The eyes of #{session[:demo]} will keep you focused.",
-                    "You can enter in shows yourself, or you can use some more behind the scenes magic to grab event
-                     data with Seat Geek.",
+                    "You can enter in shows yourself, or you can use some more behind the scenes magic to grab existing event data.",
                     "Click on the <strong>Grab Shows From Seat Geek</strong> button to populate your page with all the 
                     current #{session[:demo]} events.".html_safe]
     
@@ -214,17 +216,30 @@ class DemoController < ApplicationController
     end
     
     flash[:demo_header] = "Visualized!"
-    flash[:demo] = ["<strong> Tour Planner </strong> automatically creates a 
+    flash[:demo] = ["<strong> Tour Planner </strong> auto-generates a 
                      map from all the shows within a given tour.".html_safe,
-                     "The tour page gives you useful info about the tour, and auto-generates
-                      a map that marks your stops. We also provide embeddable code
-                      so you can include this map on your band's website. If you update
-                      this tour on Tour Planner, the changes will be reflected on your
-                      embedded map!",
-                    "That's all for now. Click <a href='#{root_url}'> here </a> to sign up or
-                      click the 'Sign In As Demo User' button on the top right to get the full
-                      experience!".html_safe,
-                     "Have fun on tour!".html_safe,
-                     "<h1> #{quote} </h1>".html_safe]
+                     "<strong> Tour Planner </strong> also provides embeddable code
+                      so you can include this map on your band's website.".html_safe,
+                      "If you update
+                      this tour on <strong> Tour Planner </strong>, the changes will be reflected on your
+                      website's embedded map!".html_safe,
+                    "That's all for now. Click <a href='#{root_url}'> here </a> to sign up -or-
+                      click 
+                      
+                      <form action='#{login_url}' method='post' style='display:inline-block'>
+                        <input type='hidden' 
+                      		 name='authenticity_token' 
+                      		 value='<%= form_authenticity_token %>'>
+  
+                       <input type='hidden' name='user[email]' value='demo-user@tourplanner.co'>
+                       <input type='hidden' name='user[password]' value='password'>
+
+                        <div class='submit'>	 
+                        	   <input type='submit' value='here'>
+                        </div>
+                      </form>
+                      
+                      to sign in as a demo user!
+                      <br><br> #{quote} ".html_safe]
   end
 end

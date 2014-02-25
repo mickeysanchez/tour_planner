@@ -1,9 +1,6 @@
 #next
-!notification to demo
-!one sentence at a time tops
-!sentence by sentence - click next - step 1 of n
-!fade page back in when you have to do something
-!ok button
+!notifications to demo before band page = "we'll look at the tour in a second. but first, it looks like you got
+a notification!"
 
 !public/private event status	
 !email settings
@@ -14,9 +11,6 @@ frequency of tour emails
 	- distance between next two shows
 	- drive time
 	- once i add arrival times: time you need to leave
-
-DEMO
-- add demo user after
 
 !TOUR PAGE
 	- total miles travelled < optimize>
