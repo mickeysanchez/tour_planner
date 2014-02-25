@@ -18,7 +18,7 @@ mickey = User.create({ email: "sanchez.mickey@gmail.com", password: "password" }
 mickey_band = mickey.bands.create({ name: "The Smoochies" })
 mickey_band.make_admin!(mickey)
 
-User.create({ email: "demo-user@tourplanner.co", password: "password" })
+demo_user = User.create({ email: "demo-user@tourplanner.co", password: "password" })
 
 # HIGH-PROFILE USERS
 # PROPS TO SEAT GEEK API

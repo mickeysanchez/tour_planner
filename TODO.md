@@ -1,5 +1,4 @@
 #next
-
 !notification to demo
 !one sentence at a time tops
 !sentence by sentence - click next - step 1 of n
