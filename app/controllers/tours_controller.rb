@@ -18,6 +18,15 @@ class ToursController < ApplicationController
     @tour = Tour.new(params[:tour])
     if @tour.save
       flash[:success] = ["Tour Created!"]
+      
+      @tour.band.admins.each do |admin|
+        next if admin == current_user
+        admin.notifications.create({
+          message: "A <a href='#{tour_url(@tour)}'> tour </a> was added
+                    to your band: <a href='#{band_url(@tour.band)}'> #{@tour.band.name}. </a>"
+        })
+      end
+      
       redirect_to @tour
     else
       @band = Band.find(params[:band_id])
@@ -36,6 +45,15 @@ class ToursController < ApplicationController
     @tour = Tour.find(params[:id])
     if @tour.update_attributes(params[:tour])
       flash[:success] = ["Tour Updated!"]
+      
+      @tour.band.admins.each do |admin|
+        next if admin == current_user
+        admin.notifications.create({
+          message: "Your band <a href='#{band_url(@tour.band)}'> #{@tour.band.name}'s </a> 
+                    <a href='#{tour_url(@tour)}'> tour </a> was edited"
+        })
+      end
+      
       redirect_to @tour
     else
       @band = @tour.band
