@@ -26,9 +26,15 @@
 		
 		
 		<ul id="right-nav">	
-			<li class="nav-list-item"> 
-				<%= link_to "Requests", "" %> 
-				( 0 ) |
+			<li class="nav-list-item">
+				<div style="opacity: 0; background: transparent; float: left; position: relative; right: 0; bottom: 0, display: none" class="add-arrow" id="header-arrow">
+					<%= image_tag "demo-arrow.png", height: "20px"%>
+				</div>
+			</li>
+			
+			<li class="nav-list-item" id="target"> 
+				<%= link_to "Notifications", demo_notifications_url, id: "notifications" %> 
+				( <%= @requests %> ) |
 			</li>
 			
 			<li class="nav-list-item"> 
@@ -48,11 +54,15 @@
 
 <script>
 
+
+
 $('header').on('click', function (event) {
 	$target = $(event.target);
 	if ($target.is("a")) {
-		event.preventDefault();
-	}
+		if (!$target.is(".target")) {
+		  event.preventDefault();	
+		};	
+	};
 })
 
 </script>

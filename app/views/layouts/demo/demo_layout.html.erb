@@ -13,6 +13,7 @@
   }
 </style>
 
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +27,9 @@
 </div>
 
 </body>
+
 <script>
+	
 	$('#container').on('click', function (event) {
 		$target = $(event.target);
 		if ( $target.is("#target") || $target.is(".target") ) {
@@ -35,5 +38,7 @@
 			event.preventDefault();
 		}
 	})
+	
+
 </script>
 </html>

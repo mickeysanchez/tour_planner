@@ -13,7 +13,7 @@
 	position: relative;
 	background: white;
 	width: 900px;
-	margin: 20px auto;
+	margin: 60px auto;
 	text-align: center;
 	border: 3px solid lightblue;
 	padding: 10px;
@@ -98,6 +98,15 @@ $(document).ready(function () {
 					$("#arrow").fadeTo(1000, 1)
 				});
 			}, 2000)
+			
+			if ($("#header-arrow").hasClass("arrow-on")) {
+				$("#header-arrow").fadeTo(400, 1)
+				setInterval(function () {
+					$("#header-arrow").fadeTo(1000, 0, function () {
+						$("#header-arrow").fadeTo(1000, 1)
+					});
+				}, 2000)
+			}
 
 			
 		}

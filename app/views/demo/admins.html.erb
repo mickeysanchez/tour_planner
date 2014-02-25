@@ -1,3 +1,13 @@
+<style>
+#demo {
+}
+
+#show-heading {
+}
+</style>
+
+
+
 <div id="show-heading" class="clearfix">
 	<%= render 'layouts/errors' %>
 
@@ -58,12 +68,12 @@
 		  <% end %>
 	  
 		  <% if true %>
-			  <%= membership.member.is_band_admin?(@band) ? "(Admin)" : "" %>
+			  <%= membership.admin ? "(Admin)" : "" %>
 		  <% end %>
 		  </a>
 	  
-		  <% if false %>
-			  <%= button_to "Make Admin", make_admin_url(membership), method: :put %>
+		  <% if !membership.admin %>
+			  <%= button_to "Make Admin", "", method: :put %>
 		  <% end %>
 	  </li>
 	<% end %>
@@ -86,8 +96,8 @@
 	<h1> Tours </h1>
 	<li id="tour-block">
 		<ul class="block-header">
-			<li class="block-header-item"> 
-				<%= link_to tour.name, demo_band_tour_url%>
+			<li class="block-header-item" id="target"> 
+				<%= link_to tour.name, demo_band_tour_url, id: "target"%>
 			</li>
 	    </ul>
 		
@@ -111,6 +121,10 @@
 		</div>
 	</a>
 <% end %>
+
+<div style="float: right; position:relative; right: 950px; bottom: 180px" id="arrow">
+	<%= image_tag "demo-arrow.jpg", width: "100px"%>
+</div>
 
 <p>
 <h2 style=""> Events (<%= @events.count %>) </h2>
@@ -164,14 +178,3 @@
 	
 	<% end %>
 </ul>
-
-<script>
-	
-	$(document).ready(function () {
-		$('#header-arrow').addClass('arrow-on');
-
-		$('#notifications').addClass('target');
-	})
-
-
-</script>
