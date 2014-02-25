@@ -1,6 +1,4 @@
 #next
-!notifications
-	- someone adds/updates/deletes an event connected to a band you're in
 
 !notification to demo
 !one sentence at a time tops

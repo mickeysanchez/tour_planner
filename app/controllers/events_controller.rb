@@ -164,6 +164,14 @@ class EventsController < ApplicationController
     
     if grab_from_seat_geek?(band)
       flash[:success] = ["Shows grabbed."]
+      
+     band.members.each do |member|
+        next if member == current_user
+        member.notifications.create({
+          message: "Shows grabbed for your band <a href='#{band_url(band)}'> #{band.name} </a>."
+        })
+      end
+      
     else
       flash[:errors] = ["No shows on Seat Geek for that band. Sorry."]
     end
