@@ -42,6 +42,8 @@ class Notification < ActiveRecord::Base
     subject = self.notifiable_type.constantize.find(notifiable_id)
     if subject.is_a?(Band)
       band_difference_translator(subject)
+    elsif subject.is_a?(Event)
+      event_difference_translator(subject)
     end 
   end
   
@@ -60,6 +62,9 @@ class Notification < ActiveRecord::Base
     when "update"
       "<a href='#{user_path(changer)}'> #{changer.email} </a> made changes to your band: 
        <a href='#{band_path(band)}'> #{band.name} </a>"
+    when "grab_shows"
+       "Shows grabbed for your band 
+        <a href='#{band_path(band)}'> #{band.name}</a>."  
     end
   end
   
@@ -89,8 +94,33 @@ class Notification < ActiveRecord::Base
        #{I18n.l event.date, format: "%d %B %Y" }</a>."
     when "destroy"
       "Your band #{event.band.name}'s event at #{event.venue.name} on
-      #{I18n.l event.date, format: "%d %B %Y"} was deleted."       
+      #{I18n.l event.date, format: "%d %B %Y"} was deleted."
+    when "update"
+       "Your band #{event.band.name}'s event on 
+        <a href='#{event_path(event)}'> 
+        #{I18n.l event.date, format: "%d %B %Y" }</a>
+        has been updated."     
     end
              
+  end
+  
+  def event_difference_translator(event)
+    differences = []
+    if differences_hash.keys.include?("date")
+      old_date = differences_hash["date"][0]
+      differences << 
+      "Date changed from #{I18n.l old_date, format: "%d %B %Y" } to 
+       #{I18n.l event.date, format: "%d %B %Y" }"  
+    end
+    
+    if differences_hash.keys.include?("venue_id")
+      old_venue = differences_hash["venue_id"][0]
+      differences << 
+      "Venue was changed from #{Venue.find(old_venue).name} 
+      to <a href='#{venue_path(event.venue)}'>  
+      #{event.venue.name} </a> </li>"   
+    end
+    
+    differences
   end
 end

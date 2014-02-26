@@ -19,7 +19,6 @@
 
 class Event < ActiveRecord::Base
   attr_accessible :name, :venue_id, :date, :poster, :band_id, :tour_id, :ticket_url
-  after_save :send_save_notifications
   
   validates :date, presence: true
   
@@ -34,11 +33,7 @@ class Event < ActiveRecord::Base
   
   has_many :notifications, as: :notifiable
   
-  def send_save_notifications
-    # self.band.members.each do |member|
-    #   member.notifications.create({
-    #     message: "yag"
-    #   })
-    # end
+  def self.all
+    Event.where("active = true")
   end
 end

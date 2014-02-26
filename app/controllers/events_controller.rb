@@ -72,7 +72,7 @@ class EventsController < ApplicationController
         
         @event.assign_attributes(params[:event])
         @event.venue = @venue
-        changes = record_changes(@event)
+        changes = @event.changes
               
         @event.save!
         notify_event_update(@event, changes)
@@ -94,7 +94,7 @@ class EventsController < ApplicationController
     
     notify_event_destroy(@event)
     
-    @event.destroy
+    @event.toggle!(:active)
     
     redirect_to @event.band
   end
