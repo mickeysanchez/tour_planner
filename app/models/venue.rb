@@ -44,9 +44,13 @@ class Venue < ActiveRecord::Base
       }
     ).to_s
     
-    location_data = JSON.parse(RestClient.get(url))
+    begin 
+      location_data = 
+      JSON.parse(RestClient.get(url))["results"].first["geometry"]["location"]
     
-    self.lat = location_data["results"].first["geometry"]["location"]["lat"]
-    self.lon = location_data["results"].first["geometry"]["location"]["lng"]
+      self.lat = location_data["lat"]
+      self.lon = location_data["lng"]
+    rescue
+    end
   end
 end

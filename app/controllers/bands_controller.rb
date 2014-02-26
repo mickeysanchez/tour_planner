@@ -59,27 +59,13 @@ class BandsController < ApplicationController
     @band = Band.find(params[:id])
     @band.assign_attributes(params[:band])
     
-    changes = ""
-    if @band.name_changed?
-      changes << "<li> Name changed from #{@band.name_was} to 
-                 <a href='#{band_url(@band)}'> #{@band.name}. </a> </li>"  
-    end
-    if @band.image_file_name_changed?
-      changes << "<li> <a href='#{band_url(@band)}'> #{@band.name} image changed. </a> </li>"   
-    end
+    changes = record_changes(@band)
   
     if current_user.is_band_admin?(@band) && @band.save
       membership = @band.find_membership(current_user)
       membership.update_attributes(params[:band_membership])
       
-      @band.members.each do |member|
-        next if member == current_user 
-        member.notifications.create({ 
-        message: "<a href='#{user_url(current_user)}'> #{current_user.email} </a> made
-                  changes to your band:  
-                  <ul> #{changes} </ul>"
-        })
-      end
+      notify_band_update(@band, changes)
       
       flash[:success] = ["Band deets updated!"]
       redirect_to band_url(@band)
@@ -92,12 +78,7 @@ class BandsController < ApplicationController
   def destroy
     band = Band.find(params[:id])
     
-    band.members.each do |member|
-      next if member == current_user
-      member.notifications.create({
-        message: "Your band, #{band.name} was deleted"
-      })
-    end
+    notify_band_destroy(band)
     
     band.destroy
     flash[:success] = ["Band was destroyed"]
@@ -109,13 +90,7 @@ class BandsController < ApplicationController
     
     if grab_image_from_seat_geek?(band)
       flash[:success] = ["Image grabbed."]
-
-      band.admins.each do |admin|
-        next if admin == current_user 
-        admin. notifications.create({ 
-          message: "<a href='#{band_url(band)}'> #{band.name} image changed. </a>"
-        })
-      end
+      notify_band_image_grab(band)
     else
       flash[:errors] = ["Couldn't find that image. Sorry."]
     end

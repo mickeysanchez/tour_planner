@@ -1,6 +1,33 @@
 require 'addressable/uri'
 
 module EventsHelper
+  include NotificationsHelper
+  
+  def new_or_existing_venue
+    if params[:venue][:id].empty?   
+      venue = Venue.new(params[:venue])
+    else
+      venue = Venue.find(params[:venue][:id])
+    end
+    venue
+  end
+  
+  def conditional_tour(event)
+    if params[:tour][:id].empty? && !params[:tour][:name].empty?
+      tour = Tour.new(params[:tour])
+    elsif !params[:tour][:id].empty?
+      tour = Tour.find(params[:tour][:id])
+    else
+      tour = nil
+    end
+    
+    if tour 
+      event.tour = tour
+    end
+    
+    tour
+  end
+  
   def grab_from_seat_geek?(band)
     band_name = band.name.downcase.split(" ").join("-")
     
@@ -94,9 +121,17 @@ module EventsHelper
     shows = []
     
     events.each do |event|
+      next unless event.venue.lat && event.venue.lon
       shows << geo_data(event, up_to_date, event_links, ticket_links)
     end
     
     shows.to_json.html_safe
+  end
+  
+  def notify_event_create(event)
+    message = "Your band #{event.band.name} has a new event on 
+               <a href='#{event_url(event)}'> 
+               #{l event.date, format: "%d %B %Y" }</a>."
+    notify_members(event.band, message)
   end
 end
