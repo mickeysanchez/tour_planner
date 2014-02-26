@@ -8,7 +8,7 @@ module NotificationsHelper
     
     options = defaults.merge(options)
     
-    member.notifications.create({ 
+    user.notifications.create({ 
       notifiable_id: options[:subject].id,
       notifiable_type: options[:subject].class.to_s,
       notification_type: options[:notification_type],

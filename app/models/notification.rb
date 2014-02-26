@@ -148,10 +148,13 @@ class Notification < ActiveRecord::Base
   def band_membership_translator(bm) 
     case self.notification_type
     when "accepted"
-      "Member request was accepted! You are now a member of 
-      <a href='#{band_url(bm.band)}'> #{bm.band.name}! </a>" 
+      "Member request accepted! You are now a member of 
+      <a href='#{band_path(bm.band)}'> #{bm.band.name}!</a>" 
     when "create"
       "#{bm.member.email} is now a member of #{bm.band.name}!"
+    when "admin"
+       "You are now an admin for:  
+        <a href='#{band_path(bm.band)}'> #{bm.band.name}! </a>" 
     end
   end
   
