@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
   
   private
   
+  def allow_outside_access
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'GET'
+    headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
+    headers['Access-Control-Max-Age'] = "1728000"
+  end
+  
   def authorized_user!
     unless current_user == User.find(params[:user_id])
       redirect_to current_user

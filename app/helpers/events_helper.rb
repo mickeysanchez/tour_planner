@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 module EventsHelper
   def grab_from_seat_geek?(band)
     band_name = band.name.downcase.split(" ").join("-")

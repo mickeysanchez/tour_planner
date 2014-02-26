@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 module ToursHelper
   include EventsHelper
   

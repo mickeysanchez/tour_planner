@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 module BandsHelper
   def grab_image_from_seat_geek?(band)
     band_name = band.name.downcase.split(" ").join("-")
@@ -14,6 +16,7 @@ module BandsHelper
     performers = JSON.parse(RestClient.get(url))["performers"]
     
     begin 
+      # try every sized image before giving up
       band.image = open(performers.first["image"]) || 
       open(performers.first["images"]["huge"]) ||
       open(performers.first["images"]["large"]) ||

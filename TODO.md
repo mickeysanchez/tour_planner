@@ -1,6 +1,4 @@
 #next
-!notifications to demo before band page = "we'll look at the tour in a second. but first, it looks like you got
-a notification!"
 
 !public/private event status	
 !email settings

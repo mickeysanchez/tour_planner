@@ -14,10 +14,6 @@
 
 class Band < ActiveRecord::Base
   attr_accessible :name, :image
-  
-  include PgSearch
-  pg_search_scope :search_by_name, against: :name
-  
   default_scope order('name')
 
   validates :name, presence: true
@@ -48,7 +44,14 @@ class Band < ActiveRecord::Base
     dependent: :destroy 
     
   has_many :notifications, as: :notifiable
-
+  
+  include PgSearch
+  pg_search_scope :search_by_name, against: :name
+    
+    
+#### 
+    
+    
   def admins
     self.members.where("admin = true")
   end

@@ -17,19 +17,14 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :image
   attr_reader :password
-  
-  has_attached_file :image, 
-  styles: { medium: "500x500#", thumb: "200x200#" }, 
-  default_url: "user_missing.png"
-  validates_attachment :image, content_type: { content_type: ['image/jpeg', 'image/png'] }
-  
+    
+  before_validation :ensure_session_token
+    
   validates :password_digest, presence: { message: "You gotta have a password!" }
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :token, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  
-  before_validation :ensure_session_token
-  
+
   has_many :band_memberships,
     class_name: 'BandMembership',
     foreign_key: :member_id
@@ -41,9 +36,15 @@ class User < ActiveRecord::Base
     foreign_key: :requester_id
     
   has_many :notifications,
-  class_name: 'Notification',
-  foreign_key: :user_id 
-  
+    class_name: 'Notification',
+    foreign_key: :user_id 
+    
+  has_attached_file :image, 
+    styles: { medium: "500x500#", thumb: "200x200#" }, 
+    default_url: "user_missing.png"
+  validates_attachment :image, content_type: { content_type: ['image/jpeg', 'image/png'] }
+
+
   def all_requests
     MemberRequest.where("band_id IN (?)", self.bands.where("admin = true"))
   end

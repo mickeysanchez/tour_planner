@@ -301,16 +301,16 @@ class DemoController < ApplicationController
     case session[:demo]
     when "Beyonce"
       @distance = 1297
-      quote = "\"Power's not given to you. You have to take it.\" ~ Beyonce"
+      quote = "<strong>\"Power's not given to you. You have to take it.\" </strong> ~ Beyonce"
     when "The Rolling Stones"
       @distance =  540
-      quote = "\"Lose your dreams and you will lose your mind. Ain't life unkind?\" ~ The Rolling Stones"
+      quote = "<strong>\"Lose your dreams and you will lose your mind. Ain't life unkind?\" </strong> ~ The Rolling Stones"
     when "Dr. Dog"
       @distance = 5582
-      quote = "<p>\"Do you like things the way they seem?</p> <p>Or are you looking behind the scenes?\" ~ Dr. Dog</p>"
+      quote = "<strong><p>\"Do you like things the way they seem?</p> <p>Or are you looking behind the scenes?\" </strong> ~ Dr. Dog</p>"
     when "One Direction"
       @distance = 10623
-      quote = "<p>\"I will carry you over fire and water for your love. </p><p> And I will hold you closer, hope your heart is strong enough.\" ~ One Direction</p>"
+      quote = "<strong><p>\"I will carry you over fire and water for your love. </p><p> And I will hold you closer, hope your heart is strong enough.\" </strong> ~ One Direction</p>"
     end
     
     flash[:demo_header] = "Visualized!"
