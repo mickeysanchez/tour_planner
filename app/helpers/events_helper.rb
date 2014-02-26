@@ -143,10 +143,9 @@ module EventsHelper
   end
   
   def notify_event_create(event)
-    message = "Your band #{event.band.name} has a new event on 
-               <a href='#{event_url(event)}'> 
-               #{l event.date, format: "%d %B %Y" }</a>."
-    notify_members(event.band, message)
+    notify_members(event.band.members,
+      subject: event,
+      notification_type: :create)
   end
   
   def notify_event_update(event, changes)
@@ -167,8 +166,7 @@ module EventsHelper
   end
   
   def notify_event_destroy(event)
-    message = "Your band #{event.band.name}'s event at #{event.venue.name} on
-               #{l event.date, format: "%d %B %Y"} was deleted."
+
   
     notify_members(event.band, message) 
   end

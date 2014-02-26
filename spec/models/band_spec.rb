@@ -10,6 +10,7 @@
 #  image_content_type :string(255)
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  active             :boolean          default(TRUE)
 #
 
 require 'spec_helper'

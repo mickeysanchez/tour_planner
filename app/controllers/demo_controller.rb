@@ -64,8 +64,10 @@ class DemoController < ApplicationController
     flash[:demo_header] = "Cool!"
     flash[:demo] = ["You created a band page!".html_safe,
                     "Let's spice it up a bit by adding a photo.",
-                    "You can upload a photo on your own, but we make it super simple with the <strong> Grab Image </strong> button.".html_safe,
-                    "If you've entered your band name correctly, it will go off into the internet and grab a photo (via Seat Geek).", "Try it out!"]
+                    "You can upload a photo on your own, but we make it super simple 
+                    with the <strong> Grab Image </strong> button.".html_safe,
+                    "If you've entered your band name correctly, it will go off into 
+                    the internet and grab a photo (via Seat Geek).", "Try it out!"]
   end
   
   def band_image
@@ -84,8 +86,10 @@ class DemoController < ApplicationController
     flash[:demo_header] = "Cool!"
     flash[:demo] = ["Bam! There it is!",
                     "The eyes of #{session[:demo]} will keep you focused.",
-                    "You can enter in shows yourself, or you can use some more <br> behind the scenes magic to grab existing event data.",
-                    "Click on the <strong>Grab Shows From Seat Geek</strong> button to populate <br> your page with all the 
+                    "You can enter in shows yourself, or you can use some more 
+                    <br> behind the scenes magic to grab existing event data.",
+                    "Click on the <strong>Grab Shows From Seat Geek</strong> 
+                    button to populate <br> your page with all the 
                     current #{session[:demo]} events.".html_safe]
     
     @image = session[:demo].downcase.split(" ").join("") + ".jpg"

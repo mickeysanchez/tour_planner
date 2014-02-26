@@ -59,7 +59,7 @@ class BandsController < ApplicationController
     @band = Band.find(params[:id])
     @band.assign_attributes(params[:band])
     
-    changes = record_changes(@band)
+    changes = @band.changes
   
     if current_user.is_band_admin?(@band) && @band.save
       membership = @band.find_membership(current_user)
@@ -80,7 +80,7 @@ class BandsController < ApplicationController
     
     notify_band_destroy(band)
     
-    band.destroy
+    band.toggle!(:active)
     flash[:success] = ["Band was destroyed"]
     redirect_to current_user
   end

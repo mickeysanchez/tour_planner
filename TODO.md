@@ -1,5 +1,10 @@
-#next
+#
+change band / event / tour delete
+add "inactive" to events
+change destroy action in events controller
+change Band.all and Event.all
 
+#next
 !public/private event status	
 !email settings
 
@@ -97,11 +102,9 @@ JavaScript/Backbone
 
     jQuery
         jQuery UI: draggable/sortable
-		1. DRAGGABLE
-			* drag shows from one tour to the other
 			
     Backbone
-		- single page app		
+	
 		
 ###Eventual extra features:
 
@@ -140,19 +143,9 @@ message = "User.name is now following you."
 
 | The Kluggs just made new show | follow_id | follow
 
-###
-* SOCIAL STUFF - join tables
 
-0. follows << polymorphic >>
-| follower_id | followable_id | followable_type
-aka
-| mickey's id | 3 | user
-| 3 | 8 | band
-0. **user_follows** 
-0. **band_follows**
-0. **venue_follows**
-0. **event_follows**
+| user_id | message? | notifiable_id | notifiable_type
 
+your band (notifiable_type.find(notifiable_id)) was destroyed. 
 
-0. **event_attendances**
-| event_id | attendee_id |
+how to save band name? 

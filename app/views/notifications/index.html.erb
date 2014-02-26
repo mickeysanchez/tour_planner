@@ -58,7 +58,16 @@
 <% current_user.notifications.each do |notification| %>
 
  <li id="request-block">
-		  <strong><%= notification.message.html_safe %> </strong>
+		  <strong>
+			  <%= notification.message.html_safe %> 
+		  </strong>
+		  <% unless notification.differences.empty? %>
+			  <ul>
+				  <% notification.translated_differences.each do |difference|%>
+				    <li> <%= difference.html_safe %> </li>
+				  <% end%>
+			  </ul>
+		  <% end %>
 		  <br>
 		  
 		<form action="<%= notification_url(notification) %>" method="post">

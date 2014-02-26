@@ -1,17 +1,26 @@
 module NotificationsHelper
-  def notify_members(band, message)
-    band.members.each do |member|
+  def notify_members(members, options = {})
+    defaults = {
+      subject: "",
+      differences: "",
+      notification_type: ""
+    }
+    
+    options = defaults.merge(options)
+    
+    members.each do |member|
       next if member == current_user 
-      member.notifications.create({ message: message })
+      member.notifications.create({ 
+        notifiable_id: options[:subject].id,
+        notifiable_type: options[:subject].class.to_s,
+        notification_type: options[:notification_type],
+        differences: options[:differences],
+        changer_id: current_user.id
+      })
     end
   end
   
-  def notify_admins(band, message)
-    band.admins.each do |admin|
-      next if admin == current_user 
-      admin. notifications.create({ 
-        message: message
-      })
-    end
+  def notify_admins(admins, options = {})
+    notify_members(admins, options)
   end
 end

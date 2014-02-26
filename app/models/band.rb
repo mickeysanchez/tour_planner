@@ -10,6 +10,7 @@
 #  image_content_type :string(255)
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  active             :boolean          default(TRUE)
 #
 
 class Band < ActiveRecord::Base
@@ -47,10 +48,12 @@ class Band < ActiveRecord::Base
   
   include PgSearch
   pg_search_scope :search_by_name, against: :name
-    
-    
-#### 
-    
+     
+####
+
+  def self.all
+    Band.where("active = true")
+  end
     
   def admins
     self.members.where("admin = true")

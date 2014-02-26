@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140224230716) do
+ActiveRecord::Schema.define(:version => 20140226204420) do
 
   create_table "band_memberships", :force => true do |t|
     t.integer  "member_id",                     :null => false
@@ -28,18 +28,21 @@ ActiveRecord::Schema.define(:version => 20140224230716) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "active",             :default => true
   end
+
+  add_index "bands", ["active"], :name => "index_bands_on_active"
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "band_id"
     t.integer  "venue_id"
     t.datetime "date"
@@ -49,8 +52,10 @@ ActiveRecord::Schema.define(:version => 20140224230716) do
     t.integer  "poster_file_size"
     t.datetime "poster_updated_at"
     t.string   "ticket_url",          :default => ""
+    t.boolean  "active",              :default => true
   end
 
+  add_index "events", ["active"], :name => "index_events_on_active"
   add_index "events", ["band_id"], :name => "index_events_on_band_id"
   add_index "events", ["date"], :name => "index_events_on_date"
   add_index "events", ["venue_id"], :name => "index_events_on_venue_id"
@@ -69,10 +74,12 @@ ActiveRecord::Schema.define(:version => 20140224230716) do
   create_table "notifications", :force => true do |t|
     t.integer  "notifiable_id"
     t.string   "notifiable_type"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.text     "message"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "user_id"
+    t.string   "notification_type",                 :null => false
+    t.text     "differences",       :default => ""
+    t.integer  "changer_id"
   end
 
   add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"

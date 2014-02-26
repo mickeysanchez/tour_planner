@@ -15,6 +15,11 @@
 	#distance {
 		vertical-align: text-top;
 	}
+	
+	#private_info {
+		padding: 0px 20px;
+		border: 3px solid lightblue;
+	}
 </style>
 
 <script>
@@ -23,10 +28,6 @@
 			height: "toggle",
 			opacity: "toggle"
 		}, 500)
-			
-		// $('html, body').animate({
-		// 		scrollTop: $(section).offset().top
-		// 	}, 1000);
 	}
 </script>
 
@@ -54,5 +55,11 @@
 
 	<h2 id="distance"> Total Travel Distance: <%= @distance %> miles</h2>
 </div>
+
+<% if current_user.is_band_admin?(@tour.band)%>
+	<div id="private_info">
+		<h2> Private Info: </h2>
+	</div>
+<% end %>
 
 <%= render 'events/list', events: @tour.events, hide_band_name: true %>
