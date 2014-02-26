@@ -1,9 +1,3 @@
-#
-change band / event / tour delete
-add "inactive" to events
-change destroy action in events controller
-change Band.all and Event.all
-
 #next
 !public/private event status	
 !email settings

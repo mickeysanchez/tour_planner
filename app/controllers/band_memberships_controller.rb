@@ -5,20 +5,9 @@ class BandMembershipsController < ApplicationController
           fail unless current_user.is_band_admin?(Band.find(params[:band_membership][:band_id]))
         
           bm = BandMembership.new(params[:band_membership])
+          notify_bm_create(bm)
           bm.save!
           
-          bm.member.notifications.create({ 
-            message: "Member request was accepted! You are now a member of 
-                      <a href='#{band_url(bm.band)}'> #{bm.band.name}! </a>" 
-          })
-          
-          bm.band.members.each do |member|
-            next if member == bm.member 
-            member.notifications.create({
-              message: "#{bm.member.email} is now a member of #{bm.band.name}!"
-            })
-          end
-            
           mr = MemberRequest
                 .where("requester_id =? AND band_id = ?", bm.member_id, bm.band_id)
                 .first

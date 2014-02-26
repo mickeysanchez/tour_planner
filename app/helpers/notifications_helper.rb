@@ -1,5 +1,5 @@
 module NotificationsHelper
-  def notify_members(members, options = {})
+  def notify(user, options = {})
     defaults = {
       subject: "",
       differences: "",
@@ -8,15 +8,19 @@ module NotificationsHelper
     
     options = defaults.merge(options)
     
+    member.notifications.create({ 
+      notifiable_id: options[:subject].id,
+      notifiable_type: options[:subject].class.to_s,
+      notification_type: options[:notification_type],
+      differences: options[:differences],
+      changer_id: current_user.id
+    })
+  end
+  
+  def notify_members(members, options = {}) 
     members.each do |member|
       next if member == current_user 
-      member.notifications.create({ 
-        notifiable_id: options[:subject].id,
-        notifiable_type: options[:subject].class.to_s,
-        notification_type: options[:notification_type],
-        differences: options[:differences],
-        changer_id: current_user.id
-      })
+      notify(member, options)
     end
   end
   

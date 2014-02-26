@@ -44,6 +44,9 @@ class Notification < ActiveRecord::Base
     elsif subject.is_a?(Tour)
       @translated_differences = tour_differences(subject)
       tour_translator(subject)
+    elsif subject.is_a?(BandMembership)
+      @translated_differences = band_membership_differences(subject)
+      band_membership_translator(subject)
     end
   end
   
@@ -139,6 +142,20 @@ class Notification < ActiveRecord::Base
   end
   
   def tour_differences(tour)
+    []
+  end
+  
+  def band_membership_translator(bm) 
+    case self.notification_type
+    when "accepted"
+      "Member request was accepted! You are now a member of 
+      <a href='#{band_url(bm.band)}'> #{bm.band.name}! </a>" 
+    when "create"
+      "#{bm.member.email} is now a member of #{bm.band.name}!"
+    end
+  end
+  
+  def band_membership_differences(bm)
     []
   end
 end
