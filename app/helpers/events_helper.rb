@@ -3,6 +3,20 @@ require 'addressable/uri'
 module EventsHelper
   include NotificationsHelper
   
+  def record_changes(event)
+    changes = ""
+    if event.date_changed?
+      changes << "<li> Date changed from #{l event.date_was, format: "%d %B %Y" } to 
+                 #{l event.date, format: "%d %B %Y" } </li>"  
+    end
+    
+    if event.venue_id_changed?
+      changes << "<li> Venue was changed to <a href='#{venue_url(event.venue)}'>  #{event.venue.name} </a> </li>"   
+    end
+    
+    changes
+  end
+  
   def new_or_existing_venue
     if params[:venue][:id].empty?   
       venue = Venue.new(params[:venue])
@@ -21,7 +35,7 @@ module EventsHelper
       tour = nil
     end
     
-    if tour 
+    if tour && tour.valid?
       event.tour = tour
     end
     
@@ -133,5 +147,29 @@ module EventsHelper
                <a href='#{event_url(event)}'> 
                #{l event.date, format: "%d %B %Y" }</a>."
     notify_members(event.band, message)
+  end
+  
+  def notify_event_update(event, changes)
+     message = "Your band #{event.band.name}'s event on 
+                  <a href='#{event_url(event)}'> 
+                  #{l event.date, format: "%d %B %Y" }</a>
+                  has been updated.
+                  <ul> #{changes} </ul>"
+                  
+     notify_members(event.band, message)
+  end
+  
+  def notify_grab_shows(band)
+     message = "Shows grabbed for your band 
+              <a href='#{band_url(band)}'> #{band.name} </a>."
+              
+     notify_members(band, message)
+  end
+  
+  def notify_event_destroy(event)
+    message = "Your band #{event.band.name}'s event at #{event.venue.name} on
+               #{l event.date, format: "%d %B %Y"} was deleted."
+  
+    notify_members(event.band, message) 
   end
 end

@@ -34,8 +34,11 @@ class EventsController < ApplicationController
     @tour = conditional_tour(@event)
     
     Event.transaction do
-      begin 
-        @tour.save!
+      begin
+        if @tour 
+          @tour.save!
+        end
+        
         @venue.save!
         
         notify_event_create(@event)
@@ -56,58 +59,24 @@ class EventsController < ApplicationController
   end
   
   def update
-    if params[:venue][:id].empty?   
-      @venue = Venue.new(params[:venue])
-    else
-      @venue = Venue.find(params[:venue][:id])
-    end
-    
+    @venue = new_or_existing_venue
     @event = Event.find(params[:id])
     @event.band_id = params[:band_id]
-    
-    if params[:tour][:id].empty? && !params[:tour][:name].empty?
-      @tour = Tour.new(params[:tour])
-    elsif !params[:tour][:id].empty?
-      @tour = Tour.find(params[:tour][:id])
-    else
-      @tour = nil
-    end
+    @tour = conditional_tour(@event)
     
     Event.transaction do
       begin 
         if @tour 
-          @event.tour = @tour
           @tour.save!
         end
         
         @event.assign_attributes(params[:event])
         @event.venue = @venue
-        
-        changes = ""
-        if @event.date_changed?
-          changes << "<li> Date changed from #{l @event.date_was, format: "%d %B %Y" } to 
-                     #{l @event.date, format: "%d %B %Y" } </li>"  
-        end
-        
-        if @event.venue_id_changed?
-          changes << "<li> Venue was changed to <a href='#{venue_url(@event.venue)}'>  #{@event.venue.name} </a> </li>"   
-        end
-        
-        
+        changes = record_changes(@event)
+              
         @event.save!
-         
-        @event.band.members.each do |member|
-          next if member == current_user
-          member.notifications.create({
-            message: "Your band #{@event.band.name}'s event on 
-                      <a href='#{event_url(@event)}'> 
-                      #{l @event.date, format: "%d %B %Y" }</a>
-                      has been updated.
-                      <ul> #{changes} </ul>"
-          })
-        end
-        
-      
+        notify_event_update(@event, changes)
+            
         @venue.grab_coordinates
         @venue.save!
         
@@ -123,13 +92,7 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     
-    @event.band.members.each do |member|
-      next if member == current_user
-      member.notifications.create({
-        message: "Your band #{@event.band.name}'s event at #{@event.venue.name} on
-                  #{l @event.date, format: "%d %B %Y"} was deleted."
-      })
-    end
+    notify_event_destroy(@event)
     
     @event.destroy
     
@@ -141,14 +104,8 @@ class EventsController < ApplicationController
     
     if grab_from_seat_geek?(band)
       flash[:success] = ["Shows grabbed."]
-      
-     band.members.each do |member|
-        next if member == current_user
-        member.notifications.create({
-          message: "Shows grabbed for your band <a href='#{band_url(band)}'> #{band.name} </a>."
-        })
-      end
-      
+    
+      notify_grab_shows(band)
     else
       flash[:errors] = ["No shows on Seat Geek for that band. Sorry."]
     end
@@ -157,8 +114,8 @@ class EventsController < ApplicationController
   end
   
   def grab_bands_in_town_shows
-    # bands_in_town  http://api.bandsintown.com/artists/Justin%20Timberlake/events.json?api_version=2.0&app_id=YOUR_APP_ID
+    # bands_in_town  
+    # http://api.bandsintown.com/artists/Justin%20Timberlake/events.json?api_version=2.0&app_id=YOUR_APP_ID
   end
   
-
 end

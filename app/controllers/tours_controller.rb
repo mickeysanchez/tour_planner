@@ -6,7 +6,7 @@ class ToursController < ApplicationController
   def show
     @tour = Tour.find(params[:id])
     @geo_data = geo_data_tour(@tour)
-    @distance = 0 #get_distance(@tour)
+    @distance = 0 # get_distance(@tour)
   end
   
   def new
@@ -16,18 +16,10 @@ class ToursController < ApplicationController
 
   def create
     @tour = Tour.new(params[:tour])
+    
     if @tour.save
+      notify_tour_create(@tour)
       flash[:success] = ["Tour Created!"]
-      
-      @tour.band.members.each do |member|
-        next if member == current_user
-        member.notifications.create({
-          message: "A <a href='#{tour_url(@tour)}'> tour </a> was added
-                    to your band: <a href='#{band_url(@tour.band)}'> 
-                    #{@tour.band.name}. </a>"
-        })
-      end
-      
       redirect_to @tour
     else
       @band = Band.find(params[:band_id])
@@ -44,17 +36,10 @@ class ToursController < ApplicationController
   
   def update
     @tour = Tour.find(params[:id])
+    
     if @tour.update_attributes(params[:tour])
+      notify_tour_update(@tour)
       flash[:success] = ["Tour Updated!"]
-      
-      @tour.band.members.each do |member|
-        next if member == current_user
-        member.notifications.create({
-          message: "Your band <a href='#{tour_url(@tour)}'> 
-                   #{@tour.band.name}'s tour </a> was edited"
-        })
-      end
-      
       redirect_to @tour
     else
       @band = @tour.band
@@ -65,28 +50,16 @@ class ToursController < ApplicationController
   
   def destroy 
     @tour = Tour.find(params[:id])
-    band = @tour.band
     
     if @tour.admin_user?(current_user)
-      @tour.band.members.each do |member|
-        next if member == current_user
-        member.notifications.create({
-          message: "Your band #{@tour.band.name}'s tour: #{@tour.name}, was deleted."
-        })
-      end
-      
+      notify_tour_destroy(@tour)
       @tour.destroy
-      
       redirect_to band
     end
   end
   
   def map_embed_data
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'GET'
-    headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
-    headers['Access-Control-Max-Age'] = "1728000"
-                                              #up_to_date - event_links - ticket_links
+    allow_outside_access
     render json: geo_data_tour(Tour.find(params[:id]), true, false, true), status: :ok
   end
 end

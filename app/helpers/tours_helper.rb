@@ -35,4 +35,22 @@ module ToursHelper
     
     distance
   end
+  
+  def notify_tour_create(tour)
+    message = "A <a href='#{tour_url(tour)}'> tour </a> was added
+                  to your band: <a href='#{band_url(tour.band)}'> 
+                  #{@tour.band.name}. </a>"
+    notify_members(tour.band, message)
+  end
+  
+  def notify_tour_update(tour)
+    message = "Your band <a href='#{tour_url(@tour)}'> 
+                 #{@tour.band.name}'s tour </a> was edited"
+    notify_members(tour.band, message)
+  end
+  
+  def notify_tour_destroy(tour)
+    message = "Your band #{@tour.band.name}'s tour: #{@tour.name}, was deleted."
+    notify_members(tour.band, message)
+  end
 end
