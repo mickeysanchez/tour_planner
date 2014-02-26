@@ -38,6 +38,9 @@ class Notification < ActiveRecord::Base
     elsif subject.is_a?(Event)
       @translated_differences = event_differences(subject)
       event_translator(subject)
+    elsif subject.is_a?(Tour)
+      @translated_differences = tour_differences(subject)
+      tour_translator(subject)
     end
   end
   
@@ -116,5 +119,23 @@ class Notification < ActiveRecord::Base
     end
     
     differences
+  end
+  
+  def tour_translator(tour)
+    case self.notification_type
+    when "create"
+       "A <a href='#{tour_path(tour)}'> tour </a> was created
+       for your band: <a href='#{band_path(tour.band)}'> 
+       #{tour.band.name}. </a>"
+    when "destroy"
+       "Your band #{tour.band.name}'s tour: #{tour.name}, was deleted."
+    when "update"
+       "Your band <a href='#{tour_path(tour)}'> 
+        #{tour.band.name}'s tour </a> was edited."
+    end
+  end
+  
+  def tour_differences(tour)
+    []
   end
 end

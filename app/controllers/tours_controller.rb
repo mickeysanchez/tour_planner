@@ -28,7 +28,6 @@ class ToursController < ApplicationController
     end
   end
   
-  
   def edit
     @tour = Tour.find(params[:id])
     @band = Band.find(params[:band_id])
@@ -50,10 +49,11 @@ class ToursController < ApplicationController
   
   def destroy 
     @tour = Tour.find(params[:id])
-    
+    band = @tour.band
     if @tour.admin_user?(current_user)
       notify_tour_destroy(@tour)
-      @tour.destroy
+      @tour.toggle(:active)
+      flash[:success] = ["Tour deleted."]
       redirect_to band
     end
   end

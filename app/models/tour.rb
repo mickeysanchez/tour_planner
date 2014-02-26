@@ -17,6 +17,10 @@ class Tour < ActiveRecord::Base
   
   has_many :notifications, as: :notifiable
   
+  def self.all
+    Tour.where("active = true")
+  end
+  
   def band
     Band.joins(:events)
         .joins(:tours)
