@@ -77,26 +77,34 @@ module EventsHelper
     events.empty? ? false : true
   end
   
-  def geo_data(event, up_to_date = true, event_links = true, ticket_links = true)
+  def geo_data(event, options= {})
+    defaults = {
+      up_to_date: true,
+      event_links: true,
+      ticket_links: true
+    }
+    
+    options = defaults.merge(options)
+    
     shows = []
     
     marker_symbol = ''
     marker_size = 'medium'
     marker_color = '#070'
     
-    if  event.date < Time.now && up_to_date
+    if  event.date < Time.now && options[:up_to_date]
       marker_symbol = 'polling-place'
       marker_size = 'small'
       marker_color = '#6b2607'
     end
     
-    if ticket_links
+    if options[:ticket_links]
       ticket_link = "<p> <a href='#{event.ticket_url}'> Get Tickets </a> </p>"
     else
       ticket_link = ""
     end
     
-    if event_links
+    if options[:event_links]
       event_link = "<a href='#{event_url(event)}'>" + (l event.date, format: "%d %B %Y") + "</a>".html_safe
     else
       event_link = l event.date, format: "%d %B %Y"
@@ -117,12 +125,12 @@ module EventsHelper
     }}
   end
   
-  def geo_data_events(events, up_to_date = true, event_links = true, ticket_links = true)
+  def geo_data_events(events, options = {})
     shows = []
     
     events.each do |event|
       next unless event.venue.lat && event.venue.lon
-      shows << geo_data(event, up_to_date, event_links, ticket_links)
+      shows << geo_data(event, options)
     end
     
     shows.to_json.html_safe

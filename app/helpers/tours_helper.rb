@@ -3,8 +3,8 @@ require 'addressable/uri'
 module ToursHelper
   include EventsHelper
   
-  def geo_data_tour(tour, up_to_date = true, event_links = true, ticket_links = true)
-    geo_data_events(tour.events, up_to_date, event_links, ticket_links)
+  def geo_data_tour(tour, options = {})
+    geo_data_events(tour.events, options)
   end
   
   def get_distance(tour)

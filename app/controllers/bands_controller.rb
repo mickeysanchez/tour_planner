@@ -100,6 +100,11 @@ class BandsController < ApplicationController
   
   def map_embed_data
     allow_outside_access
-    render json: geo_data_events(Band.find(params[:band_id]).events, true, false, true), status: :ok
+    render json: 
+      geo_data_events(Band.find(params[:band_id]).events, 
+        up_to_date: true, 
+        event_links: false, 
+        ticket_links: true), 
+      status: :ok
   end
 end

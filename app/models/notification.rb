@@ -18,6 +18,7 @@ class Notification < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   
   attr_accessible :message, :notifiable_id, :notifiable_type, :notification_type, :differences, :changer_id
+  attr_reader :translated_differences
   
   belongs_to :notifiable, polymorphic: true
   belongs_to :user, 
@@ -32,25 +33,18 @@ class Notification < ActiveRecord::Base
     subject = self.notifiable_type.constantize.find(notifiable_id)
     
     if subject.is_a?(Band)
+      @translated_differences = band_differences(subject)
       band_translator(subject)
     elsif subject.is_a?(Event)
+      @translated_differences = event_differences(subject)
       event_translator(subject)
     end
-  end
-  
-  def translated_differences
-    subject = self.notifiable_type.constantize.find(notifiable_id)
-    if subject.is_a?(Band)
-      band_difference_translator(subject)
-    elsif subject.is_a?(Event)
-      event_difference_translator(subject)
-    end 
   end
   
   private
   
   def differences_hash
-    YAML.load(self.differences)
+    YAML.load(self.differences) || {}
   end
   
   def band_translator(band)
@@ -68,7 +62,7 @@ class Notification < ActiveRecord::Base
     end
   end
   
-  def band_difference_translator(band)
+  def band_differences(band)
     differences = []
     if differences_hash.keys.include?("name")
       old_name = differences_hash["name"][0]
@@ -104,7 +98,7 @@ class Notification < ActiveRecord::Base
              
   end
   
-  def event_difference_translator(event)
+  def event_differences(event)
     differences = []
     if differences_hash.keys.include?("date")
       old_date = differences_hash["date"][0]

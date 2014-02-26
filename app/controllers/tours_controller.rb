@@ -60,6 +60,12 @@ class ToursController < ApplicationController
   
   def map_embed_data
     allow_outside_access
-    render json: geo_data_tour(Tour.find(params[:id]), true, false, true), status: :ok
+    render json: 
+    geo_data_tour(
+      Tour.find(params[:id]), 
+      up_to_date: true, 
+      event_links: false, 
+      ticket_links: true), 
+    status: :ok
   end
 end
