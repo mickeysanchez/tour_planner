@@ -14,6 +14,8 @@
 #
 
 class Band < ActiveRecord::Base
+  default_scope where(active: true)
+  
   attr_accessible :name, :image
   default_scope order('name')
 
@@ -51,10 +53,6 @@ class Band < ActiveRecord::Base
      
 ####
 
-  def self.all
-    Band.where("active = true")
-  end
-    
   def admins
     self.members.where("admin = true")
   end

@@ -30,7 +30,10 @@ class Notification < ActiveRecord::Base
     foreign_key: :changer_id
     
   def message 
-    subject = self.notifiable_type.constantize.find(notifiable_id)
+    subject = self.notifiable_type
+                  .constantize
+                  .unscoped
+                  .find(notifiable_id)
     
     if subject.is_a?(Band)
       @translated_differences = band_differences(subject)

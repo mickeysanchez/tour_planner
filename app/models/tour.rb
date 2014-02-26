@@ -9,6 +9,8 @@
 #
 
 class Tour < ActiveRecord::Base
+  default_scope where(active: true)
+  
   attr_accessible :name, :event_ids, :band_id
   
   validates :name, presence: true
@@ -16,10 +18,6 @@ class Tour < ActiveRecord::Base
   has_many :events, inverse_of: :tour
   
   has_many :notifications, as: :notifiable
-  
-  def self.all
-    Tour.where("active = true")
-  end
   
   def band
     Band.joins(:events)

@@ -52,7 +52,7 @@ class ToursController < ApplicationController
     band = @tour.band
     if @tour.admin_user?(current_user)
       notify_tour_destroy(@tour)
-      @tour.toggle(:active)
+      @tour.toggle!(:active)
       flash[:success] = ["Tour deleted."]
       redirect_to band
     end

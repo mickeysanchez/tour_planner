@@ -18,6 +18,8 @@
 #
 
 class Event < ActiveRecord::Base
+  default_scope where(active: true)
+  
   attr_accessible :name, :venue_id, :date, :poster, :band_id, :tour_id, :ticket_url
   
   validates :date, presence: true
@@ -32,8 +34,4 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
   
   has_many :notifications, as: :notifiable
-  
-  def self.all
-    Event.where("active = true")
-  end
 end
