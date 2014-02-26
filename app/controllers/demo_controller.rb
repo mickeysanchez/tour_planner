@@ -304,13 +304,13 @@ class DemoController < ApplicationController
       quote = "<strong>\"Power's not given to you. You have to take it.\" </strong> ~ Beyonce"
     when "The Rolling Stones"
       @distance =  540
-      quote = "<strong>\"Lose your dreams and you will lose your mind. Ain't life unkind?\" </strong> ~ The Rolling Stones"
+      quote = "<br><strong>\"Lose your dreams and you will lose your mind.<br> Ain't life unkind?\" </strong> ~ The Rolling Stones"
     when "Dr. Dog"
       @distance = 5582
-      quote = "<strong><p>\"Do you like things the way they seem?</p> <p>Or are you looking behind the scenes?\" </strong> ~ Dr. Dog</p>"
+      quote = "<strong><p>\"Do you like things the way they seem? <br> Or are you looking behind the scenes?\" </strong> ~ Dr. Dog</p>"
     when "One Direction"
       @distance = 10623
-      quote = "<strong><p>\"I will carry you over fire and water for your love. </p><p> And I will hold you closer, hope your heart is strong enough.\" </strong> ~ One Direction</p>"
+      quote = "<strong><p>\"I will carry you over fire and water for your love. I will hold <br> you closer, hope your heart is strong enough.\" </strong> ~ One Direction</p>"
     end
     
     flash[:demo_header] = "Visualized!"
@@ -338,6 +338,6 @@ class DemoController < ApplicationController
                       </form>
                       
                       to sign in as a demo user!
-                      <br><br> #{quote} ".html_safe]
+                      <br> #{quote} ".html_safe]
   end
 end
