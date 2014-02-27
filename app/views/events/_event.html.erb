@@ -1,0 +1,43 @@
+<li id="show-block">
+	<ul class="block-header">
+		<% unless hide_band_name # band name doesn't appear on user page%>
+		  <li class="block-header-item"> 
+			  <%= link_to event.band.name, band_url(event.band) if event.band %> 
+		  </li>
+		<% end %>
+	<a href="<%= event_url(event) %>">
+		<li class="block-header-item"> 
+			<%= l event.date, format: "%d %B %Y"%> 
+			<% unless !event.name || event.name.empty? %>
+				- <%= event.name %>
+			<% end %>
+		</li>
+	</a>
+    </ul>
+    
+	<hr>
+	
+	<ul id="block-details">
+		<li class="block-header-item"> 
+			<%= link_to "Get Tickets", event.ticket_url %> 
+		</li>
+		
+		<li class="block-detail"> 
+			<a href="<%= venue_url(event.venue) %>">
+			  <%= event.venue.name %> 
+			</a>
+		</li>
+		<li class="block-detail"> <%= event.venue.address %> </li>
+		<li class="block-detail"> <%= event.venue.city %>, <%= event.venue.state %>  </li>
+		<li class="block-detail"> <%= event.venue.zipcode %> </li>
+		
+		
+		
+		<% if event.band && current_user.is_band_admin?(event.band) %>
+			<li class="block-detail"> 
+				<%= link_to 'delete', event_url(event), method: :delete, class: "delete-button" %>
+			</li>
+		<% end %>
+		
+	</ul>
+</li>

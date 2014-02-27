@@ -5,20 +5,10 @@
 	<% end %>
 </h1>
 
-<h1>
-	<%= link_to "Get Tickets", @event.ticket_url unless @event.ticket_url.empty? %> 
-</h1>
-
-<h1> <%= link_to @event.band.name, band_url(@event.band) %> </h1>
-
 <% if current_user.is_band_admin?(@event.band) %>
 	<%= link_to "Edit", edit_band_event_url(@event.band, @event) %> |
 	<%= link_to'Delete', event_url(@event), method: :delete %>
 <% end %>
-
-<div id="map-container">
-	<%= render 'tours/map', geo_data: @geo_data %>
-</div>
 
 <h2>	
 <%= link_to @event.venue.name, venue_url(@event.venue) %> -
@@ -27,3 +17,14 @@
 <%= @event.venue.state %> 
 <%= @event.venue.zipcode %> 
 </h2>
+
+<h1> <%= link_to @event.band.name, band_url(@event.band) %> </h1>
+
+<div id="map-container">
+	<%= render 'tours/map', geo_data: @geo_data %>
+</div>
+
+<h1>
+	<%= link_to "Get Tickets", @event.ticket_url unless @event.ticket_url.empty? %> 
+</h1>
+

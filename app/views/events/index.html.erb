@@ -1,22 +1,3 @@
-<style>
-	#hidden {
-		display: none;
-	}
-	
-	#get-embed {
-		padding: 5px;
-		border: 1px solid black;
-	}
-	
-	#get-embed:hover {
-		background: lightyellow;
-	}
-	
-	#distance {
-		vertical-align: text-top;
-	}
-</style>
-
 <script>
 	function dropDown(section) {
 		$(section).animate({
@@ -35,23 +16,7 @@
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
-<% if params[:id] || params[:band_id] %>
-<div class="clearfix">
-	<h2> <a href="javascript:dropDown('#hidden')" id="get-embed"> Get Embed </a> &nbsp; << Embed this map on your band's website! </h2>
-	<div id="hidden">
-	  <p> 
-		  Paste the following code on your site wherever you want the map
-		  to show up. When you make changes to this tour on Tour Planner, 
-		  the changes will be reflected on your site:
-	  </p>
-	  <p> (Props to Mapbox) </p>
-	  <hr>
-	  <p><%= render 'tours/embed_code', tour: @tour%></p>
-	</div>
-
-	<h2 id="distance"> Total Travel Distance: <%= @distance %> miles</h2>
-</div>
-<% end %>
+<%= render 'events/embed' %>
 
 <% if @band %>
 	<% if current_user.is_band_admin?(@band) %>
@@ -65,4 +30,6 @@
 	<% end %>
 <% end %>
 
-<%= render 'events/list', events: @events, hide_band_name: false %>
+<ul id="all-shows">
+	<%= render @events, hide_band_name: false %>
+</ul>
