@@ -1,46 +1,7 @@
 #next
-!public/private event status	
-!email settings
+0. fix total distance calculation
 
-frequency of tour emails
-
-(these also go on the tour page)
-	- distance between next two shows
-	- drive time
-	- once i add arrival times: time you need to leave
-
-!TOUR PAGE
-	- total miles travelled < optimize>
-	
-!Strengthen grab buttons
-
-!add cool tour data to demo
-
-# Schema
-0. users
-| email | token | password_digest
-
-  0. band_memberships
-  | user_id | band_id | role | admin
-
-0. bands
-| name |
-
-0. events
-| name | band_id | venue_id | date | tour_id
-   
-0. tour
-| name |
-
-0. venues
-| name | address | city | state | zipcode | **phone_number** | **email** |
-
-0. member_requests
-| requester_id | band_id |  
-
-
-###Things to add to existing tables: 
-
+#Things to add to existing tables: 
 	1. venues
 		- contact info
 		- capacity
@@ -65,45 +26,7 @@ frequency of tour emails
 		- washer_dryer?
 		- notes
 		
-###Core features/technologies
-
- Rails
-
-    bad ass logo
-    
-	Basic CRUD
-		1. User => has many Bands => has many Shows & Tours
-		2. CRUD users, bands, shows, tours, venues
-    
-	Complex forms
-		1. Event creation will also create venues
-    
-	Authentication
-		1. User creation/authentication (eventually using google login)
-		
-		* Authorization:
-			1. User gets to see private details about show, while others who visit the
-			   show page just get public info.
-    
-	ActionMailer/Sendgrid
-		1. Users get sent daily emails during their tour giving them the days details. 
-    
-	File upload (paperclip or filepicker.io)
-		1. attach private files to events - like show posters, contracts, etc.
-	
-
-JavaScript/Backbone
-
-    jQuery
-        jQuery UI: draggable/sortable
-			
-    Backbone
-	
-		
-###Eventual extra features:
-
-VENUES SHOULD BE VERIFIED
-
+#Eventual extra features:
 	1. google login
 	2. automatically adds shows to google calendar
 	3. emails you show details daily (or whatever you set)
@@ -113,33 +36,5 @@ VENUES SHOULD BE VERIFIED
 	6. calculates total booking-agent percentage
 	7. generates printable pdf
 	8. generates estimated gas cost for entire tour using average gas price data for states you are travelling through
-	
-	--
-	
 	9. Connect to Facebook band page 
 			- Automatically creates a facebook event
-
-	
-
-### Not sure if I'll add this stuff:
-
-0. **notifications**
-| message | notifiable_id | notifiable_type
-a.k.a
-| message | follow_id | Follow
-| message | member_request_id | member_request 
-
-these are triggered by other events
-aka
-when someone clicks the follow button on you:
-message = "User.name is now following you."
-^^ how do I get their id
-
-| The Kluggs just made new show | follow_id | follow
-
-
-| user_id | message? | notifiable_id | notifiable_type
-
-your band (notifiable_type.find(notifiable_id)) was destroyed. 
-
-how to save band name? 
