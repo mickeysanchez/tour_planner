@@ -1,0 +1,114 @@
+/* FORMS */
+
+label {
+	font-size: 18px;
+	display: block;
+	font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="file"],
+input[type="search"],
+select,
+option {
+    display: block;
+	width: 300px;
+	margin: 20px 0;
+	border: 1px solid black;
+	padding: 10px;
+	font-size: 14px;
+	font: inherit;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="date"]:hover,
+input[type="file"]:hover,
+input[type="search"]:hover {
+	border: 1px solid green;
+	box-shadow: 1px 1px 1px #888888;
+}
+
+input[type="submit"] {
+	-webkit-appearance: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	position: relative;
+	box-shadow: 3px 3px 3px #888888;
+	display: inline-block;
+	border: 1px solid black;
+	padding: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background: lightyellow;
+}
+
+input[type="submit"]:active {
+	top: 2px;
+	left: 2px;
+}
+
+input[type="checkbox"] {
+	height: 20px;
+	width: 20px;
+}
+
+select {
+    background: transparent;
+    padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	height: 40px;
+	-webkit-appearance: none;
+	border: 1px solid black;
+	width: 325px;
+    overflow: hidden;
+	background: url(new_arrow.jpg) no-repeat right;
+}
+
+.checkboxes {
+	margin-bottom: 30px;
+}
+
+.checkbox {
+	font-size: 20px;
+}
+
+.checkbox:hover {
+	cursor: pointer;
+}
+
+.checkbox > label:hover {
+	cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+	cursor: pointer;
+}
+
+.rightform {
+	float: left;
+}
+
+.left-form {
+	width: 350px;
+	margin-top: 20px;
+ 	float: left;
+}
+
+.right-form {
+	width: 350px;
+	margin-top: 20px;
+	margin-left: 40px;
+	padding-left: 40px;
+	border-left: 1px solid black;
+	float: right;
+}

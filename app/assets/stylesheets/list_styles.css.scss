@@ -9,11 +9,6 @@
 	margin: 10px 0px;
 }
 
-#band-block {
-	list-style: none;
-	margin: 10px 0px;
-}
-
 .block-header {
 	font-weight: bold;
 	list-style: none;
@@ -33,9 +28,18 @@
 	padding-left: 0;
 }
 
+#band-block {
+	list-style: none;
+	margin: 10px 0px;
+}
+
 .band-list-image {
 	border: 1px solid black;
 	margin-right: 20px;
 	height: 75px;
 	float: left;
+}
+
+.small-image {
+	height: 50px;
 }
