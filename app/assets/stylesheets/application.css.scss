@@ -9,29 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- */
+*/
 
 @import "reset";
 
-/* RESET */
 
-html, body, form, h1, div, label, a, input[type="submit"] {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-a:link {color: #6b2607; text-decoration: none;}
-a:visited {color: #6b2607;}
-a:hover { color: black; text-decoration : none;}
-a:active{color: black; text-decoration : none; } 
-a {
-	color: #6b2607;
-	display: inline;
-	font-weight: bold;
-}
 
 /* GENERAL STYLIN */
 

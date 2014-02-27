@@ -1,6 +1,6 @@
-<% heading = (@band.persisted?) ? "Edit #{@band.name}" : "Create New Band" %>
-<% submit = (@band.persisted?) ? "Update Band" : "Create Band" %>
-<% action = (@band.persisted?) ? band_url(@band) : bands_url %>
+<% heading = (band.persisted?) ? "Edit #{band.name}" : "Create New Band" %>
+<% submit = (band.persisted?) ? "Update Band" : "Create Band" %>
+<% action = (band.persisted?) ? band_url(band) : bands_url %>
 
 <h1> <%= heading %> </h1>
 <hr>
@@ -8,7 +8,7 @@
 <%= render "layouts/errors"%>
 
 <form id="band-form" action="<%= action %>" method="post" enctype="multipart/form-data">
-  <% if @band.persisted? %>
+  <% if band.persisted? %>
     <input type="hidden" name="_method" value="put">
   <% end %>
 	
@@ -21,7 +21,7 @@
   <input id="band_name"
    		 name="band[name]"
 		 type="text"
-		 value="<%= @band.name %>">
+		 value="<%= band.name %>">
   </div>
 
   <div class="file-input">		 
@@ -34,7 +34,7 @@
   <input id="band_role"
   		 name="band_memberships[role]"
 		 type="text"
-		 value="<%= @band.role_of(current_user) %>">
+		 value="<%= band.role_of(current_user) %>">
   </div> 
   
   <div class="submit">

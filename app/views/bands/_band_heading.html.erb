@@ -1,0 +1,80 @@
+<div id="show-heading" class="clearfix">
+	<%= render 'layouts/errors' %>
+
+	<div id="show-image">
+	  <%= image_tag band.image.url(:thumb), class: "header-image", id: "band-show-image" %>
+    </div>
+	
+	<h1> <%= band.name %> </h1>
+	
+    <% if current_user.is_band_admin?(band)%>
+		<div id="change-image">
+			<div class="edit">
+			<% if current_user.is_band_admin?(band) %>
+				<%= link_to 'Edit Band', edit_band_url(band)%> |
+				<%= link_to 'Delete Band', band_url(band), method: :delete %> 
+			<% end %>
+			</div>
+	
+			<form id="edit-image" 
+				action="<%= band_url(band) %>" 
+				method="post"   
+				enctype="multipart/form-data">
+			
+				  <input type="hidden" name="_method" value="put">
+	
+				  <input type="hidden" 
+						 name="authenticity_token" 
+						 value="<%= form_authenticity_token %>">
+
+				  <div class="input">
+				    <label for="band_image">Change Band Image</label>
+				    <input id="band_image" name="band[image]" type="file">
+				  </div>
+  
+				  <div class="submit">
+				    <input type="submit" value="Update Image">
+				  </div>
+			</form>
+			or 
+			<%= button_to "Grab Image", band_grab_image_url(band), method: :put %>
+		</div>	
+	<% end %>
+
+
+	<h2> Members </h2>
+	<ul id="members-list">
+	
+	    <% if !current_user.is_in_band?(band) && !current_user.has_requested_membership?(band) %>
+	  	  <li class="member-list-item">
+	  		 <%= button_to "Request Band Membership", band_member_requests_url(band) %> 
+	  	  </li>
+	    <% end %>
+
+		<% band.band_memberships.each do |membership| %>
+
+		  	<% if current_user.is_in_band?(band) && membership.member == current_user && %>
+		  		<%= button_to "Leave Band", band_membership_url(current_user.find_membership(band)), method: :delete %>
+		  	<% end %>
+	
+		  <li class="member-list-item">
+			  <a href="<%= user_url(membership.member) %>">
+			  <%= membership.member.email %> 
+  
+			  <% if membership.role %>
+				  - <%= membership.role %>
+			  <% end %>
+  
+			  <% if current_user.is_in_band?(band) %>
+				  <%= membership.member.is_band_admin?(band) ? "(Admin)" : "" %>
+			  <% end %>
+			  </a>
+  
+			  <% if current_user.is_band_admin?(band) && !membership.member.is_band_admin?(band) %>
+				  <%= button_to "Make Admin", make_admin_url(membership), method: :put %>
+			  <% end %>
+		  </li>
+		<% end %>
+	
+	</ul>
+</div>

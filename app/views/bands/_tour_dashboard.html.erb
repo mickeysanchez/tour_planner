@@ -1,0 +1,12 @@
+<% if band.tours.count > 0 %>
+	<h2> Tours (<%= band.tours.count %>) </h2>
+	<%= render 'tours/list', tours: band.tours %>
+<% end %>
+
+<% if current_user.is_band_admin?(band) && band.events.count > 0 %>
+	<a href="<%= new_band_tour_url(band) %>">
+		<div class="add-box">
+			<h2> + Create a Tour </h2>
+		</div>
+	</a>
+<% end %>

@@ -1,0 +1,19 @@
+<% if current_user.is_band_admin?(band) %>
+	<%= button_to "Grab Shows From Seat Geek", band_grab_shows_url(band) %>
+<% end %>
+
+<% unless band.events.empty? %>
+	<a href="<%= band_events_url(band) %>">
+		<div class="all-shows-box">
+			<h2> All <%= band.name + "'s" %> Shows </h2>
+		</div>
+	</a>
+<% end %>
+
+<% if current_user.is_band_admin?(band) %>
+	<a href="<%= new_band_event_url(band) %>">
+		<div class="add-box">
+			<h2> + Add Show </h2>
+		</div>
+	</a>	
+<% end %>
