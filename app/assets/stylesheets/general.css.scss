@@ -31,6 +31,10 @@ h2 { font-size: 20px; }
 	clear: both;
 }
 
+.input > label {
+	display: block;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -123,6 +127,10 @@ input[type="checkbox"]:hover {
 	cursor: pointer;
 }
 
+.rightform {
+	float: left;
+}
+
 /* BODY */
 
 #container {
@@ -182,4 +190,23 @@ input[type="checkbox"]:hover {
 
 .small-image {
 	height: 50px;
+}
+
+/* SHOW PAGE HEADINGS */
+
+#show-image {
+	height: 100%;
+	float: right;
+}
+
+#show-heading {
+	border-bottom: 1px solid black;
+	padding: 0px;
+	padding-bottom: 20px;
+	margin-bottom: 30px;
+}
+
+#show-heading > h1 {
+	font-size: 30px;
+	color: black;
 }

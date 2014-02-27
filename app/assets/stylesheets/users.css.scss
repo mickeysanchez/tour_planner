@@ -1,3 +1,31 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* EDIT USER PAGE */
+
+#edit-user-email,
+#edit-user-password {
+	float: left;
+}
+
+#edit-user-password {
+	padding-left: 40px;
+	margin-left: 40px;
+	border-left: 1px solid black;
+}
+
+/* USER HEADING */
+
+.header-image {
+	border: 1px solid black;
+}
+
+#edit-image {
+	margin-top: 20px;
+}
+
+#edit-image > .input > label {
+	font-size: 16px;
+}
+
+#change-image {
+	width: 250px;
+	display: block;
+}

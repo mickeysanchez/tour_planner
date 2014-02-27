@@ -1,3 +1,25 @@
-// Place all the styles related to the Events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* EVENT FORM */
+
+.left-form {
+	width: 350px;
+	margin-top: 20px;
+ 	float: left;
+}
+
+.right-form {
+	width: 350px;
+	margin-top: 20px;
+	margin-left: 40px;
+	padding-left: 40px;
+	border-left: 1px solid black;
+	float: right;
+}
+
+.optional-event-form {
+	display: block;
+}
+
+label[for="venue_picker"] {
+	font-size: 20px;
+	font-weight: bold;
+}
