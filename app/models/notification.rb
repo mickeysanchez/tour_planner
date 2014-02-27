@@ -154,7 +154,9 @@ class Notification < ActiveRecord::Base
       "#{bm.member.email} is now a member of #{bm.band.name}!"
     when "admin"
        "You are now an admin for:  
-        <a href='#{band_path(bm.band)}'> #{bm.band.name}! </a>" 
+        <a href='#{band_path(bm.band)}'> #{bm.band.name}! </a>"
+    when "leave"
+       "#{bm.member.email} has left your band, #{bm.band.name}." 
     end
   end
   

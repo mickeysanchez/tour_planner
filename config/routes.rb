@@ -25,7 +25,7 @@ TourPlanner::Application.routes.draw do
   
   post 'search', to: 'bands#search', as: 'band_search'
   
-  resources :band_memberships, only: [:create]
+  resources :band_memberships, only: [:create, :destroy]
   
   resources :events, only: [:destroy, :index, :show]
   

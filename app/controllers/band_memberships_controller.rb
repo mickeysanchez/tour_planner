@@ -38,4 +38,11 @@ class BandMembershipsController < ApplicationController
     end
   end
   
+  def destroy
+    bm = BandMembership.find(params[:id])
+    bm.toggle!(:active)
+    bm.toggle!(:admin)
+    notify_bm_leave(bm)
+    redirect_to band_url(bm.band)
+  end
 end

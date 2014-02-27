@@ -6,7 +6,6 @@
     </div>
 	
 	<h1> <%= @band.name %> </h1>
-
 	
 	<% if current_user.is_band_admin?(@band)%>
 	<div id="change-image">
@@ -51,12 +50,18 @@
 	
 	<h3 style="border-top: 1px solid black; padding-top: 10px"> Members </h3>
 	<ul id="members-list">
+		
 	    <% if !current_user.is_in_band?(@band) && !current_user.has_requested_membership?(@band) %>
 	  	  <li class="member-list-item">
 	  		 <%= button_to "Request Band Membership", band_member_requests_url(@band) %> 
 	  	  </li>
 	    <% end %>
 	<% @band.band_memberships.each do |membership| %>
+	
+	  	<% if current_user.is_in_band?(@band) && membership.member == current_user %>
+	  		<%= button_to "Leave Band", band_membership_url(@band), method: :delete %>
+	  	<% end %>
+		
 	  <li class="member-list-item">
 		  <a href="<%= user_url(membership.member) %>">
 		  <%= membership.member.email %> 

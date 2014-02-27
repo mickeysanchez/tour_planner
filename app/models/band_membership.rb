@@ -12,6 +12,8 @@
 #
 
 class BandMembership < ActiveRecord::Base
+  default_scope where(active: true)
+  
   attr_accessible :member_id, :band_id, :role
   
   validates :member_id, :band_id, presence: true

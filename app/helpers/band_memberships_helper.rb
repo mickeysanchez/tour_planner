@@ -17,4 +17,10 @@ module BandMembershipsHelper
       subject: bm,
       notification_type: :admin)
   end
+  
+  def notify_bm_leave(bm)
+    notify_members(bm.band.members,
+      subject: bm,
+      notification_type: :leave)
+  end
 end

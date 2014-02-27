@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   
   def is_in_band?(band)
     !!BandMembership
-      .where("member_id = ? AND band_id = ?", self.id, band.id)
+      .where("member_id = ? AND band_id = ? AND active = true", self.id, band.id)
       .first
   end
   
