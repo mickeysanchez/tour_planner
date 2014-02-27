@@ -20,7 +20,6 @@
 
 class Event < ActiveRecord::Base
   default_scope where(active: true)
-  default_scope order('date ASC')
   
   attr_accessible :name, :venue_id, :date, :poster, :band_id, :tour_id, :ticket_url
   
@@ -31,9 +30,9 @@ class Event < ActiveRecord::Base
   belongs_to :tour, inverse_of: :events
   
   has_attached_file :poster, 
-  styles: { medium: "500x500#", thumb: "200x200#" }, 
-  default_url: "venue_missing.png"
-  validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
+    styles: { medium: "500x500#", thumb: "200x200#" }, 
+    default_url: "venue_missing.png"
+    validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
   
   has_many :notifications, as: :notifiable
 end

@@ -1,5 +1,3 @@
-require 'addressable/uri'
-
 module BandsHelper
   include NotificationsHelper
   
@@ -25,11 +23,10 @@ module BandsHelper
       open(performers.first["images"]["medium"]) ||
       open(performers.first["images"]["small"])
       band.save!
+      true
     rescue
-      performers = []
+      false
     end
-    
-    performers.empty? ? false : true
   end
   
   def notify_band_update(band, changes)

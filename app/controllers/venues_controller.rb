@@ -1,6 +1,6 @@
-include VenuesHelper
-
 class VenuesController < ApplicationController
+  include VenuesHelper
+  
   before_filter :require_signed_in!
   
   def index 

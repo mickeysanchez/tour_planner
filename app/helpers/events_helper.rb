@@ -1,5 +1,3 @@
-require 'addressable/uri'
-
 module EventsHelper
   include NotificationsHelper
   
@@ -36,8 +34,6 @@ module EventsHelper
       :host => "api.seatgeek.com",
       :path => "2/events",
       :query_values => {
-        # "type" => "concert",
-        # "venue.country" => "US",
         "performers.slug" => band_name,
         "per_page" => 100
       }
@@ -86,8 +82,6 @@ module EventsHelper
     
     options = defaults.merge(options)
     
-    shows = []
-    
     marker_symbol = ''
     marker_size = 'medium'
     marker_color = '#070'
@@ -105,7 +99,9 @@ module EventsHelper
     end
     
     if options[:event_links]
-      event_link = "<a href='#{event_url(event)}'>" + (l event.date, format: "%d %B %Y") + "</a>".html_safe
+      event_link = "<a href='#{event_url(event)}'>" + 
+                    (l event.date, format: "%d %B %Y") + 
+                    "</a>".html_safe
     else
       event_link = l event.date, format: "%d %B %Y"
     end

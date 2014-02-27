@@ -26,17 +26,12 @@ class Band < ActiveRecord::Base
     default_url: "user_missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  # make it easy on myself: call band.events or band.shows interchangeably
-  has_many :events, dependent: :destroy
-  has_many :shows, 
-    :class_name => 'Event', 
-    :foreign_key => :band_id
+  has_many :events, dependent: :destroy, order: 'date ASC'
            
   has_many :tours, 
     through: :events, 
     source: :tour, 
-    uniq: true, 
-    select: 'tours.*, events.date'
+    uniq: true
            
   has_many :band_memberships, dependent: :destroy
   

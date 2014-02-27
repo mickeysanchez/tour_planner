@@ -29,7 +29,7 @@ class Tour < ActiveRecord::Base
   
   def admin_user?(user)
     !BandMembership.where(
-    "admin = true AND member_id = ? AND band_id = ?",
-    user.id, self.band).empty?
+      "admin = true AND member_id = ? AND band_id = ?",
+       user.id, self.band).empty?
   end
 end
