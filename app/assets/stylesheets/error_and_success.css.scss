@@ -1,0 +1,18 @@
+/* ERROR AND SUCCESS PARTIALS */
+
+#errors {
+	color: #c00;
+}
+
+#successes {
+	color: #070;
+}
+
+#successes > ul {
+	padding: 0;
+	list-style: none;
+}
+
+#flash-header {
+	margin-left: 25px;
+}

@@ -1,0 +1,45 @@
+/* HEADER */
+
+header {
+	border-bottom: 1px solid black;
+    background:url('header.jpg') no-repeat; 
+	background-position: left-top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.nav-list-item {
+	float: left;
+	margin: 5px;
+}
+
+#left-nav {
+	list-style: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#right-nav {
+	list-style: none;
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+
+header nav {
+	border: 1px solid black;
+	border-top: 0;
+	border-bottom: 0;
+	width: 930px;
+	padding: 5px;
+	margin: auto;
+}
+
+#header-search {
+	margin: 0;
+	padding: 2px;
+	height: 20px;
+}
