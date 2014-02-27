@@ -1,19 +1,28 @@
+<script>
+	function dropDown(section) {
+		$(section).animate({
+			height: "toggle",
+			opacity: "toggle"
+		}, 500)
+	}
+</script>
+
+
 <% if params[:id] || params[:band_id] %>
-<div class="clearfix">
-	<%= button_to "Get Embed", "javascript:dropDown('#hidden')", method: :none %>
+
+	<div class="clearfix">
+		<%= button_to "Get Embed", "javascript:dropDown('#hidden')", method: :none %>
 	
-	<div id="hidden">
-	  <p> 
-		  Paste the following code on your site wherever you want the map
-		  to show up. When you make changes to this tour on Tour Planner, 
-		  the changes will be reflected on your site:
-	  </p>
-	  <p> (Props to Mapbox) </p>
-	  <hr>
-	  <p><%= render 'tours/embed_code', tour: @tour%></p>
+		<div id="hidden">
+		  <p> 
+			  Paste the following code on your site wherever you want the map
+			  to show up. When you make changes to this tour on Tour Planner, 
+			  the changes will be reflected on your site:
+		  </p>
+		  <p> (Props to Mapbox) </p>
+		  <hr>
+		  <p><%= render 'tours/embed_code', tour: @tour%></p>
+		</div>
 	</div>
 
-	<h2 id="distance"> Total Travel Distance: <%= @distance %> miles</h2>
-	
-</div>
 <% end %>

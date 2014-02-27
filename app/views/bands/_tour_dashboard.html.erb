@@ -1,6 +1,8 @@
 <% if band.tours.count > 0 %>
 	<h2> Tours (<%= band.tours.count %>) </h2>
-	<%= render 'tours/list', tours: band.tours %>
+	<ul id="all-tours">
+	  <%= render band.tours %>
+    </ul>
 <% end %>
 
 <% if current_user.is_band_admin?(band) && band.events.count > 0 %>

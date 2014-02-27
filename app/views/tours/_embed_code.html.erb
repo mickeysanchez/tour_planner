@@ -1,7 +1,7 @@
 <% if tour %>
-  <% url = "http://www.tourplanner.co/tours/" + tour.id.to_s +  "/map_embed_data" %>
+  <% url = map_embed_data_tour_url(tour) %>
 <% else %>
-  <% url = "http://www.tourplanner.co/bands/" + @band.id.to_s +  "/map_embed_data"%>
+  <% url = band_map_embed_data_url(@band) %>
 <% end %>
 
 &lt;meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' /&gt;
