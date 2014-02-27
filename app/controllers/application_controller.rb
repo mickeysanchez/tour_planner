@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   
   def authorized_user!
     unless current_user == User.find(params[:user_id])
-      redirect_to current_user
+      redirect_to current_user || login_url
     end
   end
   

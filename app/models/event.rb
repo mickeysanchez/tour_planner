@@ -15,6 +15,7 @@
 #  poster_file_size    :integer
 #  poster_updated_at   :datetime
 #  ticket_url          :string(255)      default("")
+#  active              :boolean          default(TRUE)
 #
 
 class Event < ActiveRecord::Base

@@ -58,8 +58,8 @@
 	    <% end %>
 	<% @band.band_memberships.each do |membership| %>
 	
-	  	<% if current_user.is_in_band?(@band) && membership.member == current_user %>
-	  		<%= button_to "Leave Band", band_membership_url(@band), method: :delete %>
+	  	<% if current_user.is_in_band?(@band) && membership.member == current_user && %>
+	  		<%= button_to "Leave Band", band_membership_url(current_user.find_membership(@band)), method: :delete %>
 	  	<% end %>
 		
 	  <li class="member-list-item">

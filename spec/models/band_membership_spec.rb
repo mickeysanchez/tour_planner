@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  admin      :boolean          default(FALSE), not null
+#  active     :boolean          default(TRUE)
 #
 
 require 'spec_helper'
