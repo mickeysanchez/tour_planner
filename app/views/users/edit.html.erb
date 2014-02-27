@@ -3,52 +3,51 @@
 <%= render 'layouts/errors' %>
 
 <div id="settings">
-<form id="edit-user-email" action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="_method" value="put">
+	<form id="edit-user-email" action="<%= user_url(current_user) %>" method="post" enctype="multipart/form-data">
+	  <input type="hidden" name="_method" value="put">
 
-  <input type="hidden" 
-		 name="authenticity_token" 
-		 value="<%= form_authenticity_token %>">
+	  <input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
 		 
-  <div class="input">		 
-    <label for="user_email">Change Email</label>
-    <input id="user_email"
-   		 name="user[email]"
-		 type="text"
-		 value="<%= @user.email %>">
-  </div>
+	  <div class="input">		 
+	    <label for="user_email">Change Email</label>
+	    <input id="user_email"
+	   		 name="user[email]"
+			 type="text"
+			 value="<%= @user.email %>">
+	  </div>
 
-  <div class="submit">
-    <input type="submit" value="Change Email">
-  </div>
-</form>
+	  <div class="submit">
+	    <input type="submit" value="Change Email">
+	  </div>
+	</form>
 
-<form id="edit-user-password" action="<%= user_change_password_url(current_user) %>" method="post">
-  <input type="hidden" name="_method" value="put">
+	<form id="edit-user-password" action="<%= user_change_password_url(current_user) %>" method="post">
+	  <input type="hidden" name="_method" value="put">
 	
-  <input type="hidden" 
-		 name="authenticity_token" 
-		 value="<%= form_authenticity_token %>">
+	  <input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
 
  
-  <div class="input">
-    <label>Change Password</label><br>
-    <label for="confirm-password">Confirm Current Password</label>
-    <input id="confirm-password"
-  		 name="user[old_password]"
-	     type="password">
-  </div>
+	  <div class="input">
+	    <label>Change Password</label><br>
+	    <label for="confirm-password">Confirm Current Password</label>
+	    <input id="confirm-password"
+	  		 name="user[old_password]"
+		     type="password">
+	  </div>
 		
-  <div class="input"> 
-    <label for="new-password">New Password</label>
-    <input id="new-password"
-   		 name="user[new_password]"
-		 type="password">
-  </div>
+	  <div class="input"> 
+	    <label for="new-password">New Password</label>
+	    <input id="new-password"
+	   		 name="user[new_password]"
+			 type="password">
+	  </div>
   
-  <div class="submit">		 
-    <input type="submit" value="Change Password">
-  </div>
-</form>
-
+	  <div class="submit">		 
+	    <input type="submit" value="Change Password">
+	  </div>
+	</form>
 </div>

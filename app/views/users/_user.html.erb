@@ -1,0 +1,8 @@
+<% unless user == current_user%>
+	<li> 
+	  <a href="<%= user_url(user) %>">
+	  <%= image_tag user.image.url(:thumb), class: "small-image" %>
+	  <%= link_to user.email, user_url(user) %> 
+	  </a>
+	</li>
+<% end %>
