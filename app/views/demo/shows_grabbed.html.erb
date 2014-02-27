@@ -47,6 +47,8 @@
 	
 	<h3> Members </h3>
 	<ul id="members-list">
+		
+	<%= button_to "Grab Shows From Seat Geek", demo_shows_grabbed_url, method: :get, class: "target" %>
 
 	<% @band.band_memberships.each do |membership| %>
 	  <li class="member-list-item">
@@ -56,10 +58,7 @@
 		  <% if membership.role %>
 			  - <%= membership.role %>
 		  <% end %>
-	  
-		  <% if true %>
-			  <%= membership.member.is_band_admin?(@band) ? "(Admin)" : "" %>
-		  <% end %>
+		  (Admin)
 		  </a>
 	  
 		  <% if false %>
@@ -166,12 +165,8 @@
 </ul>
 
 <script>
-	
 	$(document).ready(function () {
-		$('#header-arrow').addClass('arrow-on');
-
+		$('.header-arrow').attr("id", "arrow");
 		$('#notifications').addClass('target');
 	})
-
-
 </script>

@@ -95,9 +95,9 @@
 	<% @tours.each do |tour| %>
 	<h1> Tours </h1>
 	<li id="tour-block">
-		<ul class="block-header">
-			<li class="block-header-item" id="target"> 
-				<%= link_to tour.name, demo_band_tour_url, id: "target"%>
+		<ul class="block-header target">
+			<li class="block-header-item" class="target"> 
+				<%= link_to tour.name, demo_band_tour_url, class: "target"%>
 			</li>
 	    </ul>
 		
@@ -122,7 +122,7 @@
 	</a>
 <% end %>
 
-<div style="float: right; position:relative; right: 950px; bottom: 180px" id="arrow">
+<div style="float: right; position:relative; right: 920px; bottom: 180px" id="arrow">
 	<%= image_tag "demo-arrow.jpg", width: "100px"%>
 </div>
 

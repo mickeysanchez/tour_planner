@@ -1,87 +1,6 @@
-<style>
-.blackout {
-	position: fixed;
-	background: black;
-	height: 100%;
-	width: 100%;
-	z-index: 2;
-	opacity: .65;
-}
-
- 
-#demo {
-	position: relative;
-	background: white;
-	width: 900px;
-	margin: 60px auto;
-	text-align: center;
-	border: 3px solid lightblue;
-	padding: 10px;
-	font-size: 14px;
-	z-index: 3;
-}
-
-#current {
-	height: 60px;
-}
-
-strong {
-	color: #6b2607;
-}
-
-#previous {
-	float: left;
-}
-
-#previous > input {
-	font-weight: bold;
-	background: white;
-	border: 3px solid lightblue;
-}
-
-#next {
-	float: right;
-}
-
-#next > input {
-	border: 3px solid lightblue;
-	font-weight: bold;
-	background: white;
-}
-
-#next > input:hover,
-#previous > input:hover {
-	background: lightyellow;
-}
-
-</style>
-
 <div class="blackout"></div>
-
 <div id="demo" class="clearfix">
-	<!-- <form action="<%= login_url %>" method="post" style="position: absolute; left: 660px">
-	  <input type="hidden" 
-			 name="authenticity_token" 
-			 value="<%= form_authenticity_token %>">
-	  
-	 <input type="hidden" name="user[email]" value="demo-user@tourplanner.co">
-	 <input type="hidden" name="user[password]" value="password">
-
-      <div class="submit">	 
- 	  	   <input type="submit" value="Sign In As Demo User">
-      </div>
-    </form> -->
-	
-	<h1> <%#= flash[:demo_header] %> </h1>
-	
-	<%# flash[:demo].each do |demo| %>
-
-		<p><%#= demo %></p>
-
-	<%# end %>
-	
 	<h2 id="current"></h2>
-
 	<div id="previous"></div>
 	<div id="next"></div>
 </div>
@@ -89,68 +8,45 @@ strong {
 <script>
 
 $(document).ready(function () {
-	var steps = <%= raw flash[:demo] %>
-	
-	var i = 0
+	var steps = <%= raw flash[:demo] %>;
+	var i = 0;
 	
 	var checkButtons = function () {
 		if (i < steps.length) {
-			$('#next').html("<input type='submit' value='Next >>'></input>")
-		}
+			$('#next').html("<input type='submit' value='Next >>'></input>");
+		};
 		
 		if (i == steps.length-1 ) {
 			$('#next').html("");
 			fadeOut();
-			$("#arrow").fadeTo(400, 1)
-			setInterval(function () {
-				$("#arrow").fadeTo(1000, 0, function () {
-					$("#arrow").fadeTo(1000, 1)
-				});
-			}, 2000)
-			
-			if ($("#header-arrow").hasClass("arrow-on")) {
-				$("#header-arrow").fadeTo(400, 1)
-				setInterval(function () {
-					$("#header-arrow").fadeTo(1000, 0, function () {
-						$("#header-arrow").fadeTo(1000, 1)
-					});
-				}, 2000)
-			}
-
-			
-		}
+			$("#arrow").fadeTo(400, 1, function () {
+				$("#arrow").addClass('blink')
+			});
+		};
 		 
 		if (i > 0) {
-			$('#previous').html("<input type='submit' value='<< Previous'></input>")
-		}
+			$('#previous').html("<input type='submit' value='<< Previous'></input>");
+		};
 		
 		if (i == 0) {
-			$('#previous').html("")
-		}
-	}
+			$('#previous').html("");
+		};
+	};
 	
 	var fadeOut = function () {
-		
 		$(".blackout").animate({
 			opacity: 0,
 			"z-index": -1
-		}, 400)
-				
-	}	
-	
+		}, 400);			
+	};
 	
 	$('#current').html(steps[i]);
 	checkButtons();
 	
-	
 	$('#next').on("click", function(event) {
 		event.preventDefault();
 		i++;
-		$('#current').animate({"opacity": 0}, 150, function () {
-			$('#current').animate({"opacity": 1}, 150);
-			$('#current').html(steps[i]);
-		})
-
+		$('#current').html(steps[i])
 		checkButtons();
 	})
 	
@@ -160,10 +56,6 @@ $(document).ready(function () {
 		$('#current').html(steps[i]);
 		checkButtons();
 	})
-	
-	
-	
-	
 });
 
 </script>

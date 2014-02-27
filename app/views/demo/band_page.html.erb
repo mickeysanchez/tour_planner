@@ -31,17 +31,7 @@
 		</form>
 		or 
 		
-		<form id="edit-image" style="display: inline" action="<%= demo_band_image_url %>" method="get"   enctype="multipart/form-data">
-		  <input type="hidden" name="_method" value="put">
-	
-		  <input type="hidden" 
-				 name="authenticity_token" 
-				 value="<%= form_authenticity_token %>">
-
-		  <div class="submit">
-		    <input type="submit" value="Grab Image" id="target">
-		  </div>
-		</form>
+		<%= button_to "Grab Image", demo_band_image_url, method: :get, class: "target" %>
 </div>
 	<% end %>
 	
@@ -105,8 +95,8 @@
 	</a>
 <% end %>
 
-<%= render 'events/list', events: @events, hide_band_name: true %>
+<%= render @events, hide_band_name: true %>
 
-<div style="float: left; position: relative; right: 150px; bottom: 380px" id="arrow">
+<div style="float: left; position: relative; right: 120px; bottom: 370px" id="arrow">
 	<%= image_tag "demo-arrow.jpg", width: "100px"%>
 </div>

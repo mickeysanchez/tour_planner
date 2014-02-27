@@ -1,10 +1,6 @@
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />
-
-<div id='map'>
-</div>
-
 <style>
 	#map {
 		border: 1px solid black;
@@ -14,26 +10,10 @@
 	}
 </style>
 
-<script>
-var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
-    .setView([38, -102.0], 9);
-
-map.scrollWheelZoom.disable();
-
-var featureLayer = L.mapbox.featureLayer()
-    .setGeoJSON(<%= @geo_data %>)
-    .addTo(map);
-
-map.fitBounds(featureLayer.getBounds());
-
-
-var showCount = <%= JSON.parse(@geo_data).count %>
-</script>
-
-<h1> Total Distance: <%= @distance %> miles </h1>
-
+<div id='map'>
+</div>
+<%= button_to "Get Embed", "javascript:dropDown('#hidden')", method: :none, class: "target" %>
 <div class="clearfix">
-		<h2> <a href="javascript:dropDown('#hidden')" id="get-embed" class="target"> Get Embed </a> &nbsp; << Embed this map on your band's website! </h2>
 		<div id="hidden">
 		  <p> 
 			  Paste the following code on your site wherever you want the map
@@ -45,35 +25,37 @@ var showCount = <%= JSON.parse(@geo_data).count %>
 		  <p><%= render 'tours/embed_code', tour: @tour%></p>
 	</div>
 </div>
+<br>
+<h1> Total Distance: <%= @distance %> miles </h1>
 
-<style>
-		#hidden {
-			display: none;
-	}
-		
-		#get-embed {
-			padding: 5px;
-			border: 1px solid black;
-	}
-		
-		#get-embed:hover {
-			background: lightyellow;
-	}
-		
-		#distance {
-			vertical-align: text-top;
-	}
-</style>
+
+
 <script>
-		function dropDown(section) {
-			$(section).animate({
-				height: "toggle",
-				opacity: "toggle"
-		}, 500)
-				
-			$('html, body').animate({
-					scrollTop: $(section).offset().top
-				}, 1000);
+	var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
+	    .setView([38, -102.0], 9);
+
+	map.scrollWheelZoom.disable();
+
+	var featureLayer = L.mapbox.featureLayer()
+	    .setGeoJSON(<%= @geo_data %>)
+	    .addTo(map);
+
+	map.fitBounds(featureLayer.getBounds());
+
+
+	var showCount = <%= JSON.parse(@geo_data).count %>
+</script>
+
+<script>
+	function dropDown(section) {
+		$(section).animate({
+			height: "toggle",
+			opacity: "toggle"
+	}, 500)
+			
+		$('html, body').animate({
+				scrollTop: $(section).offset().top
+			}, 1000);
 	}
 </script>
 

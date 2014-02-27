@@ -11,34 +11,120 @@
   #arrow {
   	opacity: 0;
   }
+  
+  .blackout {
+  	position: fixed;
+  	background: black;
+  	height: 100%;
+  	width: 100%;
+  	z-index: 2;
+  	opacity: .65;
+  }
+ 
+  #demo {
+  	position: relative;
+  	background: white;
+  	width: 900px;
+  	margin: 60px auto;
+  	text-align: center;
+  	border: 3px solid lightblue;
+  	padding: 10px;
+  	font-size: 14px;
+  	z-index: 3;
+  }
+
+  #current {
+  	height: 60px;
+  }
+
+  strong {
+  	color: #6b2607;
+  }
+
+  #previous {
+  	float: left;
+  }
+
+  #previous > input {
+  	font-weight: bold;
+  	background: white;
+  	border: 3px solid lightblue;
+  }
+
+  #next {
+  	float: right;
+  }
+
+  #next > input {
+  	border: 3px solid lightblue;
+  	font-weight: bold;
+  	background: white;
+  }
+
+  #next > input:hover,
+  #previous > input:hover {
+  	background: lightyellow;
+  }
+  
+  #message {
+	position: absolute;
+	top: -5px;
+	margin-left: 95px;
+	width: 400px;
+  }
+  
+  .blink {
+	  -webkit-animation: blink 2s linear infinite;
+	  -webkit-animation-delay: 1s;
+	  
+	  -moz-animation: blink 2s linear infinite;
+	  -moz-animation-delay: 1s;
+	  
+	  -webkit-animation: blink 2s linear infinite;
+	  -webkit-animation-delay: 1s;
+  }
+  
+  @-webkit-keyframes blink {
+	  0% { opacity: 1.0; }
+	  50% { opacity: 0.1; }
+	  100% { opacity: 1.0 ; }
+  }
+  
+  @-moz-keyframes blink {
+	  0% { opacity: 1.0; }
+	  50% { opacity: 0.1; }
+	  100% { opacity: 1.0 ; }
+  }
+  
+  @keyframes blink {
+	  0% { opacity: 1.0; }
+	  50% { opacity: 0.1; }
+	  100% { opacity: 1.0 ; }
+  }
 </style>
 
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('body').on('click', function (event) {
+			$target = $(event.target);
+			if ( !$target.is(".target") ) {
+				event.preventDefault();
+			}
+		});
+	})
+</script>
+
 </head>
 
 <body>
 	
-<%= render 'demo/demo_header' %>
+<%= render 'demo_header' %>
 <%= render 'demo/modal' %>
-<div id="container" class="clearfix">
 
-	
+<div id="container" class="clearfix">
 	<%= yield %>
 </div>
 
 </body>
 
-<script>
-	
-	$('#container').on('click', function (event) {
-		$target = $(event.target);
-		if ( $target.is("#target") || $target.is(".target") ) {
-			
-		} else {
-			event.preventDefault();
-		}
-	})
-	
-
-</script>
 </html>

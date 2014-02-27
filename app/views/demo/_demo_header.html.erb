@@ -1,14 +1,3 @@
-<style>
-	#message {
-		position: fixed;
-		top: -5px;
-		margin-left: 95px;
-		width: 400px;
-	}
-</style>
-
-
-
 <header>
 	<div class="blackout"></div>
 	<nav class="clearfix">
@@ -27,7 +16,13 @@
 		
 		<ul id="right-nav">	
 			<li class="nav-list-item">
-				<div style="opacity: 0; background: transparent; float: left; position: relative; right: 0; bottom: 0, display: none" class="add-arrow" id="header-arrow">
+				<div style="opacity: 0; 
+							background: transparent; 
+							float: left; 
+							position: relative; 
+							right: 0; 
+							bottom: 0, display: none" class="header-arrow">
+							
 					<%= image_tag "demo-arrow.png", height: "20px"%>
 				</div>
 			</li>
@@ -42,7 +37,7 @@
 			</li>
 			
 			<li class="nav-list-item" style="position=relative;"> 
-				<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout', style: "z-index:10"  %>
+				<%= button_to 'Log Out', logout_url, method: :delete, id: 'logout', style: "z-index:10", class: "target"  %>
 				<p id="message" > << Click <strong>Log Out</strong> To Quit Guided Tour</p>
 			</li>
 			
@@ -51,18 +46,3 @@
 		
 	</nav>
 </header>
-
-<script>
-
-
-
-$('header').on('click', function (event) {
-	$target = $(event.target);
-	if ($target.is("a")) {
-		if (!$target.is(".target")) {
-		  event.preventDefault();	
-		};	
-	};
-})
-
-</script>
