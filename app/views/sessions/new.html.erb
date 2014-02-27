@@ -5,30 +5,6 @@
 <% end %>
 
 <style>
-/* LOGIN FORM */
-
-#login {
-	margin-top: 100px;
-	border: 3px solid black;
-	padding: 30px;
-}
-
-#login > form > .submit {
-	margin: 20px 0;
-}
-
-.input {
-	font-size: 20px;
-}
-
-.input > input {
-	width: 300px;
-}
-
-#left-sign-in {
-	width: 350px;
-}
-
 html {
     background:url(<%= asset_path bg %>) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -37,29 +13,42 @@ html {
     background-size: cover;
 }
 
+#login {
+	margin-top: 100px;
+	border: 3px solid black;
+	padding: 30px;
+	position: relative;
+	background-color: #fff;
+}
+
+.input {
+	font-size: 20px;
+}
+
+#welcome {
+	margin-bottom: 30px;
+}
+
+#demo-user {
+	float: right;
+}
+
+#sign-ins {
+	display: block;
+	padding: 20px 0;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+}
+
 #left-sign-in {
-	margin-top: 30px;
 	width: 400px;
 	border-right: 1px solid black;
 	float: left;
 }
 
 #right-create-user {
-	margin-top: 30px;
 	margin-left: 80px;
-  float: left;
-}
-
-#sign-ins {
-	display: block;
-	padding-bottom: 40px;
-	border-bottom: 1px solid black;
-	border-top: 1px solid black;
-}
-
-#login {
-	position: relative;
-	background-color: #fff;
+    float: left;
 }
 
 .choose-a-band {
@@ -81,7 +70,6 @@ html {
 .band-choice > img:hover {
 	opacity: .75;
 }
-
 </style>
 
 <script>
@@ -99,122 +87,120 @@ html {
 
 <div id="login" class="clearfix">
 	
-<form action="<%= login_url %>" method="post" style="position: absolute; left: 680px; top: 5px">
-  <input type="hidden" 
-		 name="authenticity_token" 
-		 value="<%= form_authenticity_token %>">
+	<form action="<%= login_url %>" method="post" id="demo-user">
+	  <input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
   
- <input type="hidden" name="user[email]" value="demo-user@tourplanner.co">
- <input type="hidden" name="user[password]" value="password">
+	 <input type="hidden" name="user[email]" value="demo-user@tourplanner.co">
+	 <input type="hidden" name="user[password]" value="password">
 
-  <div class="submit">	 
-  	   <input type="submit" value="Sign In As Demo User">
-  </div>
-</form>
+	  <div class="submit">	 
+	  	   <input type="submit" value="Sign In As Demo User">
+	  </div>
+	</form>
 	
-  <h1>Welcome to Tour Planner!</h1> 
-  <%= render 'layouts/errors' %>
+<h1 id="welcome">Welcome to Tour Planner!</h1> 
+<%= render 'layouts/errors' %>
   
 <div id="sign-ins" class="clearfix">
 	
-
-
-<div id="left-sign-in"> 
+	<div id="left-sign-in"> 
 	
-	<form action="<%= login_url %>" method="post">
-	  <input type="hidden" 
-			 name="authenticity_token" 
-			 value="<%= form_authenticity_token %>">
+		<form action="<%= login_url %>" method="post">
+		  <input type="hidden" 
+				 name="authenticity_token" 
+				 value="<%= form_authenticity_token %>">
 
-	  <div class="input">
-	   <label for="user_email">Sign In</label>
-	   <input id="user_email"
-	   		 name="user[email]"
-			 type="text"
-			 value="<%= @user.email %>"
-			 placeholder="Email">
-	  </div>
+		  <div class="input">
+		   <label for="user_email">Sign In</label>
+		   <input id="user_email"
+		   		 name="user[email]"
+				 type="text"
+				 value="<%= @user.email %>"
+				 placeholder="Email">
+		  </div>
 
-	  <div class="input">
-	   <label for="user_password">Password</label>
-	   <input id="user_password"
-	  		 name="user[password]"
-			 type="password">
-	  </div>
+		  <div class="input">
+		   <label for="user_password">Password</label>
+		   <input id="user_password"
+		  		 name="user[password]"
+				 type="password">
+		  </div>
 	
-	  <div class="submit" style="">	 
-	   <input type="submit" value="Sign In">
-	  </div>
-	</form>
+		  <div class="submit" style="">	 
+		   <input type="submit" value="Sign In">
+		  </div>
+		</form>
 	  
-</div>
+	</div>
 
-<div id="right-create-user">
-	<form id="create" action="<%= users_url %>" method="post">
-	  <input type="hidden" 
-			 name="authenticity_token" 
-			 value="<%= form_authenticity_token %>">
+	<div id="right-create-user">
+		<form id="create" action="<%= users_url %>" method="post">
+		  <input type="hidden" 
+				 name="authenticity_token" 
+				 value="<%= form_authenticity_token %>">
 	  
-	  <div class="input">   
-	  <label for="user_email">Create A New Account</label>
-	  <input id="user_email"
-	   		 name="user[email]"
-			 type="text"
-			 placeholder="Email">
-      </div>
+		  <div class="input">   
+		  <label for="user_email">Create A New Account</label>
+		  <input id="user_email"
+		   		 name="user[email]"
+				 type="text"
+				 placeholder="Email">
+	      </div>
 	  
-	  <div class="input">
-	  <label for="user_password">Password</label>
-	  <input id="user_password"
-	  		 name="user[password]"
-			 type="password">
-	  </div>
+		  <div class="input">
+		  <label for="user_password">Password</label>
+		  <input id="user_password"
+		  		 name="user[password]"
+				 type="password">
+		  </div>
 	
-	  <div class="submit"> 
-	  <input type="submit" value="Create Account">
-      </div>
-	</form>
-</div>
+		  <div class="submit"> 
+		  <input type="submit" value="Create Account">
+	      </div>
+		</form>
+	</div>
 
 </div>
 
-<a href="javascript:dropDown('.choose-a-band')">
-	<div class="all-shows-box">
-		<h2> Take A Guided Tour </h2>
-	</div>
-</a>
+	<a href="javascript:dropDown('.choose-a-band')">
+		<div class="all-shows-box">
+			<h2> Take A Guided Tour </h2>
+		</div>
+	</a>
 
-<div class="choose-a-band clearfix" id="left">
-	<h1>- Choose An Artist -</h1>
+	<div class="choose-a-band clearfix" id="left">
+		<h1>- Choose An Artist -</h1>
 	
-	<a href="<%= demo_one_url + "?choice=Beyonce" %>"  id="beyonce">
-	<div class="band-choice">
-		<%= image_tag "beyonce.jpg" %><br>
-		Beyonce
+		<a href="<%= demo_one_url + "?choice=Beyonce" %>"  id="beyonce">
+		<div class="band-choice">
+			<%= image_tag "beyonce.jpg" %><br>
+			Beyonce
+		</div>
+		</a>
+	
+		<a href="<%= demo_one_url + "?choice=The Rolling Stones" %>" id="rolling-stones">
+		<div class="band-choice" id="left">
+			<%= image_tag "therollingstones.jpg" %><br>
+			Rolling Stones
+		</div>
+		</a>
+	
+		<a href="<%= demo_one_url + "?choice=Dr. Dog" %>" id="dr-dog">
+		<div class="band-choice" id="right">
+			<%= image_tag "dr.dog.jpg" %><br>
+			Dr. Dog
+		</div>
+		</a>
+	
+		<a href="<%= demo_one_url + "?choice=One Direction" %>" id="">
+		<div class="band-choice" id="right">
+			<%= image_tag "onedirection.jpg" %><br>
+			One Direction
+		</div>
+		</a>
+	
 	</div>
-	</a>
-	
-	<a href="<%= demo_one_url + "?choice=The Rolling Stones" %>" id="rolling-stones">
-	<div class="band-choice" id="left">
-		<%= image_tag "therollingstones.jpg" %><br>
-		Rolling Stones
-	</div>
-	</a>
-	
-	<a href="<%= demo_one_url + "?choice=Dr. Dog" %>" id="dr-dog">
-	<div class="band-choice" id="right">
-		<%= image_tag "dr.dog.jpg" %><br>
-		Dr. Dog
-	</div>
-	</a>
-	
-	<a href="<%= demo_one_url + "?choice=One Direction" %>" id="">
-	<div class="band-choice" id="right">
-		<%= image_tag "onedirection.jpg" %><br>
-		One Direction
-	</div>
-	</a>
-	
-</div>
 </div>
 
