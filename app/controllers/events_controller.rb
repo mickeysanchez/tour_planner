@@ -1,5 +1,3 @@
-require 'addressable/uri'
-
 class EventsController < ApplicationController
   include EventsHelper
   
@@ -7,11 +5,11 @@ class EventsController < ApplicationController
   
   def index
     if params[:band_id]
-      @band = Band.includes(:events).find(params[:band_id])
+      @band = Band.includes(:events, :band_memberships).find(params[:band_id])
       @events = @band.events
       @geo_data = geo_data_events(@events)
     else
-      @events = Event.order('date ASC').includes(:band, :venue)
+      @events = Event.includes(:band, :venue)
       @geo_data = geo_data_events(@events)
     end
   end
@@ -35,10 +33,7 @@ class EventsController < ApplicationController
     
     Event.transaction do
       begin
-        if @tour 
-          @tour.save!
-        end
-        
+        @tour.save! if @tour
         @venue.save!
         
         notify_event_create(@event)
@@ -66,14 +61,11 @@ class EventsController < ApplicationController
     
     Event.transaction do
       begin 
-        if @tour 
-          @tour.save!
-        end
+        @tour.save if @tour
         
         @event.assign_attributes(params[:event])
         @event.venue = @venue
-        changes = @event.changes
-              
+        changes = @event.changes 
         @event.save!
         notify_event_update(@event, changes)
             
@@ -91,9 +83,7 @@ class EventsController < ApplicationController
   
   def destroy
     @event = Event.find(params[:id])
-    
-    notify_event_destroy(@event)
-    
+    notify_event_destroy(@event) 
     @event.toggle!(:active)
     
     redirect_to @event.band
@@ -104,18 +94,12 @@ class EventsController < ApplicationController
     
     if grab_from_seat_geek?(band)
       flash[:success] = ["Shows grabbed."]
-    
       notify_grab_shows(band)
     else
       flash[:errors] = ["No shows on Seat Geek for that band. Sorry."]
     end
     
     redirect_to band_events_url(band)
-  end
-  
-  def grab_bands_in_town_shows
-    # bands_in_town  
-    # http://api.bandsintown.com/artists/Justin%20Timberlake/events.json?api_version=2.0&app_id=YOUR_APP_ID
   end
   
 end

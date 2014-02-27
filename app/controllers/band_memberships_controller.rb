@@ -13,12 +13,13 @@ class BandMembershipsController < ApplicationController
           mr = MemberRequest
                 .where("requester_id =? AND band_id = ?", bm.member_id, bm.band_id)
                 .first
+                
           mr.status = "approved"
           mr.save!
-          redirect_to user_notifications_url(current_user)
+          redirect_to band_url(bm.band)
       end
     rescue
-        flash[:errors] = ["Errrror"]
+        flash[:errors] = ["Something went wrong. Please bear with us."]
         redirect_to user_notifications_url(current_user)
     end
   end
@@ -28,8 +29,7 @@ class BandMembershipsController < ApplicationController
     bm = BandMembership.find(params[:id])
     
     if current_user.is_band_admin?(bm.band)
-      bm.admin = true
-      bm.save
+      bm.toggle!(:admin)
       notify_bm_admin(bm)
       
       redirect_to band_url(bm.band)

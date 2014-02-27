@@ -8,7 +8,6 @@ class BandsController < ApplicationController
   def search 
     @search_criteria = params[:search]
     @bands = Band.search_by_name(@search_criteria)
-    render 'bands/search'
   end
   
   def index
@@ -101,10 +100,11 @@ class BandsController < ApplicationController
   def map_embed_data
     allow_outside_access
     render json: 
-      geo_data_events(Band.find(params[:band_id]).events, 
+      geo_data_events(
+        Band.find(params[:band_id]).events, 
         up_to_date: true, 
         event_links: false, 
         ticket_links: true), 
-      status: :ok
+        status: :ok
   end
 end

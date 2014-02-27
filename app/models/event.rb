@@ -20,6 +20,7 @@
 
 class Event < ActiveRecord::Base
   default_scope where(active: true)
+  default_scope order('date ASC')
   
   attr_accessible :name, :venue_id, :date, :poster, :band_id, :tour_id, :ticket_url
   
