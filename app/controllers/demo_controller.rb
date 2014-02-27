@@ -137,7 +137,7 @@ class DemoController < ApplicationController
       "If you update
       this tour on <strong> Tour Planner </strong>, the changes <br> will be reflected on your
       website's embedded map!".html_safe,
-      "That's all for now. Click <a href='#{root_url}'> here </a> to sign up -or-
+      "That's all for now. Click <a href='#{root_url}' class='target'> here </a> to sign up -or-
       click 
       
       <form action='#{login_url}' method='post' style='display:inline-block'>
@@ -149,7 +149,7 @@ class DemoController < ApplicationController
        <input type='hidden' name='user[password]' value='password'>
 
         <div class='submit'>	 
-        	   <input type='submit' value='here'>
+        	   <input type='submit' value='here' class='target'>
         </div>
       </form>
       
