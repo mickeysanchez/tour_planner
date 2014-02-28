@@ -1,10 +1,10 @@
-#Tour Planner
-[Tour planner][http://www.tourplanner.co/] is a rails app for bands. 
-Head on over to the [site][http://www.tourplanner.co/] and take a guided tour! Choose between 4 different bands.
+#[Tour Planner](http://www.tourplanner.co/)
+[Tour planner](http://www.tourplanner.co/) is a rails app for bands. 
+Head on over to the [site](http://www.tourplanner.co/) and take a guided tour! Choose between 4 different bands.
 
 #Features
 * Guided tour
-* Lots of CRUD
+* Band search
 * Robust notifications
 * External API for embeddable maps
 
@@ -14,3 +14,6 @@ Head on over to the [site][http://www.tourplanner.co/] and take a guided tour! C
 * Google Geocoding
 * Seat Geek
 
+#Technology Overview
+* Guided tour
+* 
