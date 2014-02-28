@@ -1,15 +1,35 @@
-<h1> <%= link_to @tour.band.name, band_url(@tour.band) %> - <%= @tour.name %> - <%= @tour.events.count %> Shows </h1>
-<%= link_to "Edit", edit_band_tour_url(@tour.band, @tour) %> |
-<%= link_to "Delete", tour_url(@tour), method: :delete %>
+<h2> <%= link_to @tour.band.name, band_url(@tour.band) %> - <%= @tour.name %> <h2>
+<h2> <%= @tour.events.count %> shows - 
+	<%= link_to "Edit", edit_band_tour_url(@tour.band, @tour) %> |
+	<%= link_to "Delete", tour_url(@tour), method: :delete %>
+</h2>
+
 
 <div id="map-container">
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
-<%= render 'events/embed' %>
+<%= button_to "Get Embed", "javascript:dropDown('#hidden')", 
+	method: :none, 
+	class: "tour-buttons" %>
+<%= button_to "Calculate Distance", "javascript:dropDown('#hidden-distance')", 
+	method: :none, 
+	class: "tour-buttons" %>
+	
+<%= button_to "Hide Shows", "javascript:dropDown('#hidden-shows')", 
+	method: :none, 
+	class: "tour-buttons" %>
 
-<h2 id="distance"> Total Travel Distance: <%= @distance %> miles</h2>
+<div class="clearfixtop">
 
-<ul id="all-shows">
-  <%= render @tour.events, hide_band_name: true %>
-</ul>
+	<%= render 'events/embed' %>
+
+	<h2 id="hidden-distance"> Total Travel Distance: <%= @distance %> </h2>
+
+	<section id="hidden-shows">
+		<ul id="all-shows">
+		  <%= render @tour.events, hide_band_name: true %>
+		</ul>
+	</section>
+
+</div>

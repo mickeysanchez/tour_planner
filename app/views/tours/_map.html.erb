@@ -25,9 +25,10 @@
 
 	var featureLayer = L.mapbox.featureLayer()
 	    .setGeoJSON(<%= geo_data %>)
-	    .addTo(map);
 
 	map.fitBounds(featureLayer.getBounds());
+	
+	featureLayer.addTo(map);
 
 	var showCount = <%= JSON.parse(geo_data).count %>
 </script>

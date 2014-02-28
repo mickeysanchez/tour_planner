@@ -1,5 +1,7 @@
 #next
-0. fix total distance calculation
+0. add loading image to demo
+0. add arrow to embed
+0. finish calculate distance button
 
 #Things to add to existing tables: 
 	1. venues

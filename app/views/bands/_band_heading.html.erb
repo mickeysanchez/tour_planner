@@ -16,7 +16,7 @@
 			<% end %>
 			</div>
 	
-			<form id="edit-image" 
+			<form id="edit-image"
 				action="<%= band_url(band) %>" 
 				method="post"   
 				enctype="multipart/form-data">
@@ -37,7 +37,7 @@
 				  </div>
 			</form>
 			or 
-			<%= button_to "Grab Image", band_grab_image_url(band), method: :put %>
+			<%= button_to "Grab Image", band_grab_image_url(band), method: :put, remote: true, id: "grab-image" %>
 		</div>	
 	<% end %>
 
@@ -78,3 +78,21 @@
 	
 	</ul>
 </div>
+
+<script>
+$(document).ready(function () {
+	
+	var $grabForm = $($("#grab-image").closest("form"));
+
+    $grabForm.on("ajax:before", function () {
+    	$("#show-image").find("img").css("display", "none");
+    });
+
+	$grabForm.on("ajax:complete", function (event, data) {
+		console.log(data.responseText);
+		$("#band-show-image").attr("src", data.responseText);
+		$("#show-image").find("img").css("display", "inline");
+	});
+	
+})
+</script>

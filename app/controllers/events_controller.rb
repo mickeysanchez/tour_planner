@@ -92,14 +92,14 @@ class EventsController < ApplicationController
   def grab_shows
     band = Band.find(params[:band_id])
     
-    if grab_from_seat_geek?(band)
+    if tour = grab_from_seat_geek?(band)
       flash[:success] = ["Shows grabbed."]
       notify_grab_shows(band)
+      redirect_to :back
     else
       flash[:errors] = ["No shows on Seat Geek for that band. Sorry."]
+      redirect_to band_url(band)
     end
-    
-    redirect_to band_events_url(band)
   end
   
 end

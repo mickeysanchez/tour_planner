@@ -12,4 +12,4 @@
 
 
 <h2> Upcoming Events at <%= @venue.name %>: </h2>
-<%= render 'events/list', events: @venue.events, hide_band_name: false %>
+<%= render @venue.events, hide_band_name: false %>

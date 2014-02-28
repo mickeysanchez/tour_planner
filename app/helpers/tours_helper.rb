@@ -6,32 +6,42 @@ module ToursHelper
   end
   
   def get_distance(tour)
-    distance = 0
-    
-    tour.events.each_with_index do |event, i|
-      next unless tour.events[i+1]
-      origin = "#{event.venue.lat},#{event.venue.lon}"
-      destination = "#{tour.events[i+1].venue.lat},#{tour.events[i+1].venue.lon}"
+    return
+      events = tour.events
+      origin = events[0]
+      origin = origin.venue.lat.to_s + "," + origin.venue.lon.to_s
+      destination = events.last
+      destination = destination.venue.lat.to_s + "," + destination.venue.lon.to_s
+      second_to_last = (events.length > 10) ? 8 : events.length-2
+      waypoints = events[1..second_to_last].map { |event| event.venue.lat.to_s + "," + event.venue.lon.to_s }.join("|")
      
       url = Addressable::URI.new(
         :scheme => "https",
         :host => "maps.googleapis.com",
-        :path => "maps/api/distancematrix/json",
+        :path => "maps/api/directions/json",
         :query_values => {
           "origins" => origin,
           "destinations" => destination,
+          "waypoints" => waypoints,
           "sensor" => false,
           # "key" => ENV["GOOGLE_KEY"],
           "units" => "imperial" 
         }
       ).to_s
     
-      if data = JSON.parse(RestClient.get(url))["rows"].first["elements"].first["distance"]
-        distance += data["text"].to_i
-      end
-    end
+      
+      legs = JSON.parse(RestClient.get(url))["routes"].first["legs"]
     
-    distance
+      distance = 0
+      legs.each do |leg|
+        distance += leg["distance"]["text"][0..-4].split(",").join("").to_i unless leg["distance"]["text"][-2..-1] == "ft"
+      end
+    
+      if events.length > 10
+        "more than #{distance} miles."
+      else
+        "#{distance} miles"
+      end
   end
   
   def notify_tour_create(tour)

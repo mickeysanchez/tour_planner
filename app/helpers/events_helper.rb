@@ -70,7 +70,7 @@ module EventsHelper
       })
     end
     
-    events.empty? ? false : true
+    events.empty? ? false : tour
   end
   
   def geo_data(event, options= {})

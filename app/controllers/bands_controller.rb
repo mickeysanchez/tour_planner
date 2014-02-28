@@ -34,8 +34,6 @@ class BandsController < ApplicationController
       Band.transaction do
         @band.save!
         
-        grab_image_from_seat_geek?(@band)
-        
         band_membership = @band.band_memberships.new(params[:band_membership]);
         band_membership.member = current_user
         band_membership.toggle(:admin)
@@ -66,8 +64,12 @@ class BandsController < ApplicationController
       
       notify_band_update(@band, changes)
       
-      flash[:success] = ["Band deets updated!"]
-      redirect_to band_url(@band)
+      if request.xhr?
+        render text: band.image.url(:thumb)
+      else
+        flash[:success] = ["Band deets updated!"]
+        redirect_to band_url(@band)
+      end
     else
       flash.now[:errors] = @band.errors.full_messages
       render :edit
@@ -90,11 +92,20 @@ class BandsController < ApplicationController
     if grab_image_from_seat_geek?(band)
       flash[:success] = ["Image grabbed."]
       notify_band_image_grab(band)
+      
+      if request.xhr?
+        render text: band.image.url(:thumb), status: 200
+      else
+        redirect_to band
+      end
     else
-      flash[:errors] = ["Couldn't find that image. Sorry."]
+      if request.xhr?
+        render text: '/assets/user_missing.png' 
+      else
+        flash[:errors] = ["Couldn't find that image. Sorry."]
+        redirect_to band
+      end
     end
-    
-    redirect_to band
   end
   
   def map_embed_data

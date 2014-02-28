@@ -34,10 +34,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     
-    if current_user == @user && @user.update_attributes(params[:user])
+    if current_user == @user && @user.email != "demo-user@tourplanner.co" && @user.update_attributes(params[:user])
       flash[:success] = ["Updates Successful!"]
     else
       flash[:errors] = @user.errors.full_messages
+      flash[:errors] += ["Don't touch that demo user you!"]
     end
     
     redirect_to user_url(@user)

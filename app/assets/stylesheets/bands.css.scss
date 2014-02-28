@@ -7,9 +7,16 @@
 /* BAND SHOW */
 
 #band-show-image {
-	height: 280px;
+	width: 100%;
+	height: 100%;
 }
 
 .member-list-item {
 	margin: 10px 0;
+}
+
+#grab-loader {
+	background: url("loader.gif") no-repeat;
+	background-size: 100px;
+	height: 100px;
 }
