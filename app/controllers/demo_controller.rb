@@ -137,6 +137,7 @@ class DemoController < ApplicationController
       "If you update
       this tour on <strong> Tour Planner </strong>, the changes <br> will be reflected on your
       website's embedded map!".html_safe,
+      "Feel free to look around.",
       "That's all for now. Click <a href='#{root_url}' class='target'> here </a> to sign up -or-
       click 
       

@@ -1,6 +1,4 @@
 #next
-0. add loading image to demo?
-0. finish calculate distance action
 
 #Things to add to existing tables: 
 	1. venues
