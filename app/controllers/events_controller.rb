@@ -41,7 +41,7 @@ class EventsController < ApplicationController
         flash[:success] = ["New Show Created!"]
         redirect_to @event
       rescue
-        flash[:errors] =  @venue.errors.full_messages  
+        flash[:errors] =  @event.errors.full_messages + ["Venue:"] + @venue.errors.full_messages  
         flash[:errors] += @tour.errors.full_messages if @tour
         redirect_to new_band_event_url(params[:band_id])
       end
@@ -86,7 +86,7 @@ class EventsController < ApplicationController
     notify_event_destroy(@event) 
     @event.toggle!(:active)
     
-    redirect_to @event.band
+    redirect_to band_events_url(@event.band)
   end
   
   def grab_shows

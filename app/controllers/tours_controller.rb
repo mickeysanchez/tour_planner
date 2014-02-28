@@ -1,11 +1,12 @@
 class ToursController < ApplicationController
-  before_filter :require_signed_in!, except: [:map_embed_data]
+  before_filter :require_signed_in!, except: [:map_embed_data, :remove_event]
   
   include ToursHelper
   
   def show
     @tour = Tour.find(params[:id])
     @geo_data = geo_data_tour(@tour)
+    @event_remove = true
   end
   
   def new
@@ -53,7 +54,50 @@ class ToursController < ApplicationController
       notify_tour_destroy(@tour)
       @tour.toggle!(:active)
       flash[:success] = ["Tour deleted."]
-      redirect_to band
+    end
+    redirect_to current_user
+  end
+  
+  def remove_event
+    if session[:token] == "demo"
+      events = JSON.parse(cookies[:demo_tour])
+      venues = JSON.parse(cookies[:demo_venues])
+      
+      event_objects = []
+      events.each_with_index do |event, i|
+        event_obj = Event.new
+        event_obj.id = event["id"]
+        event_obj.date = event["date"]
+        venue_obj2 = Venue.new
+        venue_obj2.lat = venues[i]["lat"]
+        venue_obj2.lon = venues[i]["lon"]
+        venue_obj2.name = venues[i]["name"]
+        
+        event_obj.venue = venue_obj2
+        event_objects << event_obj
+      end
+      
+      event_objects.delete_if { |event| event.id.to_i == params["event_id"].to_i}
+      
+      cookies[:demo_tour] = event_objects.to_json
+      
+      render partial: 'tours/map', 
+             locals: { geo_data: geo_data_events(event_objects, 
+                       up_to_date: false, 
+                       event_links: false, 
+                       ticket_links: false) }, 
+             layout: false
+    else
+      @tour = Tour.find(params[:id])
+      @event = Event.find(params[:event_id])
+      @event.tour_id = nil
+      if @tour.admin_user?(current_user) && @event.save
+        if request.xhr?
+          render partial: 'tours/map', locals: { geo_data: geo_data_tour(@tour) }, layout: false
+        else
+          redirect_to(@tour)
+        end
+      end
     end
   end
   

@@ -35,6 +35,7 @@ TourPlanner::Application.routes.draw do
     member do 
       get 'map_embed_data', to: "tours#map_embed_data"
       get 'distance', to: "tours#distance"
+      put 'events/:event_id', to: "tours#remove_event", as: "remove_event"
     end
   end
   

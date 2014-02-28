@@ -8,7 +8,7 @@
 	2. shows
 	    - contact_name
 		- contact_phone
-		- contact_email
+		- contact_emaile
 		- arrival_time
 		- check_in_time
 		- doors_time

@@ -41,9 +41,12 @@ module EventsHelper
     
     events = JSON.parse(RestClient.get(url))["events"]
     
-    tour = Tour.create({
+    tour = Tour.find_or_create_by_name({
       name: band.name + " Tour (via SeatGeek)"
     })
+    
+    tour.active = true
+    tour.save
     
     events.each do |show| 
       v_data = show["venue"]
@@ -61,13 +64,15 @@ module EventsHelper
   
       next unless venue.valid?
   
-      Event.find_or_create_by_date_and_band_id_and_venue_id_and_ticket_url({
+      event = Event.find_or_create_by_date_and_band_id_and_venue_id_and_ticket_url({
         date: show["datetime_local"],
         ticket_url: show["url"],
         band_id: band.id,
         venue_id: venue.id,
-        tour_id: tour.id
+        tour_id: tour.id,
       })
+      
+      event.tour_id = tour.id
     end
     
     events.empty? ? false : tour

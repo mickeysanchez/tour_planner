@@ -1,17 +1,5 @@
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />
-<style>
-	#map {
-		border: 1px solid black;
-		width: 100%;
-		height: 500px;
-		z-index: 0;
-	}
-</style>
-
 <div id="map-container">
-	<div id='map'></div>
+  <%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
 <div style="float: right; position: relative; right: 920px; bottom: 17px" id="arrow">
@@ -60,24 +48,6 @@
 	</ul>
 </section>
 
-
-
-<script>
-	var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
-	    .setView([38, -102.0], 9);
-
-	map.scrollWheelZoom.disable();
-
-	var featureLayer = L.mapbox.featureLayer()
-	    .setGeoJSON(<%= @geo_data %>)
-	    .addTo(map);
-
-	map.fitBounds(featureLayer.getBounds());
-
-
-	var showCount = <%= JSON.parse(@geo_data).count %>
-</script>
-
 <script>
 	function dropDown(section) {
 		$(section).animate({
@@ -97,6 +67,18 @@
 			$("#show-reveal").attr("value", "Hide Shows")
 		}
 	};
+	
+	$("input[type=submit]").addClass("target");
+	
+	$("#all-shows").on("ajax:before", "form", function (event, data) {
+		$('#map').css("display", "none");
+	});
+	
+	$("#all-shows").on("ajax:complete", "form", function (event, data) {
+		var id = $(this).find("input[type=submit]").attr("id");
+		$('#' + id).css("display", "none");
+		$("#map-container").html(data.responseText);
+	});
 </script>
 
 

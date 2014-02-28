@@ -29,10 +29,11 @@ module DemoHelper
     @tour.id = 0
     
     @events = []
+    venues = []
     
     events.each_with_index do |show, i| 
       v_data = show["venue"]
-  
+      
       venue = Venue
       .new({
         name: v_data["name"],
@@ -46,6 +47,7 @@ module DemoHelper
       venue.id = i
   
       next unless venue.valid?
+      venues << venue
   
       event = Event.new({
         date: show["datetime_local"],
@@ -65,6 +67,8 @@ module DemoHelper
     @tours = [@tour]
     @tour.events = @events
     
+    cookies[:demo_tour] = @events.to_json
+    cookies[:demo_venues] = venues.to_json
     params[:band_id] = 0
   end 
   

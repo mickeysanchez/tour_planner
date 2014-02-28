@@ -78,4 +78,14 @@
 			$("#show-reveal").attr("value", "Hide Shows")
 		}
 	};
+	
+	$("#all-shows").on("ajax:before", "form", function (event, data) {
+		$('#map').css("display", "none");
+	});
+	
+	$("#all-shows").on("ajax:success", "form", function (event, data) {
+		var id = $(this).find("input[type=submit]").attr("id");
+		$('#' + id).css("display", "none");
+		$("#map-container").html(data)
+	});
 </script>

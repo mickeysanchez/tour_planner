@@ -15,17 +15,16 @@
 
 &lt;script&gt;
 
-	$.getJSON("<%= url %>", function(data) {
+	$.getJSON('<%= url %>', function(data) {
 		var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
 		    	   .setView([38, -102.0], 9);
 
 		map.scrollWheelZoom.disable();
 
-		var featureLayer = L.mapbox.featureLayer()
-		    .setGeoJSON(data)
-	
+		var featureLayer = L.mapbox.featureLayer().setGeoJSON(data);
+
 		map.fitBounds(featureLayer.getBounds());
-		
+	
 		featureLayer.addTo(map);
 	});
 	

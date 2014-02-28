@@ -1,4 +1,4 @@
-<li id="show-block">
+<li id="<%= event.id %>" class="show-block">
 	<ul class="block-header">
 		<% unless hide_band_name # band name doesn't appear on user page%>
 		  <li class="block-header-item"> 
@@ -11,8 +11,19 @@
 			<% unless !event.name || event.name.empty? %>
 				- <%= event.name %>
 			<% end %>
+		
 		</li>
 	</a>
+		<% if @tour %>
+			<li>
+				<%= button_to "Remove From Tour", 
+						remove_event_tour_url(@tour, event), 
+						method: :put,
+						remote: true,
+						class: "remove-button",
+						id: event.id %>
+			</li>
+		<% end %>
     </ul>
     
 	<hr>

@@ -21,6 +21,8 @@
 require 'addressable/uri'
 
 class Venue < ActiveRecord::Base
+  default_scope order("name")
+  
   attr_accessible :name, :address, :city, :state, :zipcode, :lat, :lon
   
   validates :name, :address, :city, :state, presence: true
