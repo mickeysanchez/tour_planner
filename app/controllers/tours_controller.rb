@@ -70,6 +70,7 @@ class ToursController < ApplicationController
         event_obj = Event.new
         event_obj.id = event["id"]
         event_obj.date = event["date"]
+        event_obj.ticket_url = event["ticket_url"]
         
         venue_obj2 = Venue.new
         venue_obj2.id = venues[i]["id"]
@@ -85,18 +86,18 @@ class ToursController < ApplicationController
       event_objects.delete_if { |event| event.id.to_i == params["event_id"].to_i}
       
       cookies[:demo_tour] = nil
-      cookies[:demo_tour] = event_objects.to_json
+      cookies[:demo_tour] = event_objects.to_json(only: [:id, :date, :ticket_url])
       cookies[:demo_venues] = nil
-      cookies[:demo_venues] = venue_objects.to_json
+      cookies[:demo_venues] = venue_objects.to_json(only: [:id, :lat, :lon, :name])
       
-      # render partial: 'tours/map', 
-      #        locals: { geo_data: geo_data_events(event_objects, 
-      #                  up_to_date: false, 
-      #                  event_links: false, 
-      #                  ticket_links: false) }, 
-      #        layout: false
+      render partial: 'tours/map', 
+             locals: { geo_data: geo_data_events(event_objects, 
+                       up_to_date: false, 
+                       event_links: false, 
+                       ticket_links: true) }, 
+             layout: false
       
-      render json: event_objects
+      # render json: cookies[:demo_tour]
     else
       @tour = Tour.find(params[:id])
       @event = Event.find(params[:event_id])

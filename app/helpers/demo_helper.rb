@@ -31,7 +31,8 @@ module DemoHelper
     @events = []
     venues = []
     
-    events.each_with_index do |show, i| 
+    events.each_with_index do |show, i|
+      
       v_data = show["venue"]
       
       venue = Venue
@@ -44,6 +45,9 @@ module DemoHelper
         lat: v_data["location"]["lat"],
         lon: v_data["location"]["lon"]  
       })
+      
+      next if venues.index { |v| v.name == venue.name }
+      
       venue.id = i
   
       next unless venue.valid?
@@ -68,9 +72,9 @@ module DemoHelper
     @tour.events = @events
     
     cookies[:demo_tour] = nil
-    cookies[:demo_tour] = @events.to_json
+    cookies[:demo_tour] = @events.to_json(only: [:id, :date, :ticket_url])
     cookies[:demo_venues] = nil
-    cookies[:demo_venues] = venues.to_json
+    cookies[:demo_venues] = venues.to_json(only: [:id, :lat, :lon, :name])
     params[:band_id] = 0
   end 
   

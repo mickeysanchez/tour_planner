@@ -78,8 +78,8 @@
 	$("#all-shows").on("ajax:complete", "form", function (event, data) {
 		var id = $(this).find("input[type=submit]").attr("id");
 		$('#' + id).css("display", "none");
-		$('#map').css("display", "block");
-		// $("#map-container").html(data.responseText);
+		// $('#map').css("display", "block");
+		$("#map-container").html(data.responseText);
 	});
 </script>
 
