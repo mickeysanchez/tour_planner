@@ -9,6 +9,7 @@
 <%= button_to "Get Embed", "javascript:dropDown('#hidden')", 
 	method: :none, 
 	class: "target tour-buttons" %>
+		
 <%= button_to "Calculate Distance", "javascript:dropDown('#hidden-distance')", 
 	method: :none, 
 	class: "target tour-buttons" %>
@@ -77,7 +78,8 @@
 	$("#all-shows").on("ajax:complete", "form", function (event, data) {
 		var id = $(this).find("input[type=submit]").attr("id");
 		$('#' + id).css("display", "none");
-		$("#map-container").html(data.responseText);
+		$('#map').css("display", "block");
+		// $("#map-container").html(data.responseText);
 	});
 </script>
 
