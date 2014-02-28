@@ -33,8 +33,9 @@ class DemoController < ApplicationController
     demo_setup
     
     flash[:demo] = 
-    ["It's easy to create a new band.",
-     "We filled out the form for you.", 
+    ["You can add and manage as many bands as you want.", 
+     "It's easy to add a new band. <br>
+      We filled out the form for you.", 
      "Just click <strong> Create Band </strong> to move on.".html_safe]
   end
   
@@ -57,7 +58,7 @@ class DemoController < ApplicationController
     flash[:demo] = 
     ["Bam! There it is!",
       "The eyes of #{session[:demo_band]} will keep you focused.",
-      "You can enter in shows yourself, or you can use some more 
+      "You can enter in shows yourself, or you can use some 
       <br> behind the scenes magic to grab existing event data.",
       "Click on the <strong>Grab Shows From Seat Geek</strong> 
       button to populate <br> your page with all the 
@@ -85,6 +86,7 @@ class DemoController < ApplicationController
     ["You received a member request! Someone wants to join <strong> #{@band.name} </strong>.".html_safe,
     "Members of a band will receive notifications <br> when shows and tours are added, updated, or
      deleted.".html_safe,
+    "Members are also alerted when someone joins or (gasp!) leaves the band.",
     "Looks like you got a request from <strong> #{@band.name}'s </strong> agent.",
     "She wants to stay up to date.",
     "Click <strong> Accept </strong> to add this band member."]
@@ -98,8 +100,8 @@ class DemoController < ApplicationController
     flash[:demo] = 
     ["Once you accept a new member, you have the option of making them an admin.",
     "Admins are allowed to create, edit, and delete a band's shows and tours.",
-    "Since you created this band, you were made an admin by default.",
     "Admins receive notifications when band details are editted.",
+    "Since you created this band, you were made an admin by default.",
     "Let's hold off on making <strong> #{session[:demo_band]}'s </strong> agent an admin for now.",
     "Instead, let's take a look at the coolest part of <strong> Tour Planner </strong>... the tours!",
     "Click on <strong> #{session[:demo_band]}'s </strong> tour to check it out."]

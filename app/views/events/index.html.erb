@@ -7,6 +7,10 @@
 	<%= render 'tours/map', geo_data: @geo_data %>
 </div>
 
+<%= button_to "Get Embed", "javascript:dropDown('#hidden')", 
+	method: :none, 
+	class: "tour-buttons" %>
+		
 <%= render 'events/embed' %>
 
 <% if @band %>

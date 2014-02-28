@@ -31,7 +31,7 @@
 		</form>
 		or 
 		
-		<%= button_to "Grab Image", demo_band_image_url, method: :get, class: "target" %>
+		<%= button_to "Grab Image", demo_band_image_url, method: :get, class: "target", id: "grab" %>
 </div>
 	<% end %>
 	
@@ -101,3 +101,21 @@
 <div style="float: left; position: relative; right: 120px; bottom: 407px" id="arrow">
 	<%= image_tag "demo-arrow.jpg", width: "100px"%>
 </div>
+
+<script>
+	$(document).ready(function () {
+	
+		$("#grab").on("click", function (event) {
+			event.preventDefault()
+			$("#band-show-image").css("display", "none")
+			setTimeout(function () {
+				$("#band-show-image").attr("src", "/assets/<%= @image %>")
+				$("#band-show-image").css("display", "block")
+				setTimeout(function () {
+					window.location.href = "<%= demo_band_image_url %>";
+				}, 1500)
+			}, 2000)
+		})
+	
+	});
+</script>
