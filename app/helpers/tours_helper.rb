@@ -6,7 +6,6 @@ module ToursHelper
   end
   
   def get_distance(tour)
-    return
       events = tour.events
       origin = events[0]
       origin = origin.venue.lat.to_s + "," + origin.venue.lon.to_s

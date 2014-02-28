@@ -10,23 +10,55 @@
 	}
 </style>
 
-<div id='map'>
+<div id="map-container">
+	<div id='map'></div>
 </div>
-<%= button_to "Get Embed", "javascript:dropDown('#hidden')", method: :none, class: "target" %>
-<div class="clearfix">
+
+<div style="float: right; position: relative; right: 920px; bottom: 17px" id="arrow">
+	<%= image_tag "demo-arrow.jpg", width: "75px"%>
+</div>
+
+<%= button_to "Get Embed", "javascript:dropDown('#hidden')", 
+	method: :none, 
+	class: "target tour-buttons" %>
+<%= button_to "Calculate Distance", "javascript:dropDown('#hidden-distance')", 
+	method: :none, 
+	class: "target tour-buttons" %>
+		
+<%= button_to "Hide Shows", "javascript:dropDown('#hidden-shows')", 
+	method: :none, 
+	class: "tour-buttons target",
+		id: "show-reveal" %>
+
+<%= button_to "Hide Map", "javascript:dropDown('#map-container')", 
+	method: :none, 
+	class: "tour-buttons target",
+		id: "map-reveal" %>
+		
+<div class="clearfixtop">
+		<div id="hidden-distance">
+			<h2> Total Distance: <%= @distance %> miles </h2>
+		</div>
+		
 		<div id="hidden">
 		  <p> 
 			  Paste the following code on your site wherever you want the map
 			  to show up. When you make changes to this tour on Tour Planner, 
 			  the changes will be reflected on your site:
-	  </p>
+	      </p>
+		  
 		  <p> (Props to Mapbox) </p>
 		  <hr>
 		  <p><%= render 'tours/embed_code', tour: @tour%></p>
-	</div>
+	    </div>
 </div>
 <br>
-<h1> Total Distance: <%= @distance %> miles </h1>
+
+<section id="hidden-shows" class="clearfixtop">
+	<ul id="all-shows">
+	   <%= render @tour.events, hide_band_name: true %>
+	</ul>
+</section>
 
 
 
@@ -51,12 +83,20 @@
 		$(section).animate({
 			height: "toggle",
 			opacity: "toggle"
-	}, 500)
-			
-		$('html, body').animate({
-				scrollTop: $(section).offset().top
-			}, 1000);
-	}
+		}, 500);
+		
+		if (section === "#map-container" && $("#map-reveal").attr("value") === "Hide Map") {
+			$("#map-reveal").attr("value", "Show Map")
+		} else if (section === "#map-container") {
+			$("#map-reveal").attr("value", "Hide Map")
+		}
+		
+		if (section === "#hidden-shows" && $("#show-reveal").attr("value") === "Hide Shows") {
+			$("#show-reveal").attr("value", "See  Shows")
+		} else if (section === "#hidden-shows") {
+			$("#show-reveal").attr("value", "Hide Shows")
+		}
+	};
 </script>
 
 

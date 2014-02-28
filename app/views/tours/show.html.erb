@@ -12,24 +12,70 @@
 <%= button_to "Get Embed", "javascript:dropDown('#hidden')", 
 	method: :none, 
 	class: "tour-buttons" %>
+		
 <%= button_to "Calculate Distance", "javascript:dropDown('#hidden-distance')", 
 	method: :none, 
 	class: "tour-buttons" %>
 	
 <%= button_to "Hide Shows", "javascript:dropDown('#hidden-shows')", 
 	method: :none, 
-	class: "tour-buttons" %>
+	class: "tour-buttons",
+		id: "show-reveal" %>
+		
+<%= button_to "Hide Map", "javascript:dropDown('#map-container')", 
+	method: :none, 
+	class: "tour-buttons",
+		id: "map-reveal" %>
 
 <div class="clearfixtop">
-
-	<%= render 'events/embed' %>
-
-	<h2 id="hidden-distance"> Total Travel Distance: <%= @distance %> </h2>
-
-	<section id="hidden-shows">
-		<ul id="all-shows">
-		  <%= render @tour.events, hide_band_name: true %>
-		</ul>
+	<section id="swaparea">
+		
+		<div id="#hidden">
+			<%= render 'events/embed' %>
+		</div>
+		
+		<div id="hidden-distance">
+			<h2> Total Travel Distance: 
+				<%= image_tag "loader.gif", style: "display: inline; height: 30px" %>
+			</h2>
+		</div>
+		
 	</section>
-
 </div>
+
+<section id="hidden-shows" class="clearfixtop">
+	<ul id="all-shows">
+	   <%= render @tour.events, hide_band_name: true %>
+	</ul>
+</section>
+
+<script>
+	function dropDown(section) {
+		$(section).animate({
+			height: "toggle",
+			opacity: "toggle"
+		}, 500);
+			
+		if (section === "#hidden-distance") {
+			$.ajax({
+				url: "<%= distance_tour_url(@tour) %>",
+				type: "GET",
+				success: function (data) {
+					$("#hidden-distance").find("h2").html("Total Travel Distance: " + data)
+				}
+			});
+		};
+		
+		if (section === "#map-container" && $("#map-reveal").attr("value") === "Hide Map") {
+			$("#map-reveal").attr("value", "Show Map")
+		} else if (section === "#map-container") {
+			$("#map-reveal").attr("value", "Hide Map")
+		}
+		
+		if (section === "#hidden-shows" && $("#show-reveal").attr("value") === "Hide Shows") {
+			$("#show-reveal").attr("value", "See  Shows")
+		} else if (section === "#hidden-shows") {
+			$("#show-reveal").attr("value", "Hide Shows")
+		}
+	};
+</script>

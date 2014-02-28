@@ -34,6 +34,7 @@ TourPlanner::Application.routes.draw do
   resources :tours, only: [:show, :destroy, :update] do
     member do 
       get 'map_embed_data', to: "tours#map_embed_data"
+      get 'distance', to: "tours#distance"
     end
   end
   

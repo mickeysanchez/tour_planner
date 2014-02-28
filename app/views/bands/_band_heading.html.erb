@@ -38,6 +38,7 @@
 			</form>
 			or 
 			<%= button_to "Grab Image", band_grab_image_url(band), method: :put, remote: true, id: "grab-image" %>
+			<div id="grab-image-error"></div>
 		</div>	
 	<% end %>
 
@@ -90,6 +91,9 @@ $(document).ready(function () {
 
 	$grabForm.on("ajax:complete", function (event, data) {
 		console.log(data.responseText);
+		if (data.responseText === "/assets/user_missing.png") {
+			$("#grab-image-error").html("Couldn't find that photo, sorry")
+		}
 		$("#band-show-image").attr("src", data.responseText);
 		$("#show-image").find("img").css("display", "inline");
 	});

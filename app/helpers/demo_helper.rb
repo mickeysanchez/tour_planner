@@ -9,7 +9,7 @@ module DemoHelper
     })  
     @user.id = 0
     @current_user = @user
-    
+    session[:token] = "demo"
     @band.members = [@user]
     bm = BandMembership.new
     bm.member = @user
@@ -54,6 +54,8 @@ module DemoHelper
         venue_id: venue.id,
         tour_id: @tour.id
       })
+      
+      event.id = i
       
       @events << event
       

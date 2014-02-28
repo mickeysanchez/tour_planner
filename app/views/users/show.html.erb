@@ -2,7 +2,9 @@
 
 <%= render 'user_heading', user: @user %>
 
-<%= render @user.bands %>
+<ul id="all-bands">
+	<%= render @user.bands %>
+</ul>
 
 <% if @user == current_user %>
 	<a href="<%= new_band_url %>">
