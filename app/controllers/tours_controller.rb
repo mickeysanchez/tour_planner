@@ -64,22 +64,36 @@ class ToursController < ApplicationController
       venues = JSON.parse(cookies[:demo_venues])
       
       event_objects = []
+      venue_objects = []
+      
       events.each_with_index do |event, i|
         event_obj = Event.new
         event_obj.id = event["id"]
         event_obj.date = event["date"]
         venue_obj2 = Venue.new
+        venue_obj2.id = venues[i]["id"]
         venue_obj2.lat = venues[i]["lat"]
         venue_obj2.lon = venues[i]["lon"]
         venue_obj2.name = venues[i]["name"]
         
         event_obj.venue = venue_obj2
         event_objects << event_obj
+        venue_objects << venue_obj2
       end
       
-      event_objects.delete_if { |event| event.id.to_i == params["event_id"].to_i}
+      # event_objects.delete_if { |event| event.id.to_i == params["event_id"].to_i}
       
+      cookies[:demo_tour] = nil
       cookies[:demo_tour] = event_objects.to_json
+      cookies[:demo_venues] = nil
+      cookies[:demo_venues] = venue_objects.to_json
+      
+      # render partial: 'tours/map', 
+      #        locals: { geo_data: geo_data_events(event_objects, 
+      #                  up_to_date: false, 
+      #                  event_links: false, 
+      #                  ticket_links: false) }, 
+      #        layout: false
       
       render partial: 'tours/map', 
              locals: { geo_data: geo_data_events(event_objects, 

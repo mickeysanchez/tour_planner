@@ -67,7 +67,9 @@ module DemoHelper
     @tours = [@tour]
     @tour.events = @events
     
+    cookies[:demo_tour] = nil
     cookies[:demo_tour] = @events.to_json
+    cookies[:demo_venues] = nil
     cookies[:demo_venues] = venues.to_json
     params[:band_id] = 0
   end 
@@ -85,3 +87,4 @@ module DemoHelper
     @band.band_memberships = [bm,bm2]
   end
 end
+
