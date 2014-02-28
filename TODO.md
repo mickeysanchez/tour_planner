@@ -1,5 +1,3 @@
-#next
-
 #Things to add to existing tables: 
 	1. venues
 		- contact info
@@ -25,7 +23,7 @@
 		- washer_dryer?
 		- notes
 		
-#Eventual extra features:
+#Ideas for more features:
 	1. google login
 	2. automatically adds shows to google calendar
 	3. emails you show details daily (or whatever you set)
