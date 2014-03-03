@@ -12,6 +12,12 @@ gem 'rest-client'
 gem 'addressable'
 gem 'pg_search', "~> 0.5.7"
 
+gem 'newrelic_rpm'
+
+group :production do 
+  gem 'thin'
+end
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
