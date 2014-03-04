@@ -101,10 +101,47 @@
 	  50% { opacity: 0.1; }
 	  100% { opacity: 1.0 ; }
   }
+  
+	.ui-tooltip {
+		position: absolute;
+		width: 200px;
+		background: lightblue;
+		padding: 10px;
+		border: 1px solid #ccc;
+		color: #003;
+		z-index: 10;
+	}
 </style>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script>
+
 	$(document).ready(function () {
+		$("a").attr("title", function() {
+			if (!$(this).hasClass("target")) {
+				return "This link is disabled right now. Create an account or sign in as a demo user to access all features.";	
+			};
+		});
+	
+		$("input").attr("title", function() {
+			if (!$(this).hasClass("target")) {
+				return "This button is disabled right now. Create an account or sign in as a demo user to access all features.";	
+			};
+		});
+	
+		$("a").click(function () {
+			$(this).tooltip();
+			$(this).tooltip("open");
+		});
+	
+		$("input").click(function () {
+			$(this).tooltip();
+			$(this).tooltip("open");
+		});
+
+
+
+
 		$('body').on('click', function (event) {
 			$target = $(event.target);
 			if ( !$target.is(".target") ) {
