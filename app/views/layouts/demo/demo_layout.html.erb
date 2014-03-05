@@ -118,13 +118,13 @@
 
 	$(document).ready(function () {
 		$("a").attr("title", function() {
-			if (!$(this).hasClass("target")) {
+			if ( !$(this).hasClass("target") ) {
 				return "Sorry, but this link is disabled right now. Create an account or sign in as a demo user to check out all the features!";	
 			};
 		});
 	
 		$("input").attr("title", function() {
-			if (!$(this).hasClass("target")) {
+			if ( !$(this).hasClass("target") ) {
 				return "Sorry, but this button is disabled right now. Create an account or sign in as a demo user to check out all the features!";	
 			};
 		});
