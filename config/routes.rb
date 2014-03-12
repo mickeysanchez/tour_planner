@@ -3,6 +3,7 @@ TourPlanner::Application.routes.draw do
   
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
+  post 'facebook_login', to: 'sessions#facebook_login'
   delete 'logout', to: 'sessions#destroy'
   
   resources :users, only: [:new, :create, :destroy, :show, :index, :edit, :update] do

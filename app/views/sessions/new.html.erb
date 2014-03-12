@@ -33,6 +33,11 @@ html {
 	float: right;
 }
 
+#facebook-login-button {
+	float: right;
+	margin-right: 10px;
+}
+
 #sign-ins {
 	display: block;
 	padding: 20px 0;
@@ -101,6 +106,19 @@ html {
 
 	  <div class="submit">	 
 	  	   <input type="submit" value="Sign In As Demo User">
+	  </div>
+	</form>
+	
+	<form action="<%= facebook_login_url %>" method="post" id="facebook-login-button">
+	  <input type="hidden" 
+			 name="authenticity_token" 
+			 value="<%= form_authenticity_token %>">
+  
+	 <input type="hidden" name="user[email]" value="demo-user@tourplanner.co">
+	 <input type="hidden" name="user[password]" value="password">
+
+	  <div class="submit">	 
+	  	   <input type="submit" value="Sign In With Facebook">
 	  </div>
 	</form>
 	

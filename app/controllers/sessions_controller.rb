@@ -24,6 +24,10 @@ class SessionsController < ApplicationController
     end
   end
   
+  def facebook_login
+    redirect_to login_url
+  end
+  
   def destroy
     sign_out
     redirect_to login_url

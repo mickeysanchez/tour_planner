@@ -14,6 +14,8 @@ gem 'pg_search', "~> 0.5.7"
 
 gem 'newrelic_rpm'
 
+gem 'temboo'
+
 group :production do 
   gem 'thin'
 end
