@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
     temboo_session = TembooSession.new('mickeysanchez', 'TourPlanner', ENV['TEMBOO'])
     app_id = ENV['FB_ID']
     app_secret = ENV['FB_SECRET']
-    $callback_id = '' # Leave this empty to start out.
+    session[:temboo_callback_id] = '' # Leave this empty to start out.
     
     oauth_init_choreo = Facebook::OAuth::InitializeOAuth.new(temboo_session)
 
@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
     oauth_init_results = oauth_init_choreo.execute(oauth_init_inputs)
     
     # Populate the global callback ID.
-    $callback_id = oauth_init_results.get_CallbackID()
+    session[:temboo_callback_id] = oauth_init_results.get_CallbackID()
     
     # Proceed to the authorization URL to grant this app access to your
     # Facebook info.
@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
     oauth_final_inputs = oauth_final_choreo.new_input_set()
     oauth_final_inputs.set_AppID(app_id)
     oauth_final_inputs.set_AppSecret(app_secret)
-    oauth_final_inputs.set_CallbackID($callback_id)
+    oauth_final_inputs.set_CallbackID(session[:temboo_callback_id])
 
     oauth_final_results = oauth_final_choreo.execute(oauth_final_inputs)
 
