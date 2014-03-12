@@ -216,6 +216,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-matchers
-  temboo
+  temboo (<= 1.77)
   thin
   uglifier (>= 1.0.3)
