@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       flash[:success] = ["Updates Successful!"]
     else
       flash[:errors] = @user.errors.full_messages
-      flash[:errors] += ["Don't touch that demo user you!"]
+      flash[:errors] += ["Don't touch that demo user you!"] if @user.email == "demo-user@tourplanner.co"
     end
     
     redirect_to user_url(@user)
