@@ -1,5 +1,5 @@
 PATH
-  remote: vendor
+  remote: vendor/plugins
   specs:
     temboo (1.77)
 
