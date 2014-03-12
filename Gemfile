@@ -14,7 +14,7 @@ gem 'pg_search', "~> 0.5.7"
 
 gem 'newrelic_rpm'
 
-gem 'temboo', '<= 1.77'
+gem 'temboo', '<= 1.77', path: 'temboo-ruby-sdk-1.77.gem'
 
 group :production do 
   gem 'thin'
