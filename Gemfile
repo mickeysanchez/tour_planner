@@ -1,5 +1,3 @@
-gem 'temboo', '<= 1.77'
-
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.15'
@@ -15,6 +13,8 @@ gem 'addressable'
 gem 'pg_search', "~> 0.5.7"
 
 gem 'newrelic_rpm'
+
+gem 'temboo', '<= 1.77'
 
 group :production do 
   gem 'thin'
