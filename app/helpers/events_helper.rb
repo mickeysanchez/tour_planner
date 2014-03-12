@@ -27,7 +27,7 @@ module EventsHelper
   end
   
   def grab_from_seat_geek?(band)
-    url = seat_geek_band_url(band)
+    url = seat_geek_band_events_url(band)
     events = JSON.parse(RestClient.get(url))["events"]
     
     tour = find_or_create_tour(band)    
@@ -72,7 +72,6 @@ module EventsHelper
                     "</a>".html_safe
     end
      
-     
     geo_json(event, ticket_link, marker_symbol, marker_size, marker_color, event_link)  
   end
   
@@ -114,7 +113,7 @@ module EventsHelper
   
   private
   
-  def seat_geek_band_url(band)
+  def seat_geek_band_events_url(band)
     band_name = band.name.downcase.split(" ").join("-")
     
     Addressable::URI.new(

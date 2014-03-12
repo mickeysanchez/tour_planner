@@ -2,17 +2,7 @@ module BandsHelper
   include NotificationsHelper
   
   def grab_image_from_seat_geek?(band)
-    band_name = band.name.downcase.split(" ").join("-")
-    
-    url = Addressable::URI.new(
-      :scheme => "http",
-      :host => "api.seatgeek.com",
-      :path => "2/performers",
-      :query_values => {
-        "q" => band_name
-      }
-    ).to_s
-    
+    url = seat_geek_band_url(band)
     performers = JSON.parse(RestClient.get(url))["performers"]
     
     begin 
@@ -46,5 +36,20 @@ module BandsHelper
      notify_members(band.members, 
        subject: band, 
        notification_type: :destroy)
+  end
+  
+  private
+  
+  def seat_geek_band_url(band)
+    band_name = band.name.downcase.split(" ").join("-")
+    
+    Addressable::URI.new(
+      :scheme => "http",
+      :host => "api.seatgeek.com",
+      :path => "2/performers",
+      :query_values => {
+        "q" => band_name
+      }
+    ).to_s
   end
 end
