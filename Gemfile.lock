@@ -1,8 +1,3 @@
-PATH
-  remote: vendor/plugins
-  specs:
-    temboo (1.77)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -180,6 +175,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    temboo (1.77)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -220,6 +216,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-matchers
-  temboo (= 1.77)!
+  temboo
   thin
   uglifier (>= 1.0.3)
