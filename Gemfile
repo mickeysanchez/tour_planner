@@ -14,7 +14,7 @@ gem 'pg_search', "~> 0.5.7"
 
 gem 'newrelic_rpm'
 
-gem 'temboo', require: "Library/Facebook"
+gem 'temboo', require: "Library/Facebook", path: "vendor/plugins"
 
 group :production do 
   gem 'thin'
