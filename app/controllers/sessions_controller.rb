@@ -74,7 +74,7 @@ class SessionsController < ApplicationController
     user_results = user_choreo.execute(user_inputs)
     user_info = JSON.parse(user_results.get_Response())
     
-    user = User.find_or_create_by_email_and_password_digest({
+    user = User.find_or_create_by_email({
       email: user_info["name"],
       password: user_info["id"]
     })
