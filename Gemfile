@@ -1,5 +1,3 @@
-
-gem 'temboo', '1.77', path: 'vendor/plugins'
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.15'
@@ -16,6 +14,7 @@ gem 'pg_search', "~> 0.5.7"
 
 gem 'newrelic_rpm'
 
+gem 'temboo', '1.77', path: 'vendor/plugins'
 
 group :production do 
   gem 'thin'
