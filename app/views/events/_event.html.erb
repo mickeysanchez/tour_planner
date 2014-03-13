@@ -14,7 +14,7 @@
 		
 		</li>
 	</a>
-		<% if @tour && current_user.is_band_admin?(@tour.band) %>
+		<% if session[:token] == "demo" || (@tour && current_user.is_band_admin?(@tour.band)) %>
 			<li>
 				<%= button_to "Remove From Tour", 
 						remove_event_tour_url(@tour, event), 
